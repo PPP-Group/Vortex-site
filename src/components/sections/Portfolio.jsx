@@ -31,12 +31,6 @@ export function Portfolio() {
           lead="Abra um projeto para navegar por ele aqui dentro."
         />
 
-        {/* TODO: substituir os seis projetos de exemplo pelos cases reais da Vortex */}
-        <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-4 py-2 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint" data-reveal>
-          <span aria-hidden="true" className="h-1.5 w-1.5 rotate-45 bg-flare" />
-          Projetos de exemplo — substituir pelos cases definitivos
-        </p>
-
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {projects.map((project, i) => (
             <TiltCard
@@ -55,10 +49,21 @@ export function Portfolio() {
                 data-cursor
                 data-cursor-label="Ver"
               >
-                <ProjectCover
-                  project={project}
-                  className={i === 0 ? 'aspect-[16/8]' : 'aspect-[16/10]'}
-                />
+                <span className="relative block">
+                  <ProjectCover
+                    project={project}
+                    className={i === 0 ? 'aspect-[16/8]' : 'aspect-[16/10]'}
+                  />
+
+                  {/* Marca o que ainda é exemplo estrutural, para o card real
+                      ao lado não ser lido como igualmente hipotético. */}
+                  {project.demo && (
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-line-strong bg-ink-000/80 px-3 py-1.5 font-mono text-[9.5px] uppercase tracking-[0.12em] text-faint backdrop-blur-sm">
+                      <span aria-hidden="true" className="h-1 w-1 rotate-45 bg-flare" />
+                      Exemplo
+                    </span>
+                  )}
+                </span>
 
                 <span className="flex flex-1 flex-col p-6">
                   <span className="eyebrow flex items-center justify-between gap-3">

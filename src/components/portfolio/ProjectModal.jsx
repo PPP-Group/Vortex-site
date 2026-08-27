@@ -164,7 +164,10 @@ export function ProjectModal({ project, open, onClose }) {
               title={`Preview navegável — ${project.title}`}
               onLoad={handleLoad}
               onError={handleError}
-              loading="lazy"
+              /* Sem `loading="lazy"`: o iframe só é montado quando o modal
+                 abre, então o lazy não pouparia nada — só adiava o `load`, e
+                 o adiamento estourava o LOAD_TIMEOUT_MS, marcando como
+                 bloqueado um domínio que embute normalmente. */
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
               className="h-full w-full border-0 bg-white"
             />
