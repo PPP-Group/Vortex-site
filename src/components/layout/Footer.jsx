@@ -1,4 +1,5 @@
 import { Logo } from './Logo';
+import { WhatsAppIcon } from '../ui/Button';
 import { brand, contact, navigation } from '../../data/site';
 
 export function Footer() {
@@ -32,10 +33,28 @@ export function Footer() {
 
           <div className="md:col-span-4">
             <h2 className="eyebrow">Contato</h2>
-            {/* TODO: preencher os canais reais em src/data/site.js — sem href, viram texto */}
             <ul className="mt-5 space-y-2.5">
-              <li className="text-[14.5px] text-muted">{contact.email}</li>
-              <li className="text-[14.5px] text-muted">{contact.whatsapp}</li>
+              <li>
+                <a
+                  href={contact.emailHref}
+                  className="text-[14.5px] text-muted transition-colors hover:text-paper"
+                  data-cursor
+                >
+                  {contact.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex text-muted transition-colors hover:text-paper"
+                  aria-label={`WhatsApp — ${contact.whatsapp}`}
+                  data-cursor
+                >
+                  <WhatsAppIcon />
+                </a>
+              </li>
             </ul>
 
             <ul className="mt-7 flex flex-wrap gap-2">

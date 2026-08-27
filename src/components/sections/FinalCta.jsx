@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Button, ArrowRight } from '../ui/Button';
+import { Button, ArrowRight, WhatsAppIcon } from '../ui/Button';
 import { contact } from '../../data/site';
 import { useParallax } from '../../hooks/useMotionPrimitives';
 import { useReducedMotion } from '../../hooks/useMediaQuery';
@@ -63,15 +63,35 @@ export function FinalCta() {
             </Button>
           </div>
 
-          {/* TODO: preencher os canais reais em src/data/site.js */}
           <dl className="mt-16 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-3" data-reveal>
             <div>
               <dt className="eyebrow">E-mail</dt>
-              <dd className="mt-2 text-[15px] text-paper">{contact.email}</dd>
+              <dd className="mt-2">
+                <a
+                  href={contact.emailHref}
+                  className="text-[15px] text-paper transition-colors hover:text-volt"
+                  data-cursor
+                >
+                  {contact.email}
+                </a>
+              </dd>
             </div>
             <div>
               <dt className="eyebrow">WhatsApp</dt>
-              <dd className="mt-2 text-[15px] text-paper">{contact.whatsapp}</dd>
+              <dd className="mt-2">
+                <Button
+                  as="a"
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  size="icon"
+                  aria-label={`WhatsApp — ${contact.whatsapp}`}
+                  data-cursor
+                >
+                  <WhatsAppIcon />
+                </Button>
+              </dd>
             </div>
             <div>
               <dt className="eyebrow">Atendimento</dt>

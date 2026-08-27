@@ -90,15 +90,15 @@ export const navigation = [
 ];
 
 /**
- * TODO: substituir pelos canais reais da Vortex antes de publicar.
+ * TODO: preencher os socials reais da Vortex antes de publicar.
  * `href: null` faz o componente renderizar o item como texto inerte em vez de
  * um link quebrado.
  */
 export const contact = {
-  email: '[A DEFINIR]@vortex.com.br',
-  emailHref: null,
-  whatsapp: '[A DEFINIR]',
-  whatsappHref: null,
+  email: 'vortexsoftwareco@gmail.com',
+  emailHref: 'mailto:vortexsoftwareco@gmail.com',
+  whatsapp: '(37) 98827-1126',
+  whatsappHref: 'https://wa.me/5537988271126',
   location: 'Brasil · atendimento remoto',
   socials: [
     { label: 'Instagram', href: null, handle: '@[A DEFINIR]' },
