@@ -26,7 +26,17 @@ export function Services() {
         {/* Roteiro dor -> solução */}
         <ul className="mt-14 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
           {painPoints.map((item, i) => (
-            <li key={item.service} data-reveal style={{ '--reveal-delay': `${i * 70}ms` }}>
+            <li
+              key={item.service}
+              data-reveal
+              style={{ '--reveal-delay': `${i * 70}ms` }}
+              /* Grid de 2 colunas com número ímpar de itens: o último fica
+                 sozinho na própria linha, então ocupa as duas colunas em vez
+                 de deixar uma célula vazia ao lado. */
+              className={
+                painPoints.length % 2 === 1 && i === painPoints.length - 1 ? 'sm:col-span-2' : ''
+              }
+            >
               <button
                 type="button"
                 onClick={() => setOpenId(item.service)}
