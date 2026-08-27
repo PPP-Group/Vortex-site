@@ -1,7 +1,7 @@
 /**
  * O processo é uma sequência real — a ordem carrega informação (não dá para
  * implementar antes de desenhar), então aqui a numeração é justificada.
- * A duração é indicativa e deve ser confirmada pela PPP.
+ * A duração é indicativa e deve ser confirmada pela Vortex.
  */
 
 export const processSteps = [

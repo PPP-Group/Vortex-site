@@ -1,12 +1,12 @@
 /**
  * Conteúdo institucional e dados de contato.
  *
- * Tudo marcado com [A DEFINIR] precisa ser substituído pela PPP antes do deploy.
+ * Tudo marcado com [A DEFINIR] precisa ser substituído pela Vortex antes do deploy.
  * Os textos institucionais (manifesto, eixos, serviços) já são conteúdo final.
  */
 
 export const brand = {
-  name: 'PPP',
+  name: 'Vortex',
   tagline: 'Operação digital de ponta a ponta',
   short:
     'Empresa de tecnologia especializada em soluções digitais para aquisição, atendimento e retenção de clientes.',
@@ -32,7 +32,7 @@ export const axes = [
     label: 'Produto digital',
     body:
       'Sites, sistemas web, plataformas SaaS, aplicativos — e o design visual que sustenta tudo isso.',
-    tools: ['React', 'Supabase', 'Flutter', 'Motion'],
+    tools: ['React', 'Supabase', 'Flutter'],
   },
 ];
 
@@ -55,11 +55,6 @@ export const painPoints = [
     pain: 'Falta o site, o sistema ou o app da operação',
     fix: 'Desenvolvimento web, plataforma ou aplicativo sob medida',
     service: 'dev',
-  },
-  {
-    pain: 'A comunicação visual não acompanha o que a empresa entrega',
-    fix: 'Motion design, identidade e material de campanha',
-    service: 'motion',
   },
 ];
 
@@ -95,12 +90,12 @@ export const navigation = [
 ];
 
 /**
- * TODO: substituir pelos canais reais da PPP antes de publicar.
+ * TODO: substituir pelos canais reais da Vortex antes de publicar.
  * `href: null` faz o componente renderizar o item como texto inerte em vez de
  * um link quebrado.
  */
 export const contact = {
-  email: '[A DEFINIR]@ppp.com.br',
+  email: '[A DEFINIR]@vortex.com.br',
   emailHref: null,
   whatsapp: '[A DEFINIR]',
   whatsappHref: null,
@@ -114,7 +109,7 @@ export const contact = {
 
 /**
  * Métricas do hero. Os números são placeholders — o rótulo abaixo de cada um
- * deixa isso explícito na própria interface até a PPP confirmar os reais.
+ * deixa isso explícito na própria interface até a Vortex confirmar os reais.
  */
 export const metrics = [
   { value: 40, suffix: '+', label: 'automações entregues', placeholder: true },

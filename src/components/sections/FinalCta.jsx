@@ -21,7 +21,7 @@ export function FinalCta() {
       id="contato"
       data-spine-node="contato"
       data-spine-label="contato"
-      aria-label="Fale com a PPP"
+      aria-label="Fale com a Vortex"
       className="relative overflow-hidden border-t border-line py-28 md:py-40"
     >
       <div

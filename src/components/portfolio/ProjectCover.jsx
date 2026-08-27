@@ -7,7 +7,7 @@ import { useState } from 'react';
  * por cima, a imagem real quando ela existe em /public/portfolio. Se o arquivo
  * ainda não foi colocado lá, o `onError` esconde a imagem e a abstração fica —
  * nunca aparece ícone de imagem quebrada, e o card continua parecendo
- * intencional enquanto a PPP não sobe os prints definitivos.
+ * intencional enquanto a Vortex não sobe os prints definitivos.
  */
 
 const ACCENT = {

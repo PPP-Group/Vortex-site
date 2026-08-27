@@ -31,7 +31,7 @@ export function Portfolio() {
           lead="Abra um projeto para navegar por ele aqui dentro."
         />
 
-        {/* TODO: substituir os seis projetos de exemplo pelos cases reais da PPP */}
+        {/* TODO: substituir os seis projetos de exemplo pelos cases reais da Vortex */}
         <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-4 py-2 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint" data-reveal>
           <span aria-hidden="true" className="h-1.5 w-1.5 rotate-45 bg-flare" />
           Projetos de exemplo — substituir pelos cases definitivos

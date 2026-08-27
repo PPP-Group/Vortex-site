@@ -2,7 +2,7 @@ import { Section, SectionHeading } from '../ui/Section';
 import { axes, brand } from '../../data/site';
 
 /**
- * Sobre a PPP — os dois eixos de atuação.
+ * Sobre a Vortex — os dois eixos de atuação.
  *
  * Os eixos são paralelos, não sequenciais, então não recebem numeração: a
  * ordem entre eles não carrega informação. O que carrega é a convergência —
@@ -14,7 +14,7 @@ export function About() {
     <Section id="sobre" label="sobre" tone="raised">
       <div className="shell">
         <SectionHeading
-          eyebrow="Sobre a PPP"
+          eyebrow="Sobre a Vortex"
           title="Duas frentes que a maioria contrata em lugares diferentes."
           lead={brand.short}
         />
@@ -98,7 +98,7 @@ export function About() {
           <div className="md:col-span-7" data-reveal>
             <p className="text-xl leading-snug text-paper md:text-2xl">
               Automação sem produto digital vira remendo. Produto sem automação vira trabalho
-              manual. A PPP entrega os dois lados{' '}
+              manual. A Vortex entrega os dois lados{' '}
               <span className="text-volt">e o visual que amarra os dois</span> — por isso ninguém
               precisa traduzir o escopo de um fornecedor para o outro.
             </p>

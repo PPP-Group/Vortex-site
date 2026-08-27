@@ -2,7 +2,7 @@
  * PORTFÓLIO — TODOS OS PROJETOS ABAIXO SÃO EXEMPLOS ESTRUTURAIS.
  *
  * Nenhum nome de cliente real é usado: as entradas descrevem o *tipo* de
- * projeto. A PPP substitui título, resumo, stack, capa e URL pelos cases
+ * projeto. A Vortex substitui título, resumo, stack, capa e URL pelos cases
  * definitivos antes de publicar.
  *
  * Campos:
@@ -95,7 +95,7 @@ export const projects = [
     summary: 'Página de campanha com agendamento confirmado por IA de voz.',
     description:
       'Landing de campanha paga integrada ao GHL. O lead que preenche o formulário recebe uma ligação da Voice AI em poucos minutos, que qualifica, consulta a agenda e confirma o horário ainda na chamada.',
-    stack: ['GoHighLevel', 'Voice AI', 'Motion'],
+    stack: ['GoHighLevel', 'Voice AI'],
     liveUrl: null,
     embeddable: true, // sem efeito enquanto liveUrl for null
     externalUrl: null,
@@ -135,7 +135,7 @@ export const projects = [
     summary: 'Curso, comunidade e liberação de acesso automática após a compra.',
     description:
       'Área de membros com trilha de aulas, progresso e comunidade. A compra libera o acesso, matricula na turma e inicia a sequência de onboarding automaticamente — nenhum passo manual entre pagar e assistir.',
-    stack: ['GoHighLevel', 'n8n', 'Motion'],
+    stack: ['GoHighLevel', 'n8n'],
     liveUrl: null,
     embeddable: true, // sem efeito enquanto liveUrl for null
     externalUrl: null,

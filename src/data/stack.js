@@ -33,7 +33,6 @@ export const stackGroups = [
     items: [
       { name: 'Git & GitHub', role: 'versionamento com Gitflow' },
       { name: 'Deploy em nuvem', role: 'publicação e ambientes' },
-      { name: 'Motion', role: 'peças animadas e identidade' },
     ],
   },
 ];

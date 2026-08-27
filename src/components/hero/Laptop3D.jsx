@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useReducedMotion } from '../../hooks/useMediaQuery';
 import './laptop.css';
 
-/* TODO: números ilustrativos até a PPP confirmar dados reais.
+/* TODO: números ilustrativos até a Vortex confirmar dados reais.
    O painel é decorativo (o bloco inteiro é role="img"), então isto não é
    copy de produção — mas troque quando houver um print real do dashboard. */
 const PANEL = {
@@ -261,7 +261,7 @@ export function Laptop3D({ className = '' }) {
                   ))}
                 </div>
               </div>
-              <span className="lp-chin">PPP</span>
+              <span className="lp-chin">Vortex</span>
             </div>
 
             <div className="lp-lid-cover">

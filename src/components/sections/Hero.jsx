@@ -129,7 +129,7 @@ export function Hero() {
           ))}
         </dl>
         <p className="mt-4 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint">
-          {/* TODO: substituir por métricas reais aprovadas pela PPP e remover esta nota */}
+          {/* TODO: substituir por métricas reais aprovadas pela Vortex e remover esta nota */}
         </p>
       </div>
     </section>

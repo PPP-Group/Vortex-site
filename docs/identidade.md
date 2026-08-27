@@ -1,4 +1,4 @@
-# PPP — identidade de marca e sistema de design
+# Vortex — identidade de marca e sistema de design
 
 Documento de referência único. Cobre quem é a empresa, o que ela comunica, como
 ela se parece e por quê. Toda decisão aqui está implementada em código; quando
@@ -15,7 +15,7 @@ corrija o documento.
 
 ## 1. A empresa
 
-**PPP** é uma empresa de tecnologia especializada em soluções digitais para
+**Vortex** é uma empresa de tecnologia especializada em soluções digitais para
 **aquisição, atendimento e retenção de clientes**.
 
 O que a distingue não é dominar uma ferramenta, é cobrir as duas pontas que a
@@ -27,12 +27,12 @@ e o **produto digital** que ela alimenta — mais o design que amarra os dois.
 | Eixo | O que é | Ferramentas |
 | --- | --- | --- |
 | **Automação comercial e de relacionamento** | Funil de vendas, CRM, atendimento automatizado por texto e voz, integração entre as ferramentas que a operação já usa | GoHighLevel, n8n |
-| **Produto digital** | Sites, sistemas web, plataformas SaaS, aplicativos — e o design visual que sustenta tudo | React, Supabase, Flutter, Motion |
+| **Produto digital** | Sites, sistemas web, plataformas SaaS, aplicativos — e o design visual que sustenta tudo | React, Supabase, Flutter |
 
 Os eixos são **paralelos, não sequenciais**. Isso tem consequência visual: eles
 nunca são numerados (ver §9.4).
 
-### Os quatro serviços
+### Os três serviços
 
 1. **Automação e CRM com GoHighLevel** — pipelines, workflows multicanal,
    follow-up e recuperação de lead, agentes de IA de atendimento, Voice AI que
@@ -45,8 +45,6 @@ nunca são numerados (ver §9.4).
 3. **Sites, plataformas e software** — institucionais e landing pages com SEO,
    sistemas web sob medida, plataformas SaaS e dashboards alimentados por
    automação, apps mobile multiplataforma, processo com Git e deploy em nuvem.
-4. **Motion design e produção visual** — motion graphics, identidade visual e
-   logotipos, materiais de campanha, apoio visual para funis.
 
 Frentes complementares: consultoria em automação (diagnóstico + desenho),
 treinamento e repasse técnico, suporte e manutenção contínua.
@@ -71,7 +69,7 @@ propostas e bio de rede social.
 ### A ideia que sustenta tudo
 
 **Automação sem produto digital vira remendo. Produto sem automação vira
-trabalho manual.** A PPP entrega os dois lados e o visual que amarra — por isso
+trabalho manual.** A Vortex entrega os dois lados e o visual que amarra — por isso
 ninguém precisa traduzir o escopo de um fornecedor para o outro.
 
 ### Roteiro dor → solução
@@ -84,7 +82,6 @@ cliente reconhece em si:
 | "Perde lead porque ninguém responde rápido" | Follow-up automático e IA de atendimento e voz no GHL |
 | "Os sistemas não conversam entre si" | Integrações e orquestração de processos com n8n |
 | "Falta o site, o sistema ou o app da operação" | Desenvolvimento web, plataforma ou aplicativo sob medida |
-| "A comunicação visual não acompanha o que a empresa entrega" | Motion design, identidade e material de campanha |
 
 ### Os quatro compromissos
 
@@ -133,11 +130,11 @@ tipográfico e não ênfase.
 
 ## 4. A tese visual
 
-A PPP monta automação. O clichê da categoria é partícula flutuando e "rede
+A Vortex monta automação. O clichê da categoria é partícula flutuando e "rede
 neural" brilhando — visual que aparece igual em qualquer agência de tecnologia,
 independentemente do que ela faz.
 
-O artefato real do mundo da PPP é outro: **o canvas de um editor de workflow,
+O artefato real do mundo da Vortex é outro: **o canvas de um editor de workflow,
 com payload passando entre nós e log sendo impresso.**
 
 Daí a decisão que organiza todo o resto:
@@ -158,30 +155,29 @@ demonstrar.**
 
 ### O símbolo
 
-Três nós ligados por duas arestas. A sigla é lida como um fluxo mínimo — que é
-exatamente o que a empresa monta. **O terceiro nó fica aceso** (`volt`,
-preenchimento a 15%): o fluxo chegou ao fim.
+Um kraken: cabeça angulosa e olhar fechado, tentáculos abertos em leque com os
+dois centrais se cruzando na frente. Peça única, cor sólida — sem gradiente,
+sem segunda cor de destaque.
 
 Implementação: `src/components/layout/Logo.jsx` · Favicon: `public/favicon.svg`
 
 ### Assinatura
 
-Símbolo + wordmark **PPP** em Archivo, peso 700, `font-stretch: 118%`, tracking
+Símbolo + wordmark **Vortex** em Archivo, peso 700, `font-stretch: 118%`, tracking
 `-0.02em`. Espaço entre símbolo e wordmark: `10px` (`gap-2.5`).
 
-Proporção do símbolo: viewBox `40 × 14`; no header renderiza a `40 × 14 px`.
+Proporção do símbolo: viewBox `240 × 220`; no header renderiza a `28 × 28 px`.
 
 ### Regras de uso
 
-- O símbolo herda `currentColor` nos dois primeiros nós — ele se adapta ao
-  contexto. **O terceiro nó é sempre `volt`**, nunca outra cor.
-- Área de proteção: no mínimo a altura do símbolo (14px) em todos os lados.
-- Tamanho mínimo do símbolo: **32px de largura**. Abaixo disso, use só o
+- O símbolo herda `currentColor` por inteiro — ele se adapta ao contexto
+  (texto `paper` no header e no rodapé escuros).
+- Área de proteção: no mínimo a altura do símbolo (28px) em todos os lados.
+- Tamanho mínimo do símbolo: **20px de largura**. Abaixo disso, use só o
   wordmark ou o favicon.
 - Não aplicar sombra, contorno, gradiente ou rotação.
 - Não reescrever a sigla em outra fonte.
-- Fundo: sempre escuro. Se for inevitável usar sobre claro, inverta para
-  `ink-000` mantendo o nó aceso em `volt`.
+- Fundo: sempre escuro (`ink-000`) — o favicon já embute esse fundo no SVG.
 
 ---
 
@@ -368,7 +364,7 @@ Só a seção **"Como trabalhamos"** é numerada, porque ali a ordem carrega
 informação: não se implementa antes de desenhar, nem se desenha antes de
 diagnosticar.
 
-Os dois eixos e os quatro serviços **não** são numerados — são paralelos, e
+Os dois eixos e os três serviços **não** são numerados — são paralelos, e
 numerá-los sugeriria uma sequência que não existe. Numeração é estrutura de
 dado, não enfeite.
 
@@ -532,7 +528,7 @@ Registrado para não voltar por engano:
 - **Azul corporativo chapado** — a corrente é indigo→ciano, com magenta
   guardado para um único momento.
 - **Numerar o que não é sequência** — os eixos e os serviços são paralelos.
-- **Métrica inventada** — placeholder marcado na interface até a PPP confirmar.
+- **Métrica inventada** — placeholder marcado na interface até a Vortex confirmar.
 - **Nome de cliente real no portfólio** — as entradas descrevem o *tipo* de
   projeto até os cases definitivos entrarem.
 - **Uma capa gerada por IA** (card de marketplace) — tinha emenda retangular
@@ -563,7 +559,7 @@ execução avançando.
 **Documento e e-mail**
 Fundo claro é aceitável fora do site. Nesse caso: texto `#07070C` sobre
 `#FAFAFC`, acento `pulse` `#6A5AE0` (que sobre claro passa em contraste), e o
-símbolo invertido com o terceiro nó em `volt`.
+símbolo em `#07070C` sólido, nunca em `paper`.
 
 ---
 

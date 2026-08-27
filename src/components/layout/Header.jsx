@@ -44,7 +44,7 @@ export function Header() {
           <a
             href="#topo"
             className="-my-2 flex items-center py-2 text-paper transition-opacity hover:opacity-70"
-            aria-label="PPP — início"
+            aria-label="Vortex — início"
             data-cursor
           >
             <Logo />

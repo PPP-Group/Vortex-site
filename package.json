@@ -1,9 +1,9 @@
 {
-  "name": "ppp-site",
+  "name": "vortex-site",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Website institucional e portfolio da PPP",
+  "description": "Website institucional e portfolio da Vortex",
   "scripts": {
     "dev": "vite",
     "start": "vite",

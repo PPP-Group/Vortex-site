@@ -19,7 +19,7 @@ export function Services() {
       <div className="shell">
         <SectionHeading
           eyebrow="Serviços"
-          title="Quatro frentes. Uma operação só."
+          title="Três frentes. Uma operação só."
           lead="Comece pelo problema que você reconhece — cada um leva direto à frente que resolve."
         />
 

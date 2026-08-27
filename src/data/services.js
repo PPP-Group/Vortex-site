@@ -1,5 +1,5 @@
 /**
- * Os quatro serviços centrais.
+ * Os três serviços centrais.
  *
  * `capabilities` é curado, não exaustivo: cada item precisa ser algo que o
  * visitante consiga reconhecer como resposta a um problema dele.
@@ -59,21 +59,6 @@ export const services = [
       'Processo com Git e GitHub, Gitflow e deploy em nuvem',
     ],
     signature: ['ui', 'api', 'db', 'deploy'],
-  },
-  {
-    id: 'motion',
-    index: 'motion',
-    title: 'Motion design e produção visual',
-    subtitle: 'Identidade e movimento',
-    lead:
-      'O que a empresa entrega e o que ela parece entregar precisam ser a mesma coisa.',
-    capabilities: [
-      'Motion graphics para redes sociais e vídeos institucionais ou explicativos',
-      'Identidade visual e logotipos',
-      'Materiais de marketing digital: banners, posts e peças de campanha',
-      'Apoio visual para funis e landing pages',
-    ],
-    signature: ['brief', 'board', 'anim', 'export'],
   },
 ];
 

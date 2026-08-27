@@ -5,7 +5,7 @@ import { principles } from '../../data/site';
  * Princípios de trabalho.
  *
  * Ocupa o lugar de "prova social" enquanto não há depoimentos aprovados. São
- * afirmações verificáveis sobre como a PPP trabalha, não adjetivos —
+ * afirmações verificáveis sobre como a Vortex trabalha, não adjetivos —
  * "a operação fica com você" é uma promessa que se cobra depois.
  */
 export function Principles() {

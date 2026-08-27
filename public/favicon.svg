@@ -1,7 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="7" fill="#07070C"/>
-  <path d="M11 16h4M19 16h2" stroke="#3FD8E6" stroke-width="1.4" opacity=".5"/>
-  <rect x="4" y="12" width="7" height="8" rx="2.2" fill="none" stroke="#ECECF3" stroke-width="1.6"/>
-  <rect x="15" y="12" width="7" height="8" rx="2.2" fill="none" stroke="#ECECF3" stroke-width="1.6"/>
-  <rect x="24" y="12" width="6" height="8" rx="2.2" fill="#3FD8E6" fill-opacity=".2" stroke="#3FD8E6" stroke-width="1.6"/>
+  <g transform="translate(0.4,1.44) scale(0.13)">
+    <path
+      fill="#ECECF3"
+      fill-rule="evenodd"
+      d="M120 18
+         C96 18 78 32 68 54
+         C60 70 58 84 62 100
+         C64 106 70 110 78 110
+         L162 110
+         C170 110 176 106 178 100
+         C182 84 180 70 172 54
+         C162 32 144 18 120 18
+         Z
+         M92 50 L118 66 L96 74 Z
+         M148 50 L122 66 L144 74 Z"
+    />
+    <g fill="none" stroke="#ECECF3" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M66 108 C40 130 20 150 26 178 C30 198 52 206 66 192" />
+      <path d="M88 108 C70 140 62 168 78 190 C88 204 106 204 112 190" />
+      <path d="M108 108 C115 140 140 150 150 172 C154 182 148 192 136 194" />
+      <path d="M132 108 C125 140 100 150 90 172 C86 182 92 192 104 194" />
+      <path d="M152 108 C170 140 178 168 162 190 C152 204 134 204 128 190" />
+      <path d="M174 108 C200 130 220 150 214 178 C210 198 188 206 174 192" />
+    </g>
+  </g>
 </svg>

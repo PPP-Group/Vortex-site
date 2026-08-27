@@ -1,4 +1,4 @@
-# Site institucional e portfólio da PPP
+# Site institucional e portfólio da Vortex
 
 Site de página única em React + Vite + Tailwind v4. Dark mode, grafo de
 automação animado, portfólio com preview navegável em modal.
@@ -87,7 +87,7 @@ apague os arquivos.
 
 ```
 src/
-  data/            conteúdo — é aqui que a PPP edita, sem tocar em componente
+  data/            conteúdo — é aqui que a Vortex edita, sem tocar em componente
   hooks/           observador de reveal, smooth scroll, parallax, tilt, media queries
   lib/scroll.js    ponte única para rolagem: com ou sem Lenis, o resto do app não sabe
   components/

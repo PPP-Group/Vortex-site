@@ -28,7 +28,7 @@ const LOAD_TIMEOUT_MS = 6000;
  *
  *   1. `liveUrl: null`          -> abre direto no fallback. Determinístico.
  *   2. `embeddable: false`      -> abre direto no fallback, sem nem tentar a
- *                                  requisição. É a PPP declarando o que já
+ *                                  requisição. É a Vortex declarando o que já
  *                                  sabe sobre o domínio do projeto.
  *   3. Mesma origem             -> detecção REAL: dá para ler o href. Se vier
  *                                  'about:blank', o embed foi recusado.
@@ -57,7 +57,7 @@ export function ProjectModal({ project, open, onClose }) {
 
     setUnverified(false);
 
-    // `embeddable: false` é a PPP declarando que o domínio recusa embed.
+    // `embeddable: false` é a Vortex declarando que o domínio recusa embed.
     // Poupa uma requisição que já sabemos que vai render um frame vazio.
     if (!project.liveUrl || project.embeddable === false) {
       setStatus(project.liveUrl ? 'blocked' : 'unavailable');
@@ -210,7 +210,7 @@ export function ProjectModal({ project, open, onClose }) {
           <dl className="mt-4 space-y-4">
             {project.results.map((result) => (
               <div key={result.label} className="border-t border-line pt-3">
-                {/* TODO: substituir pelos números reais aprovados pela PPP */}
+                {/* TODO: substituir pelos números reais aprovados pela Vortex */}
                 <dt className="font-mono text-[12px] tracking-[0.04em] text-volt">{result.value}</dt>
                 <dd className="mt-1 text-[13px] leading-relaxed text-faint">{result.label}</dd>
               </div>

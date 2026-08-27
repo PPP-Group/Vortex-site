@@ -54,7 +54,7 @@ export const demoFlow = {
 
 /**
  * Mini-cases de automação. Estrutura problema -> solução -> resultado.
- * Resultados são placeholders até a PPP confirmar números reais.
+ * Resultados são placeholders até a Vortex confirmar números reais.
  */
 export const automationCases = [
   {

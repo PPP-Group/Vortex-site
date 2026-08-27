@@ -51,7 +51,7 @@ export function CaseModal({ item, open, onClose }) {
           <dl className="mt-4 grid gap-4 sm:grid-cols-2">
             {item.result.map((r) => (
               <div key={r.label} className="border-t border-line pt-3">
-                {/* TODO: substituir pelos números reais aprovados pela PPP */}
+                {/* TODO: substituir pelos números reais aprovados pela Vortex */}
                 <dt className="font-mono text-[12px] tracking-[0.04em] text-volt">{r.value}</dt>
                 <dd className="mt-1 text-[13px] leading-relaxed text-faint">{r.label}</dd>
               </div>
