@@ -16,8 +16,8 @@
  *               modal abre direto na capa, sem piscar um frame vazio.
  *               Para descobrir, inspecione os cabeçalhos da resposta:
  *               `curl -sI <url>` e procure x-frame-options / content-security-policy.
- *               Os quatro domínios .vercel.app abaixo foram verificados: não
- *               enviam nenhum dos dois cabeçalhos, então embutem normalmente.
+ *               Todos os domínios reais abaixo foram verificados dessa forma:
+ *               nenhum envia os dois cabeçalhos, então embutem normalmente.
  *   externalUrl destino do botão "abrir em nova aba". `null` desabilita.
  *   cover       imagem de capa em /public/portfolio/. Se o arquivo não
  *               existir, o card cai num placeholder gráfico procedural.
@@ -109,6 +109,27 @@ export const projects = [
     results: [
       { value: 'Simulador de urna', label: 'o número decorado antes da eleição' },
       { value: 'Template', label: 'adaptável a qualquer candidatura e número' },
+    ],
+  },
+  {
+    id: 'olympo-steel',
+    title: 'Olympo Steel — fábrica de equipamentos de musculação',
+    category: 'Site institucional',
+    year: '2026',
+    summary:
+      'Catálogo de equipamentos de musculação em aço carbono, com orçamento sob medida direto da fábrica.',
+    description:
+      'Site institucional para fábrica de equipamentos de musculação: apresenta as quatro linhas de produto, o catálogo organizado por grupo muscular e um formulário de orçamento com seleção do equipamento de interesse — pensado para o comprador de academia que já sabe o que quer configurar sob medida.',
+    stack: ['Next.js', 'React', 'Tailwind CSS'],
+    liveUrl: 'https://olymposteel.com.br/',
+    embeddable: true,
+    externalUrl: 'https://olymposteel.com.br/',
+    cover: '/portfolio/olympo-steel.webp',
+    accent: 'flare',
+    demo: false,
+    results: [
+      { value: '[MÉTRICA A DEFINIR]', label: 'aumento em pedidos de orçamento' },
+      { value: '[MÉTRICA A DEFINIR]', label: 'nota de performance' },
     ],
   },
   {
