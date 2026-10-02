@@ -1,30 +1,28 @@
 /**
- * Botões do site.
+ * Botões do site, no padrão do manual de marca: pílula em Schibsted 700, caixa de frase.
  *
- * `primary` é o único lugar do layout onde a corrente vira preenchimento —
- * fora do CTA final, que ganha a variante `flare`. Manter isso escasso é o que
- * faz o acento significar alguma coisa.
+ * `primary` é o roxo da marca (ação principal). `flare` é o ouro, guardado para o
+ * CTA final: um por peça. Sobe 1px no hover e encolhe para .97 no toque.
  */
 
 const base =
-  'group relative inline-flex items-center justify-center gap-2.5 rounded-full font-mono text-[12px] ' +
-  'uppercase tracking-[0.12em] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ' +
-  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-volt';
+  'group relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full font-body font-bold text-[15px] ' +
+  'transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] ' +
+  'focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-volt';
 
 const sizes = {
   md: 'h-11 px-6',
-  lg: 'h-13 px-8 text-[13px]',
+  lg: 'h-13 px-8 text-[16px]',
   icon: 'h-9 w-9 p-0',
 };
 
 const variants = {
   primary:
-    'bg-paper text-ink-000 hover:-translate-y-0.5 hover:bg-white active:translate-y-0',
+    'bg-pulse text-white shadow-[0_10px_26px_-12px_rgba(125,39,252,0.8)] hover:-translate-y-px hover:bg-[#9550ff]',
   flare:
-    'text-white shadow-none hover:-translate-y-0.5 active:translate-y-0 ' +
-    '[background:var(--current-flare)] [background-size:160%_100%] hover:[background-position:40%_0]',
+    'bg-flare text-[#1d1400] hover:-translate-y-px hover:bg-[#ffd84a]',
   ghost:
-    'border border-line-strong text-paper hover:border-volt/60 hover:bg-white/[0.04] hover:-translate-y-0.5',
+    'border border-line-strong text-paper hover:border-volt/60 hover:bg-white/[0.04] hover:-translate-y-px',
   quiet: 'text-muted hover:text-paper',
 };
 

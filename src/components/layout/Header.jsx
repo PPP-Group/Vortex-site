@@ -65,10 +65,12 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button as="a" href="#contato" variant="ghost" className="hidden sm:inline-flex" data-cursor>
-              Falar com a equipe
-              <ArrowRight />
-            </Button>
+            <span className="hidden sm:block">
+              <Button as="a" href="#contato" variant="ghost" data-cursor>
+                Falar com a equipe
+                <ArrowRight />
+              </Button>
+            </span>
 
             <button
               type="button"

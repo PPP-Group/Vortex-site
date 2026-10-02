@@ -1,38 +1,40 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Vortex — sistema de design
-   Base: canvas de editor de workflow. Tinta quase preta com viés violeta,
-   hairlines em vez de sombras, e uma "corrente" (indigo -> ciano) que só
-   aparece onde algo está de fato transportando um dado.
+   Vortex — sistema de design (manual de marca: claude.ai/artifact/D8xhyUX47RHdSoA82a9Xj4)
+   Peça escura da marca: preto e noite como base, roxo para ser reconhecida,
+   lilás para a palavra em ênfase e o sinal que percorre o fluxo, ouro só no
+   botão que decide. Hairlines em vez de sombras.
+   Os nomes dos tokens ficaram os antigos (ink, pulse, volt, flare) para não
+   mexer em todos os componentes; os valores são os da identidade.
    ========================================================================== */
 
 @theme {
-  /* --- Tinta ------------------------------------------------------------ */
-  --color-ink-000: #07070c; /* fundo da página */
-  --color-ink-050: #0a0a11; /* faixa alternada de seção */
-  --color-ink-100: #0e0e17; /* superfície elevada */
-  --color-ink-200: #13131e; /* card */
-  --color-ink-300: #1a1a28; /* card em hover */
-  --color-line: #22222f; /* hairline padrão */
-  --color-line-strong: #2e2e42; /* hairline em destaque */
+  /* --- Tinta: preto e noite da marca ------------------------------------ */
+  --color-ink-000: #0c0820; /* preto — fundo da página */
+  --color-ink-050: #100a29; /* faixa alternada de seção */
+  --color-ink-100: #140b33; /* noite — superfície elevada */
+  --color-ink-200: #181040; /* card */
+  --color-ink-300: #221949; /* card em hover */
+  --color-line: #261d52; /* hairline padrão */
+  --color-line-strong: #30275c; /* hairline em destaque */
 
   /* --- Texto ------------------------------------------------------------ */
-  --color-paper: #ececf3;
-  --color-muted: #9a9ab0; /* 7.2:1 sobre ink-000 */
-  --color-faint: #7c7c96; /* 4.8:1 sobre ink-000 — piso AA */
+  --color-paper: #efecfa;
+  --color-muted: #a298c6; /* 7,3:1 sobre preto */
+  --color-faint: #8c82b4; /* 5,6:1 sobre preto — acima do piso AA */
 
-  /* --- Corrente (acentos) ----------------------------------------------- */
-  --color-pulse: #6a5ae0; /* indigo — gráficos e bordas */
-  --color-pulse-soft: #9b8eff; /* indigo claro — texto sobre tinta */
-  --color-volt: #3fd8e6; /* ciano — sinal ativo */
-  --color-flare: #e0479a; /* magenta — reservado ao CTA final */
-  --color-ok: #43d18e; /* verde — status de execução, nunca marca */
+  /* --- Acentos ------------------------------------------------------------ */
+  --color-pulse: #7d27fc; /* roxo — a cor da marca: botão, bordas e gráficos */
+  --color-pulse-soft: #bb97ff; /* roxo para texto sobre noite */
+  --color-volt: #a874ff; /* lilás — ênfase e o sinal ativo do fluxo */
+  --color-flare: #ffc61a; /* ouro — o único acento quente, reservado ao CTA final */
+  --color-ok: #4fd196; /* verde — status de execução, nunca marca */
 
   /* --- Tipografia ------------------------------------------------------- */
-  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
-  --font-body: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Big Shoulders Display', 'Oswald', 'Arial Narrow', Impact, sans-serif;
+  --font-body: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
 
   /* --- Movimento -------------------------------------------------------- */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -41,8 +43,10 @@
 
 /* Variáveis fora do @theme: usadas em CSS bruto, não precisam virar utilitário. */
 :root {
-  --current: linear-gradient(100deg, #6a5ae0 0%, #3fd8e6 100%);
-  --current-flare: linear-gradient(100deg, #6a5ae0 0%, #e0479a 100%);
+  /* A "corrente" que percorre o fluxo: roxo para lilás. */
+  --current: linear-gradient(100deg, #7d27fc 0%, #a874ff 100%);
+  /* O único gradiente de bloco da marca (150°, roxo). */
+  --bloco-roxo: linear-gradient(150deg, #7d27fc 0%, #5b14c9 55%, #3c0a8e 100%);
   --shell: min(1240px, 100% - 2.5rem);
   --header-h: 72px;
 }
@@ -90,11 +94,19 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    font-weight: 900;
+    line-height: 0.95;
+    text-transform: uppercase;
     text-wrap: balance;
     margin: 0;
+  }
+
+  /* Palavra em ênfase nos títulos: lilás sobre noite, como no manual. */
+  h1 em,
+  h2 em,
+  h3 em {
+    font-style: normal;
+    color: var(--color-volt);
   }
 
   p {
@@ -107,7 +119,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-volt);
+    outline: 3px solid var(--color-volt);
     outline-offset: 3px;
     border-radius: 3px;
   }
@@ -202,24 +214,39 @@
     color: var(--color-faint);
   }
 
-  /* Título de seção. O eixo de largura da Archivo faz o trabalho de presença
-     que normalmente se pediria a um gradiente. */
+  /* Título: Big Shoulders Display 900 em caixa alta, entrelinha .95 (manual: display-hero 82, display-secao 54). */
   .display {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-stretch: 112%;
-    letter-spacing: -0.035em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
     line-height: 0.95;
   }
 
-  /* Teto de 5.6rem não é gosto, é medida: a coluna do título tem ~694px
-     (limite da shell) e "Estruturamos a" ocupa 7,74em. Acima de 89,6px a
-     linha estoura e o navegador joga o "a" sozinho na linha seguinte. */
   .display-xl {
-    font-size: clamp(2.5rem, 7vw, 5.6rem);
+    font-size: clamp(3rem, 8vw, 6.4rem);
   }
   .display-lg {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.4rem, 5.4vw, 3.6rem);
+  }
+
+  /* Grafismo da marca: anéis concêntricos roxos sangrando de um canto do bloco noite. */
+  .aneis {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    width: var(--aneis, 560px);
+    aspect-ratio: 1;
+    background: radial-gradient(
+      circle,
+      transparent 0 31%,
+      rgba(125, 39, 252, 0.28) 31% 37%,
+      transparent 37% 53%,
+      rgba(125, 39, 252, 0.12) 53% 59%,
+      transparent 59% 75%,
+      rgba(125, 39, 252, 0.06) 75% 81%,
+      transparent 81%
+    );
   }
 
   .current-text {
@@ -246,7 +273,7 @@
     transition: opacity 0.4s var(--ease-out-soft);
     background: radial-gradient(
       420px circle at var(--tilt-px, 50%) var(--tilt-py, 50%),
-      rgba(106, 90, 224, 0.16),
+      rgba(125, 39, 252, 0.16),
       transparent 62%
     );
   }

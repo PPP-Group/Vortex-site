@@ -7,8 +7,8 @@ import { useReducedMotion } from '../../hooks/useMediaQuery';
 /**
  * CTA final.
  *
- * O único lugar do site inteiro onde o magenta aparece. Ele foi guardado por
- * nove seções exatamente para que aqui signifique "é aqui que se decide".
+ * Bloco noite com os anéis concêntricos da marca, e o único botão ouro do site:
+ * ele foi guardado por nove seções para que aqui signifique "é aqui que se decide".
  */
 export function FinalCta() {
   const glowRef = useRef(null);
@@ -22,13 +22,12 @@ export function FinalCta() {
       data-spine-node="contato"
       data-spine-label="contato"
       aria-label="Fale com a Vortex"
-      className="relative overflow-hidden border-t border-line py-28 md:py-40"
+      className="relative overflow-hidden border-t border-line bg-ink-100 py-28 md:py-40"
     >
       <div
         ref={glowRef}
         aria-hidden="true"
-        className="parallax pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[900px] max-w-[130vw] -translate-x-1/2 opacity-[0.16] blur-[80px]"
-        style={{ background: 'var(--current-flare)' }}
+        className="parallax aneis -right-[260px] -top-[260px] [--aneis:760px] md:-right-[180px]"
       />
       <div aria-hidden="true" className="canvas-grid pointer-events-none absolute inset-0 opacity-40" />
 
@@ -40,7 +39,7 @@ export function FinalCta() {
           <h2 className="display display-xl mt-6 text-paper" data-reveal>
             Conta o processo.
             <br />
-            A gente devolve o mapa.
+            <em>A gente devolve o mapa.</em>
           </h2>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl" data-reveal>
             O primeiro encontro é um diagnóstico: onde o lead entra, quem responde, o que ainda é

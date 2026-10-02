@@ -267,10 +267,10 @@ export function Laptop3D({ className = '' }) {
             <div className="lp-lid-cover">
               {/* A marca de três nós, gravada na capa. */}
               <svg className="lp-lid-mark" viewBox="0 0 40 14" fill="none" aria-hidden="true">
-                <path d="M9 7h8M23 7h8" stroke="#4a4a68" strokeWidth="1.2" />
-                <rect x="1" y="3" width="8" height="8" rx="2.4" stroke="#4a4a68" strokeWidth="1.3" />
-                <rect x="15" y="3" width="8" height="8" rx="2.4" stroke="#4a4a68" strokeWidth="1.3" />
-                <rect x="29" y="3" width="8" height="8" rx="2.4" stroke="#4a4a68" strokeWidth="1.3" />
+                <path d="M9 7h8M23 7h8" stroke="#3d229d" strokeWidth="1.2" />
+                <rect x="1" y="3" width="8" height="8" rx="2.4" stroke="#3d229d" strokeWidth="1.3" />
+                <rect x="15" y="3" width="8" height="8" rx="2.4" stroke="#3d229d" strokeWidth="1.3" />
+                <rect x="29" y="3" width="8" height="8" rx="2.4" stroke="#3d229d" strokeWidth="1.3" />
               </svg>
             </div>
 
