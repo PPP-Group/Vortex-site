@@ -9,7 +9,7 @@ corrija o documento.
 | --- | --- |
 | **Implementação** | `src/styles/index.css` (tokens), `src/data/` (conteúdo) |
 | **Instruções de build e placeholders** | [`../README.md`](../README.md) |
-| **Última revisão** | 2026-08-04 |
+| **Última revisão** | 2026-10-02 (marca, cor e tipografia passaram para o manual de marca) |
 
 ---
 
@@ -153,184 +153,57 @@ demonstrar.**
 
 ## 5. Marca
 
-### O símbolo
+A marca segue o **manual de marca da Vortex**
+(<https://claude.ai/artifact/D8xhyUX47RHdSoA82a9Xj4>). A fonte das marcas e o
+gerador ficam em `Vortex/ppps/manual-de-marca/fonte/`. Não redesenhe nada aqui:
+copie os SVGs de lá para `public/marca/`.
 
-Um kraken: cabeça angulosa e olhar fechado, tentáculos abertos em leque com os
-dois centrais se cruzando na frente. Peça única, cor sólida — sem gradiente,
-sem segunda cor de destaque.
+| Arquivo | Onde vai no site |
+| --- | --- |
+| `public/marca/assinatura-negativo.svg` | Cabeçalho e rodapé (`src/components/layout/Logo.jsx`) |
+| `public/marca/cabeca-roxo.svg` | Favicon |
+| `public/apple-touch-icon.png` | Ícone na tela inicial do celular (cabeça roxa sobre noite) |
+| `public/og-cover.png` | Imagem de compartilhamento (assinatura sobre noite com anéis) |
 
-Implementação: `src/components/layout/Logo.jsx` · Favicon: `public/favicon.svg`
-
-### Assinatura
-
-Símbolo + wordmark **Vortex** em Archivo, peso 700, `font-stretch: 118%`, tracking
-`-0.02em`. Espaço entre símbolo e wordmark: `10px` (`gap-2.5`).
-
-Proporção do símbolo: viewBox `240 × 220`; no header renderiza a `28 × 28 px`.
-
-### Regras de uso
-
-- O símbolo herda `currentColor` por inteiro — ele se adapta ao contexto
-  (texto `paper` no header e no rodapé escuros).
-- Área de proteção: no mínimo a altura do símbolo (28px) em todos os lados.
-- Tamanho mínimo do símbolo: **20px de largura**. Abaixo disso, use só o
-  wordmark ou o favicon.
-- Não aplicar sombra, contorno, gradiente ou rotação.
-- Não reescrever a sigla em outra fonte.
-- Fundo: sempre escuro (`ink-000`) — o favicon já embute esse fundo no SVG.
+Regras: nunca redigite o nome numa fonte, não estique, não recolora fora das
+versões do manual. Mínimo da assinatura horizontal: 110px de largura.
 
 ---
 
 ## 6. Cor
 
-### O conceito: tinta e corrente
+As cores são as da peça escura do manual. Os nomes dos tokens em
+`src/styles/index.css` ficaram os antigos para não mexer em todos os
+componentes; os valores mudaram:
 
-A base é um **canvas de editor**: tinta quase preta com viés violeta,
-separações por **hairline em vez de sombra**.
-
-O acento não é decoração — é **corrente**. Ele só aparece onde algo está de fato
-transportando um dado. Essa é a regra que impede o site de virar um degradê
-genérico.
-
-### Tinta (superfícies e linhas)
-
-| Token | Hex | Papel |
+| Token | Valor | Papel |
 | --- | --- | --- |
-| `ink-000` | `#07070C` | fundo da página |
-| `ink-050` | `#0A0A11` | faixa alternada de seção |
-| `ink-100` | `#0E0E17` | superfície elevada |
-| `ink-200` | `#13131E` | card |
-| `ink-300` | `#1A1A28` | card em hover |
-| `line` | `#22222F` | hairline padrão |
-| `line-strong` | `#2E2E42` | hairline em destaque |
+| `ink-000` | `#0C0820` preto | Fundo da página |
+| `ink-050` | `#100A29` | Faixa alternada de seção |
+| `ink-100` | `#140B33` noite | Superfície elevada, bloco do CTA final |
+| `ink-200` / `ink-300` | `#181040` / `#221949` | Card e card em hover |
+| `line` / `line-strong` | `#261D52` / `#30275C` | Hairlines |
+| `paper` / `muted` / `faint` | `#EFECFA` / `#A298C6` / `#8C82B4` | Texto (7,3 e 5,6:1 sobre preto) |
+| `pulse` | `#7D27FC` roxo | Botão principal, bordas, gráficos |
+| `pulse-soft` | `#BB97FF` | Roxo para texto sobre noite |
+| `volt` | `#A874FF` lilás | Palavra em ênfase e sinal ativo do fluxo |
+| `flare` | `#FFC61A` ouro | Só o botão do CTA final |
+| `ok` | `#4FD196` | Status de execução, nunca marca |
 
-> `line` e `line-strong` são **cores de borda**. `line-strong` como texto dá
-> **1,45:1** — foi o único erro de contraste encontrado na auditoria e está
-> corrigido. Não repita.
-
-### Texto
-
-| Token | Hex | Papel |
-| --- | --- | --- |
-| `paper` | `#ECECF3` | texto principal e títulos |
-| `muted` | `#9A9AB0` | texto secundário, parágrafos de apoio |
-| `faint` | `#7C7C96` | rótulos, legendas, eyebrows |
-
-### Corrente (acentos)
-
-| Token | Hex | Papel |
-| --- | --- | --- |
-| `pulse` | `#6A5AE0` | indigo — **gráficos e bordas apenas** |
-| `pulse-soft` | `#9B8EFF` | indigo claro — quando o indigo precisa virar texto |
-| `volt` | `#3FD8E6` | ciano — sinal ativo, foco, destaque, nó aceso |
-| `flare` | `#E0479A` | magenta — **exclusivo do CTA final** |
-| `ok` | `#43D18E` | verde — status de execução, **nunca marca** |
-
-### Gradientes
-
-```css
---current:       linear-gradient(100deg, #6A5AE0 0%, #3FD8E6 100%);
---current-flare: linear-gradient(100deg, #6A5AE0 0%, #E0479A 100%);
-```
-
-`--current` aparece em **exatamente três lugares**: o pacote percorrendo as
-arestas do grafo, a espinha de workflow que acompanha a rolagem, e o CTA final
-(onde vira `--current-flare`).
-
-**Títulos são sólidos.** Gradiente em título empurra o projeto para o genérico e
-compete com a corrente.
-
-Guardar o magenta por nove seções é o que faz ele significar "é aqui que se
-decide". Se ele começar a aparecer em outros lugares, perde a função.
-
-### Matriz de contraste (WCAG 2.1)
-
-Razão de cada cor de frente sobre cada superfície. **Piso AA = 4,5:1** para
-texto normal, **3:1** para texto grande (≥24px, ou ≥18,66px em peso 700).
-
-| | ink-000 | ink-050 | ink-100 | ink-200 | ink-300 |
-| --- | --- | --- | --- | --- | --- |
-| `paper` | 17,09 | 16,78 | 16,33 | 15,67 | 14,61 |
-| `muted` | 7,30 | 7,16 | 6,97 | 6,69 | 6,24 |
-| `faint` | 4,96 | 4,87 | 4,74 | 4,55 | **4,24** ⚠ |
-| `pulse` | **3,97** ⚠ | **3,90** ⚠ | **3,80** ⚠ | **3,64** ⚠ | **3,40** ⚠ |
-| `pulse-soft` | 7,38 | 7,24 | 7,05 | 6,76 | 6,31 |
-| `volt` | 11,65 | 11,44 | 11,13 | 10,68 | 9,96 |
-| `flare` | 5,30 | 5,20 | 5,06 | 4,86 | 4,53 |
-| `ok` | 10,29 | 10,10 | 9,83 | 9,43 | 8,79 |
-
-**Duas regras que saem daqui:**
-
-1. **`pulse` reprova como texto em qualquer superfície.** Use-o em traço,
-   borda, preenchimento de gráfico. Para texto indigo, use `pulse-soft`.
-2. **`faint` reprova sobre `ink-300`** (4,24). Como `ink-300` é o estado de
-   hover dos cards, rótulo em `faint` dentro de card precisa clarear no hover —
-   ou o card não deve usar `faint` em texto essencial.
-
-Recalcular após qualquer mudança de token:
-
-```bash
-node -e "const L=h=>{const n=parseInt(h.slice(1),16);return [16,8,0].map(s=>(n>>s)&255).map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)}).reduce((a,c,i)=>a+[0.2126,0.7152,0.0722][i]*c,0)};const R=(a,b)=>{const[x,y]=[L(a),L(b)].sort((p,q)=>q-p);return((x+0.05)/(y+0.05)).toFixed(2)};console.log(R('#9A9AB0','#07070C'))"
-```
+- A corrente do grafo vai do roxo ao lilás. O ciano e o magenta da versão
+  anterior saíram.
+- Grafismo: anéis concêntricos roxos (classe `.aneis`), sangrando de um canto
+  do bloco noite.
 
 ---
 
 ## 7. Tipografia
 
-Três papéis, nenhum deles a escolha automática para site de tecnologia.
-
-### As famílias
-
-| Papel | Família | Por quê |
-| --- | --- | --- |
-| **Display** | Archivo Variable | Grotesca industrial com **eixo de largura de 62% a 125%**. É a largura que dá presença, no lugar onde outro projeto colocaria um gradiente. |
-| **Corpo** | Hanken Grotesk | Grotesca humanista, mais quente, excelente em tamanho pequeno. O contraste com a Archivo vem de largura e temperatura, não de estilo. |
-| **Utilitário** | JetBrains Mono | O vernáculo do assunto. Se o texto apareceria num terminal ou num painel de execução, ele é mono. |
-
-As fontes são **empacotadas com o site** (`@fontsource-variable`), não vêm de
-CDN: sem requisição a terceiros, sem FOUT dependente de rede. O eixo `wdth` da
-Archivo é importado explicitamente (`archivo/wdth.css`) — é mais pesado que o
-`wght` sozinho, e o peso é justificado porque a largura é a assinatura.
-
-### Escala
-
-| Classe | Tamanho | Uso |
-| --- | --- | --- |
-| `.display-xl` | `clamp(2.5rem, 7vw, 5.6rem)` | título do hero e do CTA final |
-| `.display-lg` | `clamp(2rem, 5vw, 3.5rem)` | título de seção |
-| corpo | `1rem / 1.6` | texto padrão |
-| `.eyebrow` | `0.6875rem` (11px) | rótulo em mono |
-
-**O teto de `5.6rem` não é gosto, é medida.** A coluna do título tem ~694px
-(limite da shell) e a linha "Estruturamos a" ocupa 7,74em. Acima de 89,6px a
-linha estoura e o navegador deixa o "a" órfão. Se mudar a largura da shell, a
-grade ou o texto do manifesto, **remeça**.
-
-### Ajustes de estilo
-
-```css
-.display {
-  font-weight: 700;
-  font-stretch: 112%;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-}
-
-.eyebrow {
-  font-family: mono;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: faint;
-}
-```
-
-### Regra do mono
-
-Mono não é enfeite, é classificação. Recebe mono: rótulo de nó, linha de log,
-eyebrow de seção, métrica, id, stack, status, duração, timestamp. **Não recebe
-mono**: título, parágrafo, item de lista descritivo.
+- **Títulos**: Big Shoulders Display 900, caixa alta, entrelinha .95
+  (`.display`, `.display-xl`, `.display-lg`). Ênfase com `<em>`, em lilás.
+- **Texto e botões**: Schibsted Grotesk. Botão em pílula, 700, caixa de frase.
+- **Rótulos, números e código**: IBM Plex Mono.
+- As três vêm do Google Fonts, carregadas em `index.html`.
 
 ---
 

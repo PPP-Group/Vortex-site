@@ -57,7 +57,11 @@ export function Hero() {
           <div className="lg:col-span-7">
             <h1 className="display display-xl text-paper" data-reveal>
               {manifesto.lines.map((line, i) => (
-                <span key={line} className="block" style={{ '--reveal-delay': `${i * 90}ms` }}>
+                <span
+                  key={line}
+                  className={`block ${i === manifesto.lines.length - 1 ? 'text-volt' : ''}`}
+                  style={{ '--reveal-delay': `${i * 90}ms` }}
+                >
                   {line}
                 </span>
               ))}
@@ -118,7 +122,7 @@ export function Hero() {
             >
               <dt className="sr-only">{metric.label}</dt>
               <dd>
-                <span className="display block text-4xl text-paper md:text-5xl" style={{ fontStretch: '105%' }}>
+                <span className="display block text-4xl text-paper md:text-5xl">
                   <Counter value={metric.value} suffix={metric.suffix} />
                 </span>
                 <span className="mt-2.5 block font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-faint">

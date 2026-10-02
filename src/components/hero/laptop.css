@@ -140,10 +140,10 @@
      em relação ao de .lp-face-t. */
   background: linear-gradient(
     90deg,
-    #0a0a10 0%,
-    #1f1f30 38%,
-    #262639 60%,
-    #0c0c13 100%
+    #090516 0%,
+    #1b0f44 38%,
+    #201253 60%,
+    #0a061b 100%
   );
 }
 
@@ -174,10 +174,10 @@
   margin-top: calc(var(--d) / -2);
   background: linear-gradient(
     180deg,
-    #0c0c13 0%,
-    #262639 40%,
-    #1f1f30 62%,
-    #0a0a10 100%
+    #0a061b 0%,
+    #201253 40%,
+    #1b0f44 62%,
+    #090516 100%
   );
 }
 .lp-face-t {
@@ -197,10 +197,10 @@
   margin-left: calc(var(--d) / -2);
   background: linear-gradient(
     90deg,
-    #0b0b11 0%,
-    #232336 42%,
-    #1c1c2b 60%,
-    #09090f 100%
+    #0a0518 0%,
+    #1e114d 42%,
+    #180d3e 60%,
+    #080415 100%
   );
 }
 .lp-face-l {
@@ -243,7 +243,7 @@
   backface-visibility: hidden;
   border-radius: var(--r);
   border: 1px solid var(--color-line-strong);
-  background: linear-gradient(168deg, #1c1c29 0%, #101019 55%, #0b0b12 100%);
+  background: linear-gradient(168deg, #180d3c 0%, #0e0823 55%, #0a0519 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
@@ -253,9 +253,9 @@
   inset: 0;
   transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
   border-radius: var(--r);
-  border: 1px solid #26263a;
+  border: 1px solid #211253;
   background:
-    linear-gradient(200deg, #1d1d2c 0%, #131320 52%, #0d0d15 100%),
+    linear-gradient(200deg, #190e3f 0%, #11092c 52%, #0b061d 100%),
     var(--color-ink-100);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   display: grid;
@@ -357,8 +357,8 @@
   backface-visibility: hidden;
   border-radius: var(--r);
   border: 1px solid var(--color-line-strong);
-  border-top-color: #2a2a3d;
-  background: linear-gradient(180deg, #16161f 0%, #101018 40%, #0a0a10 100%);
+  border-top-color: #23135a;
+  background: linear-gradient(180deg, #120a2f 0%, #0e0823 40%, #090516 100%);
 }
 
 /* Face de baixo. Sem ela dava para ver o teclado por dentro, de baixo. */
@@ -367,8 +367,8 @@
   inset: 0;
   transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
   border-radius: var(--r);
-  border: 1px solid #232335;
-  background: linear-gradient(180deg, #14141f 0%, #0d0d16 60%, #08080e 100%);
+  border: 1px solid #1e104c;
+  background: linear-gradient(180deg, #110a2c 0%, #0c061e 60%, #070413 100%);
 }
 
 /* Entrada de ar e pés de borracha: o que se vê virando o notebook de cabeça
@@ -381,7 +381,7 @@
   height: 5px;
   transform: translateX(-50%);
   border-radius: 3px;
-  background: repeating-linear-gradient(90deg, #1e1e2e 0 3px, transparent 3px 6px);
+  background: repeating-linear-gradient(90deg, #1a0e42 0 3px, transparent 3px 6px);
 }
 
 .lp-foot {
@@ -389,7 +389,7 @@
   width: 7%;
   height: 5px;
   border-radius: 3px;
-  background: #05050a;
+  background: #05030c;
 }
 .lp-foot:nth-of-type(1) {
   top: 12%;
@@ -423,7 +423,7 @@
   height: var(--key-h);
   flex: 1;
   border-radius: calc(var(--lp-w) * 0.006);
-  background: #1e1e2b;
+  background: #190e40;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.6);
 }
 
@@ -441,8 +441,8 @@
   height: calc(var(--lp-w) * 0.24);
   margin: calc(var(--lp-w) * 0.032) auto 0;
   border-radius: calc(var(--lp-w) * 0.014);
-  background: #14141d;
-  border: 1px solid #22222f;
+  background: #11092b;
+  border: 1px solid #1c0f48;
 }
 
 /* ==========================================================================
@@ -528,11 +528,9 @@
 .lp-metric b {
   display: block;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 108%;
-  font-size: 27px;
+  font-weight: 900;
+  font-size: 30px;
   line-height: 0.9;
-  letter-spacing: -0.03em;
   color: var(--color-paper);
 }
 
@@ -577,7 +575,7 @@
   align-items: center;
   gap: 6px;
   padding: 4.5px 0;
-  border-bottom: 1px solid rgba(34, 34, 47, 0.6);
+  border-bottom: 1px solid rgba(38, 29, 82, 0.6);
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.04em;
