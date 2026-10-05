@@ -1,5 +1,6 @@
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { ZoomDialog } from './components/vtx/Mockups';
 
 import { Hero } from './components/sections/Hero';
 import { VtxTap } from './components/sections/VtxTap';
@@ -13,6 +14,11 @@ import { useRevealObserver } from './hooks/useReveal';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useReducedMotion } from './hooks/useMediaQuery';
 
+/**
+ * A página segue a landing do VTX Tap (tap.vortexsystems.tech): uma coluna
+ * de 1120px (.wrap) com 72px entre as seções. Primeiro o lançamento, o VTX
+ * Tap; depois a Vortex: serviços, portfólio, automação e processo.
+ */
 export default function App() {
   const reduced = useReducedMotion();
 
@@ -22,8 +28,7 @@ export default function App() {
   return (
     <>
       <Header />
-
-      <main id="conteudo">
+      <main className="wrap" id="conteudo">
         <Hero />
         <VtxTap />
         <Services />
@@ -31,9 +36,9 @@ export default function App() {
         <AutomationDemo />
         <Process />
         <FinalCta />
+        <Footer />
       </main>
-
-      <Footer />
+      <ZoomDialog />
     </>
   );
 }

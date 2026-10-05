@@ -1,48 +1,10 @@
 @import 'tailwindcss';
+/* O sistema visual vive em marca.css (portado da landing do VTX Tap). Ele entra
+   na camada de componentes para que um utilitário do Tailwind ainda vença. */
+@import './marca.css' layer(components);
 
-/* ==========================================================================
-   Vortex — sistema de design do site.
-   Fonte da verdade: manual de marca (claude.ai/artifact/D8xhyUX47RHdSoA82a9Xj4),
-   README e tokens.json. Peça clara: névoa e branco 62, noite 24, roxo 11, ouro 3.
-   Página em névoa, blocos noite com anéis (hero, automação, chamada final),
-   um bloco roxo por página (VTX Tap) e o ouro só no botão que decide.
-
-   Dois grupos de tokens convivem:
-   - os do manual, com os nomes do manual (nevoa, noite, roxo, ouro...), mais
-     tinta/apoio/fio para o ink/muted/line do tema claro;
-   - os escuros (ink-000, paper, muted, line, volt, pulse, flare), que servem
-     ao que mora sobre noite: grafo de automação, diálogos e capas do portfólio.
-   ========================================================================== */
-
+/* Tokens usados pelo grafo de automação e pelos diálogos (peças sobre noite). */
 @theme {
-  /* --- Manual: cores de marca ------------------------------------------- */
-  --color-roxo: #7d27fc;
-  --color-roxo-hi: #9550ff;
-  --color-roxo-lo: #5512c4;
-  --color-roxo-ink: #6a1be0; /* roxo como texto sobre claro: kicker, link, valor */
-  --color-roxo-soft: #eee5ff; /* ladrilho de ícone, plano em destaque */
-  --color-roxo-texto-2: #e6d9ff; /* apoio sobre roxo: só 18px+ */
-  --color-lilas: #a874ff; /* ênfase e kicker sobre noite */
-  --color-noite: #140b33;
-  --color-preto: #0c0820;
-  --color-branco: #ffffff;
-  --color-nevoa: #f4f2f9;
-  --color-ouro: #ffc61a;
-  --color-on-ouro: #1d1400;
-  --color-ouro-ink: #8a6200;
-  --color-noite-ink: #f1ecff; /* texto principal sobre noite */
-  --color-noite-2: #cfc6f2; /* apoio sobre noite */
-
-  /* --- Manual: tema claro (ink, ink-2, muted, line, surface-2) ----------- */
-  --color-tinta: #160e33;
-  --color-tinta-2: #2f2752;
-  --color-apoio: #625a80;
-  --color-fio: #e1dcee;
-  --color-surface-2: #ede9f6;
-  --color-ok-claro: #1b7f52;
-  --color-ok-soft: #daf0e4;
-
-  /* --- Escuros: o que mora sobre noite ----------------------------------- */
   --color-ink-000: #0c0820;
   --color-ink-050: #100a29;
   --color-ink-100: #140b33;
@@ -54,503 +16,49 @@
   --color-muted: #cfc6f2;
   --color-faint: #a298c6;
   --color-pulse: #7d27fc;
-  --color-pulse-soft: #bb97ff;
   --color-volt: #a874ff;
   --color-flare: #ffc61a;
   --color-ok: #4fd196;
 
-  /* --- Tipografia -------------------------------------------------------- */
   --font-display: 'Big Shoulders Display', 'Oswald', 'Arial Narrow', Impact, sans-serif;
   --font-body: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
 
-  /* --- Raios do manual --------------------------------------------------- */
-  --radius-sm: 11px;
-  --radius-icone: 14px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-  --radius-bloco: 32px;
-
-  /* --- Movimento -------------------------------------------------------- */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 :root {
-  /* A "corrente" que percorre o grafo: roxo para lilás. */
   --current: linear-gradient(100deg, #7d27fc 0%, #a874ff 100%);
-  /* O único gradiente da marca: o do bloco roxo (150°). */
-  --bloco-roxo: linear-gradient(150deg, #7d27fc 0%, #5b14c9 55%, #3c0a8e 100%);
-  --shadow-1: 0 1px 2px rgba(22, 14, 51, 0.06), 0 6px 18px -10px rgba(22, 14, 51, 0.22);
-  --shadow-2: 0 2px 6px rgba(22, 14, 51, 0.08), 0 22px 48px -18px rgba(22, 14, 51, 0.35);
-  --shadow-roxo: 0 10px 28px rgba(125, 39, 252, 0.38);
-  --shadow-aparelho: 0 30px 60px -10px rgba(20, 11, 51, 0.5);
-  /* Conteúdo até 1120px (largura-conteudo) com 18px de margem lateral no celular. */
-  --shell: min(1120px, 100% - 36px);
-  --header-h: 76px;
 }
 
-/* ==========================================================================
-   Base
-   ========================================================================== */
-
-@layer base {
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-h) + 12px);
-    -webkit-text-size-adjust: 100%;
-  }
-
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
+@layer components {
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
   }
-
-  body {
-    margin: 0;
-    background: var(--color-nevoa);
-    color: var(--color-tinta);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.55;
-    font-synthesis-weight: none;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  /* Palavra em ênfase no título: roxo-ink sobre claro, lilás sobre noite. */
-  .display em {
-    font-style: normal;
-    color: var(--color-roxo-ink);
-  }
-  .sobre-noite .display em {
-    color: var(--color-lilas);
-  }
-  .sobre-roxo .display em {
-    color: var(--color-ouro);
-  }
-
-  p {
-    margin: 0;
-    text-wrap: pretty;
-  }
-
-  ::selection {
-    background: rgba(125, 39, 252, 0.28);
-  }
-
-  /* Foco: anel sólido de 3px em lilás, com afastamento. */
-  :focus-visible {
-    outline: 3px solid var(--color-lilas);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  img,
-  svg,
-  video,
-  iframe {
-    max-width: 100%;
-  }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #cfc6e6;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    border-radius: 999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-roxo);
-    background-clip: padding-box;
-  }
-  @supports not selector(::-webkit-scrollbar) {
-    html {
-      scrollbar-width: thin;
-      scrollbar-color: #cfc6e6 transparent;
-    }
-  }
-}
-
-/* ==========================================================================
-   Componentes da marca
-   ========================================================================== */
-
-@layer components {
-  .shell {
-    width: var(--shell);
-    margin-inline: auto;
-  }
-
-  /* Título: Big Shoulders Display 900, caixa alta, entrelinha .95. */
-  .display {
-    font-family: var(--font-display);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 0.95;
-    letter-spacing: 0.003em;
-  }
-  .display-hero {
-    font-size: clamp(44px, 7.4vw, 82px);
-  }
-  .display-final {
-    font-size: clamp(38px, 6vw, 66px);
-  }
-  .display-secao {
-    font-size: clamp(34px, 5.4vw, 54px);
-  }
-  .display-cartao {
-    font-size: 30px;
-    line-height: 1;
-  }
-
-  /* Kicker: 12,5px 700, .12em, caixa alta, roxo-ink (lilás sobre noite, ouro sobre roxo). */
-  .kicker {
-    font-family: var(--font-body);
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-roxo-ink);
-  }
-  .sobre-noite .kicker {
-    color: var(--color-lilas);
-  }
-  .sobre-roxo .kicker {
-    color: var(--color-ouro);
-  }
-
-  /* Rótulo dos diálogos e do grafo (peças sobre noite). */
+  /* Rótulo e título dos diálogos (peças sobre noite). */
   .eyebrow {
-    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-faint);
   }
-
-  /* Texto de apoio que muda com o fundo: muted no claro, noite-2 no noite, branco no roxo. */
-  .lead-apoio {
-    color: var(--color-apoio);
-  }
-  .sobre-noite .lead-apoio {
-    color: var(--color-noite-2);
-  }
-  .sobre-roxo .lead-apoio {
-    color: #fff;
-  }
-
-  .num {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 1.55;
-  }
-
-  /* Cartão: superfície branca, hairline, canto 22. */
-  .cartao {
-    position: relative;
-    border-radius: var(--radius-lg);
-    background: var(--color-branco);
-    border: 1px solid var(--color-fio);
-    transition:
-      border-color 0.2s,
-      transform 0.25s var(--ease-out-soft),
-      box-shadow 0.25s var(--ease-out-soft);
-  }
-  .cartao-link:hover {
-    border-color: var(--color-roxo);
-    transform: translateY(-2px);
-  }
-  .cartao--plano {
-    border: 2px solid var(--color-roxo);
-    background: var(--color-roxo-soft);
-  }
-
-  /* Ladrilho de ícone: 46px, roxo-soft + roxo-ink. Sobre noite: branco 10% e traço ouro. */
-  .ico {
-    width: 46px;
-    height: 46px;
-    flex: none;
-    border-radius: var(--radius-icone);
-    display: grid;
-    place-items: center;
-    background: var(--color-roxo-soft);
-    color: var(--color-roxo-ink);
-  }
-  .sobre-noite .ico {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-ouro);
-  }
-
-  /* Selo / chip. */
-  .selo {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 11px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+  .display {
+    font-family: var(--font-display);
+    font-weight: 900;
     text-transform: uppercase;
-    white-space: nowrap;
-    color: var(--color-roxo-ink);
-    background: var(--color-roxo-soft);
-  }
-  .selo::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-  }
-  .selo--ouro {
-    color: var(--color-on-ouro);
-    background: var(--color-ouro);
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-tinta-2);
-    background: var(--color-surface-2);
-  }
-  .sobre-noite .chip {
-    color: var(--color-noite-ink);
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Blocos de destaque: noite (com anéis) e roxo (com anel branco). */
-  .bloco {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    border-radius: var(--radius-bloco);
-    padding: clamp(24px, 4vw, 52px) clamp(20px, 4vw, 52px);
-  }
-  .bloco--noite {
-    background: var(--color-noite);
-    color: var(--color-noite-ink);
-  }
-  .bloco--roxo {
-    background: var(--bloco-roxo);
-    color: #fff;
-  }
-
-  /* Anéis concêntricos: um conjunto por bloco noite, sangrando de um canto. */
-  .aneis {
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    width: var(--aneis, 420px);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: calc(var(--aneis, 420px) * 0.052) solid rgba(125, 39, 252, 0.28);
-    box-shadow:
-      0 0 0 calc(var(--aneis, 420px) * 0.12) rgba(125, 39, 252, 0.12),
-      0 0 0 calc(var(--aneis, 420px) * 0.26) rgba(125, 39, 252, 0.06);
-  }
-  .aneis--branco {
-    border-color: rgba(255, 255, 255, 0.07);
-    box-shadow: 0 0 0 calc(var(--aneis, 420px) * 0.16) rgba(255, 255, 255, 0.035);
-  }
-
-  /* Ondas do NFC: pertencem aos produtos de aproximação. */
-  .ondas path {
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-  }
-
-  /* Aparelho: moldura de celular para as telas reais do VTX Tap. */
-  .aparelho {
-    position: relative;
-    border-radius: 42px;
-    padding: 9px;
-    background: #0c0820;
-    box-shadow:
-      var(--shadow-aparelho),
-      inset 0 0 0 1.5px #2b2158;
-  }
-  .aparelho img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 34px;
-    background: #fff;
-  }
-  .aparelho::before {
-    content: '';
-    position: absolute;
-    top: 17px;
-    left: 50%;
-    width: 30%;
-    height: 20px;
-    transform: translateX(-50%);
-    border-radius: 999px;
-    background: #0c0820;
-    z-index: 1;
-  }
-
-  /* Barra de navegação: pílula branca que flutua ao rolar. */
-  .nav-pill {
-    width: var(--shell);
-    height: 58px;
-    padding-inline: 10px 8px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    background: transparent;
-    transition:
-      background-color 0.35s var(--ease-out-soft),
-      border-color 0.35s var(--ease-out-soft),
-      box-shadow 0.35s var(--ease-out-soft);
-  }
-  .nav-pill[data-scrolled='true'] {
-    border-color: var(--color-fio);
-    background: color-mix(in oklab, #fff 88%, transparent);
-    backdrop-filter: blur(16px) saturate(140%);
-    box-shadow: var(--shadow-1);
-  }
-
-  .mobile-menu {
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.28s var(--ease-out-soft),
-      visibility 0s linear 0.28s;
-  }
-  .mobile-menu[data-open='true'] {
-    opacity: 1;
-    visibility: visible;
-    transition:
-      opacity 0.28s var(--ease-out-soft),
-      visibility 0s linear 0s;
-  }
-  .mobile-menu-item {
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-    transition:
-      opacity 0.4s var(--ease-out-soft),
-      transform 0.4s var(--ease-out-soft);
-  }
-  .mobile-menu[data-open='true'] .mobile-menu-item {
-    opacity: 1;
-    transform: none;
-    transition-delay: var(--item-delay, 0ms);
-  }
-
-  /* Malha discreta do canvas do grafo (só dentro do bloco noite). */
-  .canvas-grid {
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
-    background-size: 26px 26px;
-  }
-
-  /* Plaquinha em 3D: as duas faces do cartão NFC. */
-  .placa-palco {
-    perspective: 1400px;
-    touch-action: none;
-    cursor: grab;
-  }
-  .placa-palco:active {
-    cursor: grabbing;
-  }
-  .placa {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 85.6 / 54;
-    transform-style: preserve-3d;
-    transform: rotateX(var(--rx, -8deg)) rotateY(var(--ry, -22deg)) rotateZ(var(--rz, 0deg)) scale(var(--s, 1));
-  }
-  .placa.anima {
-    transition: transform 0.7s var(--ease-out-soft);
-  }
-  .placa-face {
-    position: absolute;
-    inset: 0;
-    border-radius: 5.5% / 8.7%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    box-shadow: 0 30px 60px -18px rgba(20, 11, 51, 0.45);
-  }
-  .placa-face img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .placa-face--verso {
-    transform: rotateY(180deg);
-  }
-  .placa-face--verso img {
-    /* O verso é em pé: gira para deitar na mesma caixa do cartão. */
-    width: 63.08%;
-    height: 158.5%;
-    transform-origin: 0 0;
-    /* translate: 63,08% da própria altura (= a altura do cartão). */
-    transform: translate(0, 63.08%) rotate(-90deg);
+    line-height: 0.95;
   }
 }
 
-/* Troca de aba do VTX Tap: a tela nova entra subindo de leve. */
-@keyframes entra {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-  }
-}
-
-/* ==========================================================================
-   Entrada ao rolar: 18px em .6s. Só com JS confirmado, nunca esconde conteúdo
-   se o script falhar.
-   ========================================================================== */
-
+/* Entrada suave ao rolar: 18px em .6s, como na landing. Só com JS confirmado. */
 html.reveal-ready [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
+  transform: translateY(18px);
   transition:
-    opacity 0.6s var(--ease-out-soft),
-    transform 0.6s var(--ease-out-soft);
+    opacity 0.6s ease,
+    transform 0.6s ease;
   transition-delay: var(--reveal-delay, 0ms);
-}
-html.reveal-ready [data-reveal='scale'] {
-  transform: translate3d(0, 18px, 0) scale(0.98);
-}
-html.reveal-ready [data-reveal='trigger'] {
-  opacity: 1;
-  transform: none;
-  transition: none;
 }
 html.reveal-ready [data-reveal].is-revealed {
   opacity: 1;
@@ -558,19 +66,14 @@ html.reveal-ready [data-reveal].is-revealed {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   html.reveal-ready [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }

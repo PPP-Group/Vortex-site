@@ -84,11 +84,11 @@ export const principles = [
 ];
 
 export const navigation = [
-  { label: 'VTX Tap', href: '#vtx-tap' },
+  { label: 'VTX Tap', href: '#vtx-tap', novo: true },
+  { label: 'Preços', href: '#precos' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Portfólio', href: '#portfolio' },
   { label: 'Automação', href: '#automacao' },
-  { label: 'Processo', href: '#processo' },
 ];
 
 /**

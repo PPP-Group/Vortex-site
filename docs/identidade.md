@@ -130,21 +130,22 @@ tipográfico e não ênfase.
 
 ## 4. A tese visual
 
-Desde 2026-10-05 o site segue o manual de marca à risca, no mesmo vocabulário
-das landing pages do VTX Tap: **peça clara**, com página em `nevoa`, cartões
-brancos com hairline, blocos `noite` com anéis concêntricos e um único bloco
-roxo. Proporção do manual para peça clara: névoa e branco 62, noite 24, roxo 11,
-ouro 3.
+Desde 2026-10-05 o site usa **o mesmo sistema visual da landing do VTX Tap**
+(tap.vortexsystems.tech, `lp/index.html` do repositório app-vtx-tap), que é a
+aplicação de referência do manual de marca. A folha da landing foi portada
+inteira para `src/styles/marca.css`, com os mesmos nomes de classe e valores;
+as peças só da Vortex ficam no fim desse arquivo.
 
-- **Blocos noite** (canto 32): hero, "a plataforma por dentro" do VTX Tap,
-  automação e chamada final. Cada um tem um conjunto de anéis sangrando de um
-  canto.
-- **Bloco roxo**: só a chamada do VTX Tap.
-- **Ouro**: selo "Novo" do VTX Tap, ícones sobre noite e o botão de WhatsApp da
-  chamada final (o segundo botão de conversão).
+- Página em névoa, coluna de 1120px (`.wrap`) com 72px entre seções.
+- Hero noite com anéis, título com a segunda linha em lilás, botão ouro,
+  celular com a tela real, a plaquinha flutuando e etiquetas.
+- Cartões brancos com hairline (`.ganho`, `.passo`, `.card`, `.preco-card`).
+- Blocos `.destaque--noite` e `.destaque--roxo` com telas reais em celular
+  (`.fone`), notebook (`.laptop`) e TV (`.tv`); clicar amplia a tela.
+- Ouro nos botões de conversão dos blocos escuros, como na landing.
 
-O grafo de workflow continua, agora dentro do bloco noite da seção de automação:
-ali ele demonstra em vez de decorar.
+O VTX Tap é o lançamento e abre a página; a Vortex (serviços, portfólio,
+automação, processo) vem depois, no mesmo padrão.
 
 ---
 
@@ -310,45 +311,33 @@ pacote.
 - `npm run check` valida a geometria nos dois modos. Rode depois de mexer nos
   fluxos.
 
-### 10.2 A seção VTX Tap
+### 10.2 O VTX Tap na página
 
-O produto novo tem o maior espaço da página (`src/components/sections/VtxTap.jsx`,
-conteúdo em `src/data/vtxtap.js`):
+`src/components/sections/Hero.jsx` e `VtxTap.jsx` reproduzem a landing do
+produto: hero, quatro resultados, como funciona, fidelidade (noite), delivery
+(roxo, com a calculadora de comissão), Prorrogação (noite), na mesa,
+plaquinhas em 3D (`vtx/Placa3D.jsx`), preços e dúvidas. Os aparelhos e o
+diálogo de ampliar estão em `vtx/Mockups.jsx`.
 
-1. logo do VTX Tap com o endosso "uma solução VORTEX", título e os três passos;
-2. **explorador de módulos** num bloco noite: abas acessíveis (setas, Home, End)
-   e a tela real no aparelho — garçom, cardápio, fidelidade, delivery, happy
-   hour e painel da equipe;
-3. o que mais a página da mesa faz (Google, Wi-Fi, LGPD, domínio próprio);
-4. a plaquinha padrão em 3D (`Placa3D.jsx`) e as artes personalizáveis;
-5. preços em vigor e a chamada no bloco roxo.
-
-As telas e as artes em `public/vtx-tap/` vêm do repositório do app
-(`assets/img/lp` e `assets/img/placas`). Preços: os de `assets/js/precos.js` do
-app — ao mudar lá, mudar em `src/data/vtxtap.js`.
+As telas e as artes em `public/vtx-tap/` vêm do app (`assets/img/lp` e
+`assets/img/placas`). Os preços, de `assets/js/precos.js` do app, ficam em
+`src/data/vtxtap.js`. Ao mudar a landing do produto, atualize os dois.
 
 ### 10.3 O que saiu em 2026-10-05
 
 A espinha lateral de workflow, o notebook 3D do hero, o cursor customizado, o
-tilt dos cards e as métricas sem origem do hero. Nenhum deles está no manual, e
-as métricas eram placeholders ("número só com origem").
+tilt dos cards e as métricas sem origem do hero.
 
 ---
 
 ## 11. Componentes
 
-| Componente | Regra de identidade |
-| --- | --- |
-| **Cartão** (`.cartao`) | Branco, hairline `fio`, canto 22. Hover em link: borda `roxo` e sobe 2px. `.cartao--plano` = roxo-soft com borda roxa de 2px. |
-| **Ladrilho de ícone** (`.ico`, `IconTile`) | 46px, `roxo-soft` + `roxo-ink`; sobre noite, branco 10% e traço `ouro`. |
-| **Ícones** (`Icon`) | Os de traço do manual (24px, traço 2, pontas redondas); os que faltam seguem o Lucide. |
-| **Botão** (`Button`) | Pílula, Schibsted 700 16px, 50px. `roxo` (principal), `ouro` (um por página), `linha`, `branco` (sobre roxo), `quieto`. |
-| **Kicker** (`.kicker`) | 12,5px 700, .12em, caixa alta, `roxo-ink`; `lilas` sobre noite, `ouro` sobre roxo. |
-| **Selo** (`.selo`) | Pílula roxo-soft com ponto; `.selo--ouro` para "Novo". |
-| **Blocos** (`.bloco--noite`, `.bloco--roxo`) | Canto 32, padding até 52px, anéis (`.aneis`). |
-| **Aparelho** (`.aparelho`) | Moldura de celular para as telas reais do VTX Tap. |
-| **Diálogo** | Peça noite. Foco preso, fecha no ESC e no clique do fundo, devolve o foco a quem abriu. |
-| **Barra de navegação** | Assinatura cor; vira pílula branca com hairline ao rolar. |
+As classes são as da landing do VTX Tap (`marca.css`): `.btn` (`-roxo`,
+`-ouro`, `-linha`), `.kicker`, `.sec-h`, `.hero`, `.ganho`, `.passo`,
+`.destaque`, `.modo`, `.fluxo`, `.lista-fx`, `.lista-cl`, `.fone`, `.laptop`,
+`.tv`, `.c3`, `.placa`, `.preco-card`, `.inclui`, `.orc-faixa`, `.faq`,
+`.final`, `.rodape`. Da Vortex: `.servico`, `.apoio`, `.proj`, `.canvas`.
+Os diálogos do portfólio e dos casos de automação continuam peças noite.
 
 ---
 
