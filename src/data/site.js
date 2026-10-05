@@ -10,6 +10,8 @@ export const brand = {
   tagline: 'Operação digital de ponta a ponta',
   short:
     'Empresa de tecnologia especializada em soluções digitais para aquisição, atendimento e retenção de clientes.',
+  fullName: 'Vortex Systems',
+  domain: 'vortexsystems.tech',
 };
 
 export const manifesto = {
@@ -82,11 +84,11 @@ export const principles = [
 ];
 
 export const navigation = [
-  { label: 'Sobre', href: '#sobre' },
+  { label: 'VTX Tap', href: '#vtx-tap' },
   { label: 'Serviços', href: '#servicos' },
-  { label: 'Processo', href: '#processo' },
   { label: 'Portfólio', href: '#portfolio' },
   { label: 'Automação', href: '#automacao' },
+  { label: 'Processo', href: '#processo' },
 ];
 
 /**
@@ -101,19 +103,8 @@ export const contact = {
   whatsappHref: 'https://wa.me/5537988271126',
   location: 'Brasil · atendimento remoto',
   socials: [
-    { label: 'Instagram', href: null, handle: '@[A DEFINIR]' },
+    { label: 'Instagram', href: 'https://instagram.com/vortexsoftwareco', handle: '@vortexsoftwareco' },
     { label: 'LinkedIn', href: null, handle: '/company/[A DEFINIR]' },
     { label: 'GitHub', href: null, handle: '/[A DEFINIR]' },
   ],
 };
-
-/**
- * Métricas do hero. Os números são placeholders — o rótulo abaixo de cada um
- * deixa isso explícito na própria interface até a Vortex confirmar os reais.
- */
-export const metrics = [
-  { value: 40, suffix: '+', label: 'automações entregues', placeholder: true },
-  { value: 12, suffix: 'k', label: 'horas manuais economizadas', placeholder: true },
-  { value: 25, suffix: '+', label: 'projetos digitais', placeholder: true },
-  { value: 4, suffix: 'min', label: 'tempo médio de primeira resposta', placeholder: true },
-];

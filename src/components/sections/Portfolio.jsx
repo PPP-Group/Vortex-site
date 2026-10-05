@@ -1,97 +1,76 @@
 import { lazy, Suspense, useState } from 'react';
 import { Section, SectionHeading } from '../ui/Section';
-import { TiltCard } from '../ui/TiltCard';
+import { Icon } from '../ui/Icon';
 import { ProjectCover } from '../portfolio/ProjectCover';
 import { projects } from '../../data/portfolio';
 
-/* O modal — e com ele a biblioteca de animação — só é baixado quando alguém
-   abre um projeto. Nenhum visitante paga por isso só para ler a página. */
-const ProjectModal = lazy(() =>
-  import('../portfolio/ProjectModal').then((m) => ({ default: m.ProjectModal })),
-);
+/* O modal só é baixado quando alguém abre um projeto. */
+const ProjectModal = lazy(() => import('../portfolio/ProjectModal').then((m) => ({ default: m.ProjectModal })));
 
 /**
- * Portfólio de sites e plataformas.
- *
- * O primeiro card ocupa duas colunas: a grade quebra de propósito, e o projeto
- * de destaque ganha o peso visual que uma grade uniforme apagaria. Cada card
- * abre um modal com o site rodando dentro — o iframe só é montado quando o
- * modal abre, então nenhum preview é baixado antes de alguém pedir.
+ * Portfólio. O primeiro cartão (o VTX Tap) ocupa duas colunas; cada cartão
+ * abre um diálogo com o site rodando dentro, quando o domínio permite.
  */
 export function Portfolio() {
   const [activeId, setActiveId] = useState(null);
   const active = projects.find((p) => p.id === activeId) || null;
 
   return (
-    <Section id="portfolio" label="portfólio">
+    <Section id="portfolio" label="Portfólio" className="bg-white">
       <div className="shell">
         <SectionHeading
-          eyebrow="Portfólio"
-          title="Sites, plataformas e apps que a operação usa todo dia."
+          kicker="Portfólio"
+          title={
+            <>
+              Sites, plataformas e apps <em>que a operação usa</em>
+            </>
+          }
           lead="Abra um projeto para navegar por ele aqui dentro."
         />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-10 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
-            <TiltCard
+            <div
               key={project.id}
-              className={[
-                'relative',
-                i === 0 ? 'lg:col-span-2' : '',
-              ].join(' ')}
-              data-reveal="scale"
-              style={{ '--reveal-delay': `${Math.min(i, 4) * 80}ms` }}
+              className={i === 0 ? 'sm:col-span-2' : ''}
+              data-reveal
+              style={{ '--reveal-delay': `${Math.min(i % 3, 2) * 80}ms` }}
             >
               <button
                 type="button"
                 onClick={() => setActiveId(project.id)}
-                className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-ink-100 text-left transition-colors duration-500 hover:border-line-strong"
-                data-cursor
-                data-cursor-label="Ver"
+                className={`cartao cartao-link group flex h-full w-full overflow-hidden bg-nevoa text-left ${
+                  i === 0 ? 'flex-col lg:flex-row' : 'flex-col'
+                }`}
               >
-                <span className="relative block">
-                  <ProjectCover
-                    project={project}
-                    className={i === 0 ? 'aspect-[16/8]' : 'aspect-[16/10]'}
-                  />
-
-                  {/* Marca o que ainda é exemplo estrutural, para o card real
-                      ao lado não ser lido como igualmente hipotético. */}
-                  {project.demo && (
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-line-strong bg-ink-000/80 px-3 py-1.5 font-mono text-[9.5px] uppercase tracking-[0.12em] text-faint backdrop-blur-sm">
-                      <span aria-hidden="true" className="h-1 w-1 rotate-45 bg-flare" />
-                      Exemplo
-                    </span>
-                  )}
+                <span className={`relative block overflow-hidden ${i === 0 ? 'lg:w-[58%] lg:shrink-0' : ''}`}>
+                  <ProjectCover project={project} className={i === 0 ? 'aspect-[16/10] h-full' : 'aspect-[16/10]'} />
+                  {project.demo && <span className="selo absolute left-3 top-3 bg-white">Exemplo</span>}
                 </span>
 
-                <span className="flex flex-1 flex-col p-6">
-                  <span className="eyebrow flex items-center justify-between gap-3">
+                <span className="flex flex-1 flex-col p-[22px]">
+                  <span className="flex items-center justify-between gap-3 text-[12.5px] font-bold uppercase tracking-[0.12em] text-roxo-ink">
                     <span>{project.category}</span>
-                    <span className="text-faint">{project.year}</span>
+                    {!project.year.includes('[') && <span className="num font-semibold tracking-normal text-apoio">{project.year}</span>}
                   </span>
-
-                  <span className="display mt-3.5 block text-xl leading-tight text-paper md:text-2xl">
+                  <span className={`mt-3 block font-semibold leading-[1.25] text-tinta ${i === 0 ? 'text-[24px]' : 'text-[19px]'}`}>
                     {project.title}
                   </span>
-
-                  <span className="mt-3 block text-[14.5px] leading-relaxed text-muted">
-                    {project.summary}
-                  </span>
-
-                  <span className="mt-5 flex flex-wrap gap-1.5 pt-4">
+                  <span className="mt-2 block flex-1 text-[14.5px] leading-[1.5] text-apoio">{project.summary}</span>
+                  <span className="mt-4 flex flex-wrap gap-1.5">
                     {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-faint"
-                      >
+                      <span key={tech} className="chip !bg-white !py-1 !text-[12.5px]">
                         {tech}
                       </span>
                     ))}
                   </span>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-[14.5px] font-bold text-roxo-ink">
+                    Ver projeto
+                    <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </span>
               </button>
-            </TiltCard>
+            </div>
           ))}
         </div>
       </div>

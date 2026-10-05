@@ -1,104 +1,82 @@
-import { useRef } from 'react';
 import { Button, ArrowRight, WhatsAppIcon } from '../ui/Button';
+import { Icon } from '../ui/Icon';
 import { contact } from '../../data/site';
-import { useParallax } from '../../hooks/useMotionPrimitives';
-import { useReducedMotion } from '../../hooks/useMediaQuery';
 
 /**
- * CTA final.
- *
- * Bloco noite com os anéis concêntricos da marca, e o único botão ouro do site:
- * ele foi guardado por nove seções para que aqui signifique "é aqui que se decide".
+ * Chamada final: bloco noite com os anéis e o polvo, e o único botão ouro da
+ * página — o segundo botão de conversão, ao lado do roxo.
  */
 export function FinalCta() {
-  const glowRef = useRef(null);
-  const reduced = useReducedMotion();
-
-  useParallax(glowRef, { amplitude: 36, disabled: reduced });
-
   return (
-    <section
-      id="contato"
-      data-spine-node="contato"
-      data-spine-label="contato"
-      aria-label="Fale com a Vortex"
-      className="relative overflow-hidden border-t border-line bg-ink-100 py-28 md:py-40"
-    >
-      <div
-        ref={glowRef}
-        aria-hidden="true"
-        className="parallax aneis -right-[260px] -top-[260px] [--aneis:760px] md:-right-[180px]"
-      />
-      <div aria-hidden="true" className="canvas-grid pointer-events-none absolute inset-0 opacity-40" />
+    <section id="contato" aria-label="Fale com a Vortex" className="pb-3 pt-6">
+      <div className="mx-auto w-[min(1240px,100%-24px)]">
+        <div className="bloco bloco--noite sobre-noite lg:py-16">
+          <span aria-hidden="true" className="aneis -right-[140px] -top-[140px] [--aneis:480px]" />
 
-      <div className="shell relative">
-        <div className="max-w-4xl">
-          <p className="eyebrow" data-reveal>
-            Próximo passo
-          </p>
-          <h2 className="display display-xl mt-6 text-paper" data-reveal>
-            Conta o processo.
-            <br />
-            <em>A gente devolve o mapa.</em>
-          </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl" data-reveal>
-            O primeiro encontro é um diagnóstico: onde o lead entra, quem responde, o que ainda é
-            feito à mão. Você sai com o desenho da automação — mesmo que decida construir sozinho.
-          </p>
-
-          <div className="mt-11 flex flex-wrap items-center gap-3" data-reveal>
-            <Button
-              as="a"
-              href={contact.emailHref || '#contato'}
-              variant="flare"
-              size="lg"
-              data-cursor
-            >
-              Agendar diagnóstico
-              <ArrowRight />
-            </Button>
-            <Button as="a" href="#portfolio" variant="ghost" size="lg" data-cursor>
-              Ver portfólio
-            </Button>
-          </div>
-
-          <dl className="mt-16 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-3" data-reveal>
+          <div className="mx-auto w-full max-w-[1120px] lg:grid lg:grid-cols-[1fr_300px] lg:items-center lg:gap-12">
             <div>
-              <dt className="eyebrow">E-mail</dt>
-              <dd className="mt-2">
-                <a
-                  href={contact.emailHref}
-                  className="text-[15px] text-paper transition-colors hover:text-volt"
-                  data-cursor
-                >
-                  {contact.email}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="eyebrow">WhatsApp</dt>
-              <dd className="mt-2">
-                <Button
-                  as="a"
-                  href={contact.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="ghost"
-                  size="icon"
-                  aria-label={`WhatsApp — ${contact.whatsapp}`}
-                  data-cursor
-                >
+              <p className="kicker" data-reveal>
+                Próximo passo
+              </p>
+              <h2 className="display display-final mt-3" data-reveal>
+                Conta o processo. <em>A gente devolve o mapa.</em>
+              </h2>
+              <p className="lead mt-6 max-w-[56ch] text-noite-2" data-reveal>
+                O primeiro encontro é um diagnóstico: onde o lead entra, quem responde, o que ainda é feito à mão. Para
+                restaurante, mostramos o VTX Tap funcionando e montamos o orçamento pelo número de mesas.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3" data-reveal>
+                <Button as="a" href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" variant="ouro">
                   <WhatsAppIcon />
+                  Chamar no WhatsApp
                 </Button>
-              </dd>
+                <Button as="a" href={contact.emailHref} variant="linha" className="text-white">
+                  Mandar um e-mail
+                  <ArrowRight />
+                </Button>
+              </div>
+
+              <dl className="mt-10 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3" data-reveal>
+                <Contato icon="msg" label="E-mail" valor={contact.email} href={contact.emailHref} />
+                <Contato icon="phone" label="WhatsApp" valor={contact.whatsapp} href={contact.whatsappHref} externo numero />
+                <Contato icon="map" label="Atendimento" valor={contact.location} />
+              </dl>
             </div>
-            <div>
-              <dt className="eyebrow">Atendimento</dt>
-              <dd className="mt-2 text-[15px] text-paper">{contact.location}</dd>
-            </div>
-          </dl>
+
+            <img
+              src="/marca/polvo-roxo.svg"
+              alt=""
+              aria-hidden="true"
+              className="mx-auto mt-10 hidden w-[240px] lg:mt-0 lg:block lg:w-full"
+              data-reveal="scale"
+            />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Contato({ icon, label, valor, href, externo, numero }) {
+  const conteudo = <span className={`text-[15px] text-white ${numero ? 'num' : ''}`}>{valor}</span>;
+  return (
+    <div className="flex gap-3">
+      <span className="ico !h-10 !w-10 !rounded-[11px]">
+        <Icon name={icon} className="h-5 w-5" />
+      </span>
+      <div className="min-w-0">
+        <dt className="text-[12.5px] font-bold uppercase tracking-[0.12em] text-lilas">{label}</dt>
+        <dd className="mt-0.5 break-words">
+          {href ? (
+            <a href={href} className="hover:underline" {...(externo ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+              {conteudo}
+            </a>
+          ) : (
+            conteudo
+          )}
+        </dd>
+      </div>
+    </div>
   );
 }

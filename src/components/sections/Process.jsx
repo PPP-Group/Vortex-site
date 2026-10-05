@@ -1,76 +1,75 @@
 import { Section, SectionHeading } from '../ui/Section';
+import { Icon } from '../ui/Icon';
 import { processSteps } from '../../data/process';
+import { principles } from '../../data/site';
+import { stackGroups } from '../../data/stack';
+
+/** Prazo só aparece quando a Vortex confirmou; placeholder fica fora da página. */
+const temPrazo = (d) => d && !d.includes('[');
 
 /**
- * Como trabalhamos.
- *
- * Aqui a numeração se justifica: a ordem carrega informação — não se
- * implementa antes de desenhar, nem se desenha antes de diagnosticar. O trilho
- * se desenha no sentido da leitura quando a seção entra na tela, e cada etapa
- * declara o que entrega de concreto ao terminar.
+ * Como trabalhamos: as quatro etapas (a ordem carrega informação, por isso a
+ * numeração), os princípios e as ferramentas, num só lugar.
  */
 export function Process() {
   return (
-    <Section id="processo" label="processo" tone="raised">
+    <Section id="processo" label="Processo">
       <div className="shell">
         <SectionHeading
-          eyebrow="Como trabalhamos"
-          title="Diagnóstico antes de ferramenta."
-          lead="Automatizar um processo quebrado só faz ele quebrar mais rápido. Por isso a primeira entrega nunca é um fluxo — é o mapa do que já existe."
+          kicker="Como trabalhamos"
+          title={
+            <>
+              Do diagnóstico <em>ao repasse</em>
+            </>
+          }
+          lead="Conta o processo, a gente devolve o mapa. Automatizar um processo quebrado só quebra mais rápido, então a ordem é sempre esta."
         />
 
-        <div className="timeline relative mt-16 md:mt-24" data-reveal="trigger">
-          {/* Trilho horizontal (desktop) */}
-          <div aria-hidden="true" className="absolute inset-x-0 top-[13px] hidden md:block">
-            <div className="h-px w-full bg-line" />
-            <div
-              className="timeline-rail-fill absolute inset-x-0 top-0 h-px"
-              style={{ background: 'var(--current)' }}
-            />
+        <ol className="mt-10 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          {processSteps.map((s, i) => (
+            <li key={s.n} className="cartao flex flex-col p-[22px]" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+              <div className="flex items-center justify-between">
+                <span className="display text-[42px] leading-none text-roxo">{s.n}</span>
+                {temPrazo(s.duration) && <span className="chip">{s.duration}</span>}
+              </div>
+              <h3 className="mt-5 text-[19px] font-semibold leading-[1.3]">{s.title}</h3>
+              <p className="mt-2 flex-1 text-[14.5px] leading-[1.55] text-apoio">{s.body}</p>
+              <p className="mt-5 flex gap-2 border-t border-fio pt-4 text-[13.5px] font-semibold leading-[1.45] text-tinta-2">
+                <Icon name="check" className="mt-px h-4 w-4 shrink-0 text-roxo-ink" />
+                {s.output}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-20 grid gap-10 md:mt-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+          <div>
+            <p className="kicker" data-reveal>
+              Princípios
+            </p>
+            <h2 className="display display-secao mt-3" data-reveal>
+              A operação <em>fica com você</em>
+            </h2>
+            <div className="mt-8" data-reveal>
+              <p className="kicker !text-apoio">Ferramentas do dia a dia</p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {stackGroups.flatMap((g) => g.items).map((t) => (
+                  <li key={t.name} className="chip !bg-white shadow-[inset_0_0_0_1px_var(--color-fio)]" title={t.role}>
+                    {t.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Trilho vertical (mobile) */}
-          <div aria-hidden="true" className="absolute bottom-0 left-[6px] top-2 w-px md:hidden">
-            <div className="h-full w-px bg-line" />
-            <div
-              data-axis="y"
-              className="timeline-rail-fill absolute inset-y-0 left-0 w-px"
-              style={{ background: 'var(--current)' }}
-            />
-          </div>
-
-          <ol className="grid gap-12 md:grid-cols-4 md:gap-8">
-            {processSteps.map((step, i) => (
-              <li
-                key={step.n}
-                className="timeline-step relative pl-9 md:pl-0"
-                style={{ '--step-delay': `${250 + i * 130}ms` }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-2 h-[13px] w-[13px] rotate-45 border border-volt bg-ink-050 md:left-auto md:top-[7px]"
-                />
-                <div className="md:pt-12">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-volt">
-                      {step.n}
-                    </span>
-                    <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint">
-                      {step.duration}
-                    </span>
-                  </div>
-                  <h3 className="display mt-3 text-2xl text-paper">{step.title}</h3>
-                  <p className="mt-3.5 text-[15px] leading-relaxed text-muted">{step.body}</p>
-                  <p className="mt-5 border-t border-line pt-4 text-[13px] leading-relaxed text-faint">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      Entrega ·{' '}
-                    </span>
-                    {step.output}
-                  </p>
-                </div>
+          <ul className="grid gap-3.5 sm:grid-cols-2">
+            {principles.map((p, i) => (
+              <li key={p.title} className="rounded-[var(--radius-lg)] bg-surface-2 p-[22px]" data-reveal style={{ '--reveal-delay': `${i * 70}ms` }}>
+                <h3 className="text-[17px] font-semibold leading-[1.3]">{p.title}</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.55] text-apoio">{p.body}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </div>
     </Section>

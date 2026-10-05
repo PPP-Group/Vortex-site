@@ -9,7 +9,7 @@ corrija o documento.
 | --- | --- |
 | **Implementação** | `src/styles/index.css` (tokens), `src/data/` (conteúdo) |
 | **Instruções de build e placeholders** | [`../README.md`](../README.md) |
-| **Última revisão** | 2026-10-02 (marca, cor e tipografia passaram para o manual de marca) |
+| **Última revisão** | 2026-10-05 (refatoração para o manual inteiro e seção do VTX Tap) |
 
 ---
 
@@ -130,24 +130,21 @@ tipográfico e não ênfase.
 
 ## 4. A tese visual
 
-A Vortex monta automação. O clichê da categoria é partícula flutuando e "rede
-neural" brilhando — visual que aparece igual em qualquer agência de tecnologia,
-independentemente do que ela faz.
+Desde 2026-10-05 o site segue o manual de marca à risca, no mesmo vocabulário
+das landing pages do VTX Tap: **peça clara**, com página em `nevoa`, cartões
+brancos com hairline, blocos `noite` com anéis concêntricos e um único bloco
+roxo. Proporção do manual para peça clara: névoa e branco 62, noite 24, roxo 11,
+ouro 3.
 
-O artefato real do mundo da Vortex é outro: **o canvas de um editor de workflow,
-com payload passando entre nós e log sendo impresso.**
+- **Blocos noite** (canto 32): hero, "a plataforma por dentro" do VTX Tap,
+  automação e chamada final. Cada um tem um conjunto de anéis sangrando de um
+  canto.
+- **Bloco roxo**: só a chamada do VTX Tap.
+- **Ouro**: selo "Novo" do VTX Tap, ícones sobre noite e o botão de WhatsApp da
+  chamada final (o segundo botão de conversão).
 
-Daí a decisão que organiza todo o resto:
-
-> O site não descreve automação. Ele **executa** uma.
-
-O hero é um fluxo rodando de verdade — um lead entra pelo webhook, atravessa os
-nós, e cada nó imprime a saída daquela etapa ao receber o pacote. O mesmo motor
-reaparece na seção de demonstração, com controle e ramificação condicional, e em
-escala menor no painel do notebook 3D.
-
-Consequência para qualquer peça nova: **antes de decorar, pergunte se dá para
-demonstrar.**
+O grafo de workflow continua, agora dentro do bloco noite da seção de automação:
+ali ele demonstra em vez de decorar.
 
 ---
 
@@ -160,10 +157,17 @@ copie os SVGs de lá para `public/marca/`.
 
 | Arquivo | Onde vai no site |
 | --- | --- |
-| `public/marca/assinatura-negativo.svg` | Cabeçalho e rodapé (`src/components/layout/Logo.jsx`) |
+| `public/marca/assinatura-cor.svg` | Cabeçalho (`Logo`, assinatura horizontal sobre claro) |
+| `public/marca/vortex-systems-negativo.svg` | Rodapé (nome completo, sobre preto) |
+| `public/marca/vtx-tap-cor.svg` / `vtx-tap-branco.svg` | Seção VTX Tap (claro) e chamada roxa (`VtxTapLogo`) |
+| `public/marca/endosso-cor.svg` | "uma solução VORTEX", ao lado do logo do VTX Tap |
+| `public/marca/polvo-roxo.svg` | Ilustração da chamada final (mascote) |
 | `public/marca/cabeca-roxo.svg` | Favicon |
 | `public/apple-touch-icon.png` | Ícone na tela inicial do celular (cabeça roxa sobre noite) |
 | `public/og-cover.png` | Imagem de compartilhamento (assinatura sobre noite com anéis) |
+
+Todos os SVGs do manual (assinaturas, logotipo, cabeça, polvo e VTX Tap) estão em
+`public/marca/`, copiados da fonte em 2026-10-05 (letreiro v13, logo do VTX Tap v21).
 
 Regras: nunca redigite o nome numa fonte, não estique, não recolora fora das
 versões do manual. Mínimo da assinatura horizontal: 110px de largura.
@@ -172,37 +176,40 @@ versões do manual. Mínimo da assinatura horizontal: 110px de largura.
 
 ## 6. Cor
 
-As cores são as da peça escura do manual. Os nomes dos tokens em
-`src/styles/index.css` ficaram os antigos para não mexer em todos os
-componentes; os valores mudaram:
+Os tokens de `src/styles/index.css` usam os nomes do manual. No tema claro,
+`ink`, `ink-2`, `muted` e `line` viraram `tinta`, `tinta-2`, `apoio` e `fio`,
+porque os nomes antigos continuam servindo ao que mora sobre noite.
 
 | Token | Valor | Papel |
 | --- | --- | --- |
-| `ink-000` | `#0C0820` preto | Fundo da página |
-| `ink-050` | `#100A29` | Faixa alternada de seção |
-| `ink-100` | `#140B33` noite | Superfície elevada, bloco do CTA final |
-| `ink-200` / `ink-300` | `#181040` / `#221949` | Card e card em hover |
-| `line` / `line-strong` | `#261D52` / `#30275C` | Hairlines |
-| `paper` / `muted` / `faint` | `#EFECFA` / `#A298C6` / `#8C82B4` | Texto (7,3 e 5,6:1 sobre preto) |
-| `pulse` | `#7D27FC` roxo | Botão principal, bordas, gráficos |
-| `pulse-soft` | `#BB97FF` | Roxo para texto sobre noite |
-| `volt` | `#A874FF` lilás | Palavra em ênfase e sinal ativo do fluxo |
-| `flare` | `#FFC61A` ouro | Só o botão do CTA final |
-| `ok` | `#4FD196` | Status de execução, nunca marca |
+| `nevoa` | `#F4F2F9` | Fundo da página |
+| `branco` | `#FFFFFF` | Cartão, seção do portfólio |
+| `surface-2` | `#EDE9F6` | Chip, cartão quieto, trilho |
+| `tinta` / `tinta-2` / `apoio` | `#160E33` / `#2F2752` / `#625A80` | Texto no claro (16,5, 13,7 e 5,7:1) |
+| `fio` | `#E1DCEE` | Hairline |
+| `roxo` | `#7D27FC` | Botão principal, número, marca |
+| `roxo-ink` | `#6A1BE0` | Kicker, link, ênfase no título sobre claro |
+| `roxo-soft` | `#EEE5FF` | Ladrilho de ícone, plano em destaque |
+| `noite` / `preto` | `#140B33` / `#0C0820` | Blocos escuros / rodapé |
+| `noite-ink` / `noite-2` / `lilas` | `#F1ECFF` / `#CFC6F2` / `#A874FF` | Texto e ênfase sobre noite |
+| `ouro` / `on-ouro` | `#FFC61A` / `#1D1400` | Acento quente e texto sobre ele |
 
-- A corrente do grafo vai do roxo ao lilás. O ciano e o magenta da versão
-  anterior saíram.
-- Grafismo: anéis concêntricos roxos (classe `.aneis`), sangrando de um canto
-  do bloco noite.
+Tokens escuros (`ink-000`…`ink-300`, `line`, `paper`, `muted`, `faint`, `volt`,
+`pulse`, `flare`, `ok`) servem ao grafo, aos diálogos e às capas do portfólio.
+
+- Gradiente: só o do bloco roxo (150°, `#7D27FC → #5B14C9 → #3C0A8E`).
+- Grafismo: anéis concêntricos (`.aneis`) nos blocos noite; `.aneis--branco` no roxo.
 
 ---
 
 ## 7. Tipografia
 
 - **Títulos**: Big Shoulders Display 900, caixa alta, entrelinha .95
-  (`.display`, `.display-xl`, `.display-lg`). Ênfase com `<em>`, em lilás.
+  (`.display`, `.display-hero` 82, `.display-final` 66, `.display-secao` 54,
+  `.display-cartao` 30). Ênfase com `<em>`: `roxo-ink` no claro, `lilas` sobre noite.
 - **Texto e botões**: Schibsted Grotesk. Botão em pílula, 700, caixa de frase.
-- **Rótulos, números e código**: IBM Plex Mono.
+- **Números, preços e código**: IBM Plex Mono com algarismos tabulares (`.num`).
+  Os preços grandes usam o Big Shoulders (`display-numero`).
 - As três vêm do Google Fonts, carregadas em `index.html`.
 
 ---
@@ -211,35 +218,20 @@ componentes; os valores mudaram:
 
 | Variável | Valor | Papel |
 | --- | --- | --- |
-| `--shell` | `min(1240px, 100% - 2.5rem)` | largura útil do conteúdo |
-| `--header-h` | `72px` | altura da barra fixa |
-| `.canvas-grid` | pontos de 1px a cada `26px`, `rgba(255,255,255,0.055)` | malha de editor ao fundo |
+| `--shell` | `min(1120px, 100% - 36px)` | `largura-conteudo` do manual, 18px de margem no celular |
+| blocos | `min(1240px, 100% - 24px)` | blocos noite e roxo, um pouco mais largos que o conteúdo |
+| `--header-h` | `76px` | altura da barra fixa |
 
-Espaçamento vertical de seção: `py-24` → `md:py-32` → `lg:py-40`.
+Espaço entre seções: 72px (`gap-secoes`), 96px a partir de `md`. Grade de
+cartões com 14px (`gap-grade`), cartão com 22px de padding (`pad-cartao`).
 
-Breakpoints (padrão Tailwind): `sm 640` · `md 768` · `lg 1024` · `xl 1280` ·
-`2xl 1536`.
-
-A página inteira se apoia na **malha de canvas** — a mesma grade de fundo de um
-editor de nós. As seções são nós dessa grade.
-
-### Quebras de grade deliberadas
-
-- O grafo do hero **sangra além do container** (`.bleed`), com máscara nas
-  bordas: você vê um pedaço de um canvas maior, não uma ilustração emoldurada.
-- No hero, o bloco de texto ocupa 7 colunas à esquerda e o notebook 3D flutua
-  nas 5 da direita, com ar em volta. O notebook é o contrapeso.
-- O primeiro card do portfólio ocupa duas colunas e é mais largo que alto.
+Ordem da página: Hero → **VTX Tap** (o lançamento, com o maior espaço) →
+Serviços → Portfólio → Automação → Processo → Contato.
 
 ### Numeração
 
-Só a seção **"Como trabalhamos"** é numerada, porque ali a ordem carrega
-informação: não se implementa antes de desenhar, nem se desenha antes de
-diagnosticar.
-
-Os dois eixos e os três serviços **não** são numerados — são paralelos, e
-numerá-los sugeriria uma sequência que não existe. Numeração é estrutura de
-dado, não enfeite.
+Só os passos do VTX Tap e "Como trabalhamos" são numerados: ali a ordem carrega
+informação.
 
 ---
 
@@ -277,19 +269,19 @@ Ciclo completo: hero 7,0s · demonstração 11,2s.
 
 ### Onde o movimento é permitido
 
-Só onde significa alguma coisa:
+Só onde significa alguma coisa (entrada ao rolar: 18px em 0,6s, como no manual):
 
 - o pacote percorrendo o grafo — **é o conteúdo, não o enfeite**;
-- o trilho do processo se desenhando no sentido da leitura;
-- o tilt dos cards de portfólio, com o brilho seguindo a mão;
-- o cursor customizado, que sobre um card vira "ver projeto";
-- a flutuação e o giro do notebook 3D.
+- a plaquinha do VTX Tap em 3D, que balança sozinha só enquanto está na tela e
+  gira ao arrastar;
+- a troca de tela no explorador de módulos do VTX Tap;
+- botão sobe 1px no hover e encolhe para .97 no toque.
 
 ### `prefers-reduced-motion`
 
 **Não desliga o design, troca por uma versão estática.** O grafo vira um
 diagrama completo, com todos os nós acesos e cada log impresso. O Lenis (scroll
-suave) nem chega a ser baixado. O cursor customizado não entra.
+suave) nem chega a ser baixado. A plaquinha fica parada até alguém girar.
 
 Giro por arrasto continua valendo mesmo em movimento reduzido: é ação direta do
 usuário, não movimento imposto a ele.
@@ -318,39 +310,28 @@ pacote.
 - `npm run check` valida a geometria nos dois modos. Rode depois de mexer nos
   fluxos.
 
-### 10.2 A espinha de workflow
+### 10.2 A seção VTX Tap
 
-A vista de longe do mesmo grafo. Cada seção da página é um nó; a rolagem é o
-pacote percorrendo a aresta. É indicador de progresso e navegação ao mesmo
-tempo.
+O produto novo tem o maior espaço da página (`src/components/sections/VtxTap.jsx`,
+conteúdo em `src/data/vtxtap.js`):
 
-A parte acesa não é calculada em JS a cada frame: são duas camadas idênticas,
-uma apagada e uma acesa, e a acesa é recortada por `clip-path` em função de
-`--scroll-progress`.
+1. logo do VTX Tap com o endosso "uma solução VORTEX", título e os três passos;
+2. **explorador de módulos** num bloco noite: abas acessíveis (setas, Home, End)
+   e a tela real no aparelho — garçom, cardápio, fidelidade, delivery, happy
+   hour e painel da equipe;
+3. o que mais a página da mesa faz (Google, Wi-Fi, LGPD, domínio próprio);
+4. a plaquinha padrão em 3D (`Placa3D.jsx`) e as artes personalizáveis;
+5. preços em vigor e a chamada no bloco roxo.
 
-### 10.3 O notebook 3D do hero
+As telas e as artes em `public/vtx-tap/` vêm do repositório do app
+(`assets/img/lp` e `assets/img/placas`). Preços: os de `assets/js/precos.js` do
+app — ao mudar lá, mudar em `src/data/vtxtap.js`.
 
-Geometria em **CSS 3D, não WebGL**: a tela é DOM de verdade, fica nítida em
-qualquer zoom, herda os tokens e custa poucos kB em vez de ~150 kB.
+### 10.3 O que saiu em 2026-10-05
 
-Na tela roda um painel de execuções cujas linhas ecoam os logs do grafo
-(`200 · 84ms`, `score 87`, `00:41`) — a mesma ideia do hero em outra escala.
-
-Interação: **arrastar** dá controle direto e o ângulo é mantido ao soltar;
-**passar o mouse** aplica inclinação sutil como desvio sobre o ângulo atual.
-A pose inicial mora no CSS, então o objeto aparece certo antes de qualquer JS.
-
-Detalhes técnicos e armadilhas: [`../README.md`](../README.md).
-
-### 10.4 O cursor customizado
-
-Um ponto que segue o ponteiro exatamente e um anel que chega com atraso. Sobre
-qualquer elemento com `data-cursor`, o anel cresce e assume o rótulo declarado
-em `data-cursor-label` — sobre um card de portfólio ele vira literalmente "ver
-projeto".
-
-Só entra em ponteiro fino e sem `prefers-reduced-motion`. Em toque, o cursor do
-sistema continua sendo o cursor.
+A espinha lateral de workflow, o notebook 3D do hero, o cursor customizado, o
+tilt dos cards e as métricas sem origem do hero. Nenhum deles está no manual, e
+as métricas eram placeholders ("número só com origem").
 
 ---
 
@@ -358,14 +339,16 @@ sistema continua sendo o cursor.
 
 | Componente | Regra de identidade |
 | --- | --- |
-| **Card** | Plano, `ink-100`/`ink-200`, hairline `line`. Sem glassmorphism, sem sombra difusa. Hover muda borda e translada, não só a cor. |
-| **Botão primário** | `paper` sólido sobre tinta, texto `ink-000`. Mono, caixa alta, tracking `0.12em`, pílula. |
-| **Botão flare** | `--current-flare`. **Só no CTA final.** |
-| **Botão ghost** | Borda `line-strong`, texto `paper`, hover clareia a borda para `volt/60`. |
-| **Eyebrow** | Mono + traço de 32px à esquerda. É o rótulo de seção padrão. |
-| **Modal** | Foco preso, fecha no ESC e no clique do fundo, devolve o foco a quem abriu. Rolagem da página travada. |
-| **Acordeão** | `grid-template-rows: 0fr → 1fr` em CSS puro. `inert` quando fechado. |
-| **Barra de navegação** | Faixa alinhada à shell no topo; ao rolar, encolhe para pílula flutuante com `backdrop-filter`. |
+| **Cartão** (`.cartao`) | Branco, hairline `fio`, canto 22. Hover em link: borda `roxo` e sobe 2px. `.cartao--plano` = roxo-soft com borda roxa de 2px. |
+| **Ladrilho de ícone** (`.ico`, `IconTile`) | 46px, `roxo-soft` + `roxo-ink`; sobre noite, branco 10% e traço `ouro`. |
+| **Ícones** (`Icon`) | Os de traço do manual (24px, traço 2, pontas redondas); os que faltam seguem o Lucide. |
+| **Botão** (`Button`) | Pílula, Schibsted 700 16px, 50px. `roxo` (principal), `ouro` (um por página), `linha`, `branco` (sobre roxo), `quieto`. |
+| **Kicker** (`.kicker`) | 12,5px 700, .12em, caixa alta, `roxo-ink`; `lilas` sobre noite, `ouro` sobre roxo. |
+| **Selo** (`.selo`) | Pílula roxo-soft com ponto; `.selo--ouro` para "Novo". |
+| **Blocos** (`.bloco--noite`, `.bloco--roxo`) | Canto 32, padding até 52px, anéis (`.aneis`). |
+| **Aparelho** (`.aparelho`) | Moldura de celular para as telas reais do VTX Tap. |
+| **Diálogo** | Peça noite. Foco preso, fecha no ESC e no clique do fundo, devolve o foco a quem abriu. |
+| **Barra de navegação** | Assinatura cor; vira pílula branca com hairline ao rolar. |
 
 ---
 

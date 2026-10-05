@@ -1,196 +1,106 @@
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import { Section, SectionHeading } from '../ui/Section';
+import { Icon, IconTile } from '../ui/Icon';
 import { services, supportServices } from '../../data/services';
 import { painPoints } from '../../data/site';
 
+const ICONS = { ghl: 'zap', n8n: 'workflow', dev: 'code' };
+const SUPPORT_ICONS = ['search', 'users', 'wrench'];
+
 /**
- * Serviços — os quatro pilares.
- *
- * Não é uma grade de quatro cards: é uma lista de linhas largas que abrem no
- * lugar. A entrada da seção é o roteiro dor → solução, porque o visitante
- * reconhece o próprio problema antes de reconhecer o nome da ferramenta —
- * clicar numa dor abre exatamente o pilar que a resolve.
+ * Serviços: a dor antes da ferramenta. Cada cartão abre com a dor, depois diz
+ * o que fazemos, e a lista completa de capacidades fica a um toque.
  */
 export function Services() {
-  const [openId, setOpenId] = useState(services[0].id);
-
   return (
-    <Section id="servicos" label="serviços">
+    <Section id="servicos" label="Serviços">
       <div className="shell">
         <SectionHeading
-          eyebrow="Serviços"
-          title="Três frentes. Uma operação só."
-          lead="Comece pelo problema que você reconhece — cada um leva direto à frente que resolve."
+          kicker="O que mais fazemos"
+          title={
+            <>
+              Automação, integração <em>e o produto digital</em>
+            </>
+          }
+          lead="Duas frentes que a maioria contrata em lugares diferentes. Automação sem produto digital vira remendo; produto sem automação vira trabalho manual. A gente entrega os dois lados."
         />
 
-        {/* Roteiro dor -> solução */}
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
-          {painPoints.map((item, i) => (
-            <li
-              key={item.service}
-              data-reveal
-              style={{ '--reveal-delay': `${i * 70}ms` }}
-              /* Grid de 2 colunas com número ímpar de itens: o último fica
-                 sozinho na própria linha, então ocupa as duas colunas em vez
-                 de deixar uma célula vazia ao lado. */
-              className={
-                painPoints.length % 2 === 1 && i === painPoints.length - 1 ? 'sm:col-span-2' : ''
-              }
-            >
-              <button
-                type="button"
-                onClick={() => setOpenId(item.service)}
-                className="group flex h-full w-full flex-col items-start gap-2 bg-ink-050 p-6 text-left transition-colors hover:bg-ink-200"
-                data-cursor
-                data-cursor-label="abrir"
-              >
-                <span className="text-base leading-snug text-paper md:text-lg">
-                  “{item.pain}?”
-                </span>
-                <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-faint transition-colors group-hover:text-volt">
-                  <span aria-hidden="true">→</span>
-                  {item.fix}
-                </span>
-              </button>
+        <div className="mt-10 grid gap-3.5 lg:grid-cols-3">
+          {services.map((s, i) => (
+            <ServiceCard key={s.id} service={s} pain={painPoints.find((p) => p.service === s.id)} delay={i * 80} />
+          ))}
+        </div>
+
+        <ul className="mt-3.5 grid gap-3.5 md:grid-cols-3">
+          {supportServices.map((s, i) => (
+            <li key={s.title} className="flex gap-4 rounded-[var(--radius-lg)] bg-surface-2 p-[22px]" data-reveal style={{ '--reveal-delay': `${i * 70}ms` }}>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[var(--radius-icone)] bg-white text-roxo-ink">
+                <Icon name={SUPPORT_ICONS[i]} className="h-5 w-5" />
+              </span>
+              <div>
+                <h3 className="text-[16.5px] font-semibold leading-[1.3]">{s.title}</h3>
+                <p className="mt-1.5 text-[14.5px] leading-[1.5] text-apoio">{s.body}</p>
+              </div>
             </li>
           ))}
         </ul>
-
-        {/* Os quatro pilares */}
-        <div className="mt-20 border-t border-line md:mt-24">
-          {services.map((service) => (
-            <ServiceRow
-              key={service.id}
-              service={service}
-              open={openId === service.id}
-              onToggle={() => setOpenId((current) => (current === service.id ? null : service.id))}
-            />
-          ))}
-        </div>
-
-        {/* Frentes complementares */}
-        <div className="mt-20 md:mt-24">
-          <p className="eyebrow mb-8" data-reveal>
-            Também faz parte
-          </p>
-          <div className="grid gap-8 md:grid-cols-3">
-            {supportServices.map((item, i) => (
-              <div
-                key={item.title}
-                className="border-t border-line pt-6"
-                data-reveal
-                style={{ '--reveal-delay': `${i * 80}ms` }}
-              >
-                <h3 className="display text-lg text-paper">{item.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </Section>
   );
 }
 
-function ServiceRow({ service, open, onToggle }) {
-  const panelId = useId();
-  const buttonId = useId();
+function ServiceCard({ service, pain, delay }) {
+  const [aberto, setAberto] = useState(false);
+  const curtas = service.capabilities.slice(0, 3);
+  const resto = service.capabilities.slice(3);
+  const painelId = `cap-${service.id}`;
 
   return (
-    <article className="border-b border-line" data-reveal>
-      <h3>
-        <button
-          id={buttonId}
-          type="button"
-          onClick={onToggle}
-          aria-expanded={open}
-          aria-controls={panelId}
-          className="group grid w-full grid-cols-[auto_1fr_auto] items-start gap-x-5 py-8 text-left md:grid-cols-[7rem_1fr_auto] md:gap-x-10 md:py-10"
-          data-cursor
-          data-cursor-label={open ? 'fechar' : 'abrir'}
-        >
-          <span
-            className={`font-mono text-[11px] uppercase tracking-[0.16em] transition-colors md:pt-2 ${
-              open ? 'text-volt' : 'text-faint group-hover:text-muted'
-            }`}
-          >
-            {service.index}
-          </span>
+    <article className="cartao flex flex-col p-[22px]" data-reveal style={{ '--reveal-delay': `${delay}ms` }}>
+      <div className="flex items-start justify-between gap-4">
+        <IconTile name={ICONS[service.id]} />
+        <span className="chip">{service.subtitle}</span>
+      </div>
 
-          <span className="min-w-0">
-            <span className="display block text-2xl leading-tight text-paper transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 md:text-4xl">
-              {service.title}
-            </span>
-            <span className="mt-2 block font-mono text-[11.5px] uppercase tracking-[0.12em] text-faint">
-              {service.subtitle}
-            </span>
-            <span className="mt-4 block max-w-2xl text-[15px] leading-relaxed text-muted md:text-base">
-              {service.lead}
-            </span>
-          </span>
+      {pain && (
+        <p className="mt-6 text-[14.5px] font-semibold leading-[1.4] text-roxo-ink">“{pain.pain}”</p>
+      )}
+      <h3 className="display display-cartao mt-2">{service.title}</h3>
+      <p className="mt-3 text-[15.5px] leading-[1.55] text-tinta-2">{service.lead}</p>
 
-          <span
-            aria-hidden="true"
-            className={`mt-1.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-400 md:mt-2 ${
-              open ? 'rotate-45 border-volt text-volt' : 'border-line-strong text-muted group-hover:border-muted'
-            }`}
-          >
-            <svg viewBox="0 0 14 14" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M7 1v12M1 7h12" />
-            </svg>
-          </span>
-        </button>
-      </h3>
+      <ul className="mt-5 grid gap-2.5 border-t border-fio pt-5">
+        {curtas.map((c) => (
+          <li key={c} className="flex gap-2.5 text-[14.5px] leading-[1.5] text-tinta-2">
+            <Icon name="check" className="mt-0.5 h-[18px] w-[18px] shrink-0 text-roxo-ink" />
+            {c}
+          </li>
+        ))}
+      </ul>
 
-      {/* Expansão em CSS puro: a grade anima de 0fr para 1fr, que é a única
-          forma de transicionar "altura automática" sem medir nada em JS —
-          e sem carregar uma biblioteca de animação só por causa disto. */}
-      <div
-        id={panelId}
-        role="region"
-        aria-labelledby={buttonId}
-        className="accordion-panel"
-        data-open={open ? 'true' : 'false'}
-        /* `inert` tira o painel fechado da ordem de tabulação e do leitor de
-           tela sem `display: none`, que impediria a transição de altura.
-           String vazia em vez de booleano por causa do React 18. */
-        inert={open ? undefined : ''}
-      >
-        <div className="min-h-0 overflow-hidden">
-          <div className="grid gap-10 pb-12 md:grid-cols-[7rem_1fr] md:gap-x-10">
-            <div className="hidden md:block">
-              <SignatureNodes ids={service.signature} />
-            </div>
-            <ul className="grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
-              {service.capabilities.map((capability) => (
-                <li key={capability} className="flex gap-3 text-[15px] leading-relaxed text-muted">
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1 w-1 shrink-0 rotate-45 bg-line-strong"
-                  />
-                  {capability}
+      {resto.length > 0 && (
+        <>
+          <div id={painelId} hidden={!aberto}>
+            <ul className="mt-2.5 grid gap-2.5">
+              {resto.map((c) => (
+                <li key={c} className="flex gap-2.5 text-[14.5px] leading-[1.5] text-tinta-2">
+                  <Icon name="check" className="mt-0.5 h-[18px] w-[18px] shrink-0 text-roxo-ink" />
+                  {c}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </div>
+          <button
+            type="button"
+            aria-expanded={aberto}
+            aria-controls={painelId}
+            onClick={() => setAberto((v) => !v)}
+            className="mt-auto inline-flex w-fit items-center gap-1.5 pt-5 text-[14.5px] font-bold text-roxo-ink hover:underline"
+          >
+            {aberto ? 'Mostrar menos' : `Ver mais ${resto.length} capacidades`}
+            <Icon name={aberto ? 'arrow' : 'plus'} className={`h-4 w-4 ${aberto ? '-rotate-90' : ''}`} />
+          </button>
+        </>
+      )}
     </article>
-  );
-}
-
-/** Miniatura de fluxo: os nós característicos do serviço, empilhados. */
-function SignatureNodes({ ids }) {
-  return (
-    <ul className="flex flex-col gap-0" aria-hidden="true">
-      {ids.map((id, i) => (
-        <li key={id} className="flex flex-col">
-          <span className="inline-flex w-fit rounded-md border border-line-strong bg-ink-200 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-faint">
-            {id}
-          </span>
-          {i < ids.length - 1 && <span className="ml-3 h-4 w-px bg-line-strong" />}
-        </li>
-      ))}
-    </ul>
   );
 }

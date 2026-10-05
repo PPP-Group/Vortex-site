@@ -1,54 +1,93 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Vortex — sistema de design (manual de marca: claude.ai/artifact/D8xhyUX47RHdSoA82a9Xj4)
-   Peça escura da marca: preto e noite como base, roxo para ser reconhecida,
-   lilás para a palavra em ênfase e o sinal que percorre o fluxo, ouro só no
-   botão que decide. Hairlines em vez de sombras.
-   Os nomes dos tokens ficaram os antigos (ink, pulse, volt, flare) para não
-   mexer em todos os componentes; os valores são os da identidade.
+   Vortex — sistema de design do site.
+   Fonte da verdade: manual de marca (claude.ai/artifact/D8xhyUX47RHdSoA82a9Xj4),
+   README e tokens.json. Peça clara: névoa e branco 62, noite 24, roxo 11, ouro 3.
+   Página em névoa, blocos noite com anéis (hero, automação, chamada final),
+   um bloco roxo por página (VTX Tap) e o ouro só no botão que decide.
+
+   Dois grupos de tokens convivem:
+   - os do manual, com os nomes do manual (nevoa, noite, roxo, ouro...), mais
+     tinta/apoio/fio para o ink/muted/line do tema claro;
+   - os escuros (ink-000, paper, muted, line, volt, pulse, flare), que servem
+     ao que mora sobre noite: grafo de automação, diálogos e capas do portfólio.
    ========================================================================== */
 
 @theme {
-  /* --- Tinta: preto e noite da marca ------------------------------------ */
-  --color-ink-000: #0c0820; /* preto — fundo da página */
-  --color-ink-050: #100a29; /* faixa alternada de seção */
-  --color-ink-100: #140b33; /* noite — superfície elevada */
-  --color-ink-200: #181040; /* card */
-  --color-ink-300: #221949; /* card em hover */
-  --color-line: #261d52; /* hairline padrão */
-  --color-line-strong: #30275c; /* hairline em destaque */
+  /* --- Manual: cores de marca ------------------------------------------- */
+  --color-roxo: #7d27fc;
+  --color-roxo-hi: #9550ff;
+  --color-roxo-lo: #5512c4;
+  --color-roxo-ink: #6a1be0; /* roxo como texto sobre claro: kicker, link, valor */
+  --color-roxo-soft: #eee5ff; /* ladrilho de ícone, plano em destaque */
+  --color-roxo-texto-2: #e6d9ff; /* apoio sobre roxo: só 18px+ */
+  --color-lilas: #a874ff; /* ênfase e kicker sobre noite */
+  --color-noite: #140b33;
+  --color-preto: #0c0820;
+  --color-branco: #ffffff;
+  --color-nevoa: #f4f2f9;
+  --color-ouro: #ffc61a;
+  --color-on-ouro: #1d1400;
+  --color-ouro-ink: #8a6200;
+  --color-noite-ink: #f1ecff; /* texto principal sobre noite */
+  --color-noite-2: #cfc6f2; /* apoio sobre noite */
 
-  /* --- Texto ------------------------------------------------------------ */
-  --color-paper: #efecfa;
-  --color-muted: #a298c6; /* 7,3:1 sobre preto */
-  --color-faint: #8c82b4; /* 5,6:1 sobre preto — acima do piso AA */
+  /* --- Manual: tema claro (ink, ink-2, muted, line, surface-2) ----------- */
+  --color-tinta: #160e33;
+  --color-tinta-2: #2f2752;
+  --color-apoio: #625a80;
+  --color-fio: #e1dcee;
+  --color-surface-2: #ede9f6;
+  --color-ok-claro: #1b7f52;
+  --color-ok-soft: #daf0e4;
 
-  /* --- Acentos ------------------------------------------------------------ */
-  --color-pulse: #7d27fc; /* roxo — a cor da marca: botão, bordas e gráficos */
-  --color-pulse-soft: #bb97ff; /* roxo para texto sobre noite */
-  --color-volt: #a874ff; /* lilás — ênfase e o sinal ativo do fluxo */
-  --color-flare: #ffc61a; /* ouro — o único acento quente, reservado ao CTA final */
-  --color-ok: #4fd196; /* verde — status de execução, nunca marca */
+  /* --- Escuros: o que mora sobre noite ----------------------------------- */
+  --color-ink-000: #0c0820;
+  --color-ink-050: #100a29;
+  --color-ink-100: #140b33;
+  --color-ink-200: #1b1242;
+  --color-ink-300: #241a52;
+  --color-line: #2b2158;
+  --color-line-strong: #3a2f6e;
+  --color-paper: #f1ecff;
+  --color-muted: #cfc6f2;
+  --color-faint: #a298c6;
+  --color-pulse: #7d27fc;
+  --color-pulse-soft: #bb97ff;
+  --color-volt: #a874ff;
+  --color-flare: #ffc61a;
+  --color-ok: #4fd196;
 
-  /* --- Tipografia ------------------------------------------------------- */
+  /* --- Tipografia -------------------------------------------------------- */
   --font-display: 'Big Shoulders Display', 'Oswald', 'Arial Narrow', Impact, sans-serif;
   --font-body: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+
+  /* --- Raios do manual --------------------------------------------------- */
+  --radius-sm: 11px;
+  --radius-icone: 14px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-bloco: 32px;
 
   /* --- Movimento -------------------------------------------------------- */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Variáveis fora do @theme: usadas em CSS bruto, não precisam virar utilitário. */
 :root {
-  /* A "corrente" que percorre o fluxo: roxo para lilás. */
+  /* A "corrente" que percorre o grafo: roxo para lilás. */
   --current: linear-gradient(100deg, #7d27fc 0%, #a874ff 100%);
-  /* O único gradiente de bloco da marca (150°, roxo). */
+  /* O único gradiente da marca: o do bloco roxo (150°). */
   --bloco-roxo: linear-gradient(150deg, #7d27fc 0%, #5b14c9 55%, #3c0a8e 100%);
-  --shell: min(1240px, 100% - 2.5rem);
-  --header-h: 72px;
+  --shadow-1: 0 1px 2px rgba(22, 14, 51, 0.06), 0 6px 18px -10px rgba(22, 14, 51, 0.22);
+  --shadow-2: 0 2px 6px rgba(22, 14, 51, 0.08), 0 22px 48px -18px rgba(22, 14, 51, 0.35);
+  --shadow-roxo: 0 10px 28px rgba(125, 39, 252, 0.38);
+  --shadow-aparelho: 0 30px 60px -10px rgba(20, 11, 51, 0.5);
+  /* Conteúdo até 1120px (largura-conteudo) com 18px de margem lateral no celular. */
+  --shell: min(1120px, 100% - 36px);
+  --header-h: 76px;
 }
 
 /* ==========================================================================
@@ -61,10 +100,8 @@
   }
 
   html {
-    /* Lenis assume o controle da rolagem; o fallback nativo cobre reduced-motion
-       e o caso de a lib não carregar. */
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-h) + 16px);
+    scroll-padding-top: calc(var(--header-h) + 12px);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -78,11 +115,11 @@
 
   body {
     margin: 0;
-    background: var(--color-ink-000);
-    color: var(--color-paper);
+    background: var(--color-nevoa);
+    color: var(--color-tinta);
     font-family: var(--font-body);
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.55;
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -93,44 +130,36 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    line-height: 0.95;
-    text-transform: uppercase;
-    text-wrap: balance;
     margin: 0;
+    text-wrap: balance;
   }
 
-  /* Palavra em ênfase nos títulos: lilás sobre noite, como no manual. */
-  h1 em,
-  h2 em,
-  h3 em {
+  /* Palavra em ênfase no título: roxo-ink sobre claro, lilás sobre noite. */
+  .display em {
     font-style: normal;
-    color: var(--color-volt);
+    color: var(--color-roxo-ink);
+  }
+  .sobre-noite .display em {
+    color: var(--color-lilas);
+  }
+  .sobre-roxo .display em {
+    color: var(--color-ouro);
   }
 
   p {
+    margin: 0;
     text-wrap: pretty;
   }
 
   ::selection {
-    background: var(--color-pulse);
-    color: #fff;
+    background: rgba(125, 39, 252, 0.28);
   }
 
+  /* Foco: anel sólido de 3px em lilás, com afastamento. */
   :focus-visible {
-    outline: 3px solid var(--color-volt);
+    outline: 3px solid var(--color-lilas);
     outline-offset: 3px;
-    border-radius: 3px;
-  }
-
-  /* Só some com o cursor do sistema onde o cursor customizado realmente roda:
-     ponteiro fino e usuário sem preferência por menos movimento. */
-  @media (pointer: fine) {
-    html.has-custom-cursor,
-    html.has-custom-cursor * {
-      cursor: none;
-    }
+    border-radius: 4px;
   }
 
   img,
@@ -140,52 +169,33 @@
     max-width: 100%;
   }
 
-  /* --- Barra de rolagem --------------------------------------------------
-     Mesma lógica do resto do site: hairline em repouso, corrente só quando a
-     mão está nela. O trilho fica transparente para herdar a tinta da
-     superfície (página em ink-000, painéis em ink-200). */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
-
   ::-webkit-scrollbar-track {
     background: transparent;
   }
-
   ::-webkit-scrollbar-thumb {
-    background: var(--color-line-strong);
-    border: 2px solid transparent; /* vira respiro: 6px visíveis dentro de 10px */
+    background: #cfc6e6;
+    border: 2px solid transparent;
     background-clip: padding-box;
     border-radius: 999px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in oklab, var(--color-pulse) 45%, var(--color-line-strong));
+    background: var(--color-roxo);
     background-clip: padding-box;
   }
-
-  ::-webkit-scrollbar-thumb:active {
-    background: var(--color-pulse);
-    background-clip: padding-box;
-  }
-
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
-
-  /* Firefox não tem os pseudo-elementos acima; e no Chrome 121+ definir
-     `scrollbar-color` desligaria todo o bloco WebKit. Daí o @supports. */
   @supports not selector(::-webkit-scrollbar) {
     html {
       scrollbar-width: thin;
-      scrollbar-color: var(--color-line-strong) transparent;
+      scrollbar-color: #cfc6e6 transparent;
     }
   }
 }
 
 /* ==========================================================================
-   Utilitários de composição
+   Componentes da marca
    ========================================================================== */
 
 @layer components {
@@ -194,144 +204,246 @@
     margin-inline: auto;
   }
 
-  /* Malha de canvas: o site inteiro se apoia numa grade de editor de nós. */
-  .canvas-grid {
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.055) 1px, transparent 0);
-    background-size: 26px 26px;
-  }
-
-  .hairline {
-    border: 1px solid var(--color-line);
-  }
-
-  /* Rótulo em mono: o vernáculo do assunto (logs, ids, chaves). */
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-faint);
-  }
-
-  /* Título: Big Shoulders Display 900 em caixa alta, entrelinha .95 (manual: display-hero 82, display-secao 54). */
+  /* Título: Big Shoulders Display 900, caixa alta, entrelinha .95. */
   .display {
     font-family: var(--font-display);
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.005em;
     line-height: 0.95;
+    letter-spacing: 0.003em;
+  }
+  .display-hero {
+    font-size: clamp(44px, 7.4vw, 82px);
+  }
+  .display-final {
+    font-size: clamp(38px, 6vw, 66px);
+  }
+  .display-secao {
+    font-size: clamp(34px, 5.4vw, 54px);
+  }
+  .display-cartao {
+    font-size: 30px;
+    line-height: 1;
   }
 
-  .display-xl {
-    font-size: clamp(3rem, 8vw, 6.4rem);
+  /* Kicker: 12,5px 700, .12em, caixa alta, roxo-ink (lilás sobre noite, ouro sobre roxo). */
+  .kicker {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-roxo-ink);
   }
-  .display-lg {
-    font-size: clamp(2.4rem, 5.4vw, 3.6rem);
+  .sobre-noite .kicker {
+    color: var(--color-lilas);
+  }
+  .sobre-roxo .kicker {
+    color: var(--color-ouro);
   }
 
-  /* Grafismo da marca: anéis concêntricos roxos sangrando de um canto do bloco noite. */
+  /* Rótulo dos diálogos e do grafo (peças sobre noite). */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+  }
+
+  /* Texto de apoio que muda com o fundo: muted no claro, noite-2 no noite, branco no roxo. */
+  .lead-apoio {
+    color: var(--color-apoio);
+  }
+  .sobre-noite .lead-apoio {
+    color: var(--color-noite-2);
+  }
+  .sobre-roxo .lead-apoio {
+    color: #fff;
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lead {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  /* Cartão: superfície branca, hairline, canto 22. */
+  .cartao {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: var(--color-branco);
+    border: 1px solid var(--color-fio);
+    transition:
+      border-color 0.2s,
+      transform 0.25s var(--ease-out-soft),
+      box-shadow 0.25s var(--ease-out-soft);
+  }
+  .cartao-link:hover {
+    border-color: var(--color-roxo);
+    transform: translateY(-2px);
+  }
+  .cartao--plano {
+    border: 2px solid var(--color-roxo);
+    background: var(--color-roxo-soft);
+  }
+
+  /* Ladrilho de ícone: 46px, roxo-soft + roxo-ink. Sobre noite: branco 10% e traço ouro. */
+  .ico {
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border-radius: var(--radius-icone);
+    display: grid;
+    place-items: center;
+    background: var(--color-roxo-soft);
+    color: var(--color-roxo-ink);
+  }
+  .sobre-noite .ico {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-ouro);
+  }
+
+  /* Selo / chip. */
+  .selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-roxo-ink);
+    background: var(--color-roxo-soft);
+  }
+  .selo::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .selo--ouro {
+    color: var(--color-on-ouro);
+    background: var(--color-ouro);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-tinta-2);
+    background: var(--color-surface-2);
+  }
+  .sobre-noite .chip {
+    color: var(--color-noite-ink);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Blocos de destaque: noite (com anéis) e roxo (com anel branco). */
+  .bloco {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: var(--radius-bloco);
+    padding: clamp(24px, 4vw, 52px) clamp(20px, 4vw, 52px);
+  }
+  .bloco--noite {
+    background: var(--color-noite);
+    color: var(--color-noite-ink);
+  }
+  .bloco--roxo {
+    background: var(--bloco-roxo);
+    color: #fff;
+  }
+
+  /* Anéis concêntricos: um conjunto por bloco noite, sangrando de um canto. */
   .aneis {
     position: absolute;
+    z-index: -1;
     pointer-events: none;
-    border-radius: 50%;
-    width: var(--aneis, 560px);
+    width: var(--aneis, 420px);
     aspect-ratio: 1;
-    background: radial-gradient(
-      circle,
-      transparent 0 31%,
-      rgba(125, 39, 252, 0.28) 31% 37%,
-      transparent 37% 53%,
-      rgba(125, 39, 252, 0.12) 53% 59%,
-      transparent 59% 75%,
-      rgba(125, 39, 252, 0.06) 75% 81%,
-      transparent 81%
-    );
+    border-radius: 50%;
+    border: calc(var(--aneis, 420px) * 0.052) solid rgba(125, 39, 252, 0.28);
+    box-shadow:
+      0 0 0 calc(var(--aneis, 420px) * 0.12) rgba(125, 39, 252, 0.12),
+      0 0 0 calc(var(--aneis, 420px) * 0.26) rgba(125, 39, 252, 0.06);
+  }
+  .aneis--branco {
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 0 calc(var(--aneis, 420px) * 0.16) rgba(255, 255, 255, 0.035);
   }
 
-  .current-text {
-    background: var(--current);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  /* Ondas do NFC: pertencem aos produtos de aproximação. */
+  .ondas path {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
   }
 
-  /* Card com inclinação 3D. O brilho segue a mão via --tilt-px/--tilt-py. */
-  .tilt-card {
-    transform: perspective(1000px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
-    transform-style: preserve-3d;
-    transition: transform 0.16s linear;
+  /* Aparelho: moldura de celular para as telas reais do VTX Tap. */
+  .aparelho {
+    position: relative;
+    border-radius: 42px;
+    padding: 9px;
+    background: #0c0820;
+    box-shadow:
+      var(--shadow-aparelho),
+      inset 0 0 0 1.5px #2b2158;
   }
-
-  .tilt-card::after {
+  .aparelho img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 34px;
+    background: #fff;
+  }
+  .aparelho::before {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s var(--ease-out-soft);
-    background: radial-gradient(
-      420px circle at var(--tilt-px, 50%) var(--tilt-py, 50%),
-      rgba(125, 39, 252, 0.16),
-      transparent 62%
-    );
+    top: 17px;
+    left: 50%;
+    width: 30%;
+    height: 20px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: #0c0820;
+    z-index: 1;
   }
 
-  .tilt-card:hover::after,
-  .tilt-card:focus-within::after {
-    opacity: 1;
-  }
-
-  /* Barra de navegação. No topo da página ela é uma faixa transparente alinhada
-     à shell; ao rolar, encolhe para uma pílula flutuante e descolada do topo.
-     O container externo mantém a altura de --header-h e centraliza a pílula,
-     então o "descolamento" sai da própria diferença de altura — nada de margem
-     animada empurrando layout. */
+  /* Barra de navegação: pílula branca que flutua ao rolar. */
   .nav-pill {
     width: var(--shell);
-    height: 100%;
-    padding-inline: 0;
-    border: 1px solid transparent;
+    height: 58px;
+    padding-inline: 10px 8px;
     border-radius: 999px;
+    border: 1px solid transparent;
     background: transparent;
     transition:
-      width 0.55s var(--ease-out-soft),
-      height 0.55s var(--ease-out-soft),
-      padding 0.55s var(--ease-out-soft),
-      background-color 0.45s var(--ease-out-soft),
-      border-color 0.45s var(--ease-out-soft),
-      box-shadow 0.45s var(--ease-out-soft),
-      backdrop-filter 0.45s var(--ease-out-soft);
+      background-color 0.35s var(--ease-out-soft),
+      border-color 0.35s var(--ease-out-soft),
+      box-shadow 0.35s var(--ease-out-soft);
   }
-
-  /* A largura compensa o padding interno: com 100% - 1.5rem de largura e 0.5rem
-     de padding, o logo e o botão continuam nos mesmos 20px de recuo da shell. */
   .nav-pill[data-scrolled='true'] {
-    width: min(1100px, 100% - 1.5rem);
-    height: calc(var(--header-h) - 20px);
-    padding-inline: 0.5rem;
-    border-color: var(--color-line);
-    background: color-mix(in oklab, var(--color-ink-100) 78%, transparent);
-    /* Sem -webkit-backdrop-filter escrito à mão: com as duas propriedades e o
-       mesmo valor lado a lado, o minificador (Lightning CSS, via
-       @tailwindcss/vite) as trata como duplicatas e descarta a versão sem
-       prefixo — a que Chrome e Firefox exigem — sobrando só a prefixada. O
-       build passa a autoprefixar sozinho a partir daqui. */
-    backdrop-filter: blur(18px) saturate(140%);
-    box-shadow:
-      0 18px 40px -22px rgba(0, 0, 0, 0.9),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-color: var(--color-fio);
+    background: color-mix(in oklab, #fff 88%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: var(--shadow-1);
   }
 
-  @media (min-width: 1024px) {
-    .nav-pill[data-scrolled='true'] {
-      padding-inline: 1.5rem;
-    }
-  }
-
-  /* Menu mobile. `visibility` entra na transição para que o painel fechado não
-     capture cliques nem apareça em transparência parcial. */
   .mobile-menu {
     opacity: 0;
     visibility: hidden;
@@ -339,7 +451,6 @@
       opacity 0.28s var(--ease-out-soft),
       visibility 0s linear 0.28s;
   }
-
   .mobile-menu[data-open='true'] {
     opacity: 1;
     visibility: visible;
@@ -347,7 +458,6 @@
       opacity 0.28s var(--ease-out-soft),
       visibility 0s linear 0s;
   }
-
   .mobile-menu-item {
     opacity: 0;
     transform: translate3d(0, 12px, 0);
@@ -355,129 +465,107 @@
       opacity 0.4s var(--ease-out-soft),
       transform 0.4s var(--ease-out-soft);
   }
-
   .mobile-menu[data-open='true'] .mobile-menu-item {
     opacity: 1;
     transform: none;
     transition-delay: var(--item-delay, 0ms);
   }
 
-  /* Painel de acordeão. Animar `grid-template-rows` de 0fr para 1fr é a única
-     forma de transicionar altura automática sem medir o conteúdo em JS. */
-  .accordion-panel {
-    display: grid;
-    grid-template-rows: 0fr;
+  /* Malha discreta do canvas do grafo (só dentro do bloco noite). */
+  .canvas-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+    background-size: 26px 26px;
+  }
+
+  /* Plaquinha em 3D: as duas faces do cartão NFC. */
+  .placa-palco {
+    perspective: 1400px;
+    touch-action: none;
+    cursor: grab;
+  }
+  .placa-palco:active {
+    cursor: grabbing;
+  }
+  .placa {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 85.6 / 54;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, -8deg)) rotateY(var(--ry, -22deg)) rotateZ(var(--rz, 0deg)) scale(var(--s, 1));
+  }
+  .placa.anima {
+    transition: transform 0.7s var(--ease-out-soft);
+  }
+  .placa-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 5.5% / 8.7%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0 30px 60px -18px rgba(20, 11, 51, 0.45);
+  }
+  .placa-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .placa-face--verso {
+    transform: rotateY(180deg);
+  }
+  .placa-face--verso img {
+    /* O verso é em pé: gira para deitar na mesma caixa do cartão. */
+    width: 63.08%;
+    height: 158.5%;
+    transform-origin: 0 0;
+    /* translate: 63,08% da própria altura (= a altura do cartão). */
+    transform: translate(0, 63.08%) rotate(-90deg);
+  }
+}
+
+/* Troca de aba do VTX Tap: a tela nova entra subindo de leve. */
+@keyframes entra {
+  from {
     opacity: 0;
-    transition:
-      grid-template-rows 0.45s var(--ease-out-soft),
-      opacity 0.3s var(--ease-out-soft);
-  }
-
-  .accordion-panel[data-open='true'] {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-
-  /* Elemento que se move em parallax. A variável é escrita pelo hook. */
-  .parallax {
-    transform: translate3d(0, var(--parallax-y, 0), 0);
-    will-change: transform;
-  }
-
-  /* Faixa que corre de ponta a ponta, ignorando o container — uma das quebras
-     de grade deliberadas do layout. */
-  .bleed {
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
-  }
-
-  /* Linha do tempo do processo. O trilho se desenha uma vez, no sentido da
-     leitura, e as etapas entram escalonadas atrás dele.
-     Tudo aqui é escopado por `html.reveal-ready` pela mesma razão do reveal
-     global: sem JS, nada fica escondido. */
-  html.reveal-ready .timeline .timeline-rail-fill {
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 1.5s var(--ease-out-soft) 0.15s;
-  }
-  html.reveal-ready .timeline .timeline-rail-fill[data-axis='y'] {
-    transform: scaleY(0);
-    transform-origin: center top;
-  }
-  html.reveal-ready .timeline.is-revealed .timeline-rail-fill {
-    transform: scaleX(1);
-  }
-  html.reveal-ready .timeline.is-revealed .timeline-rail-fill[data-axis='y'] {
-    transform: scaleY(1);
-  }
-
-  html.reveal-ready .timeline .timeline-step {
-    opacity: 0;
-    transform: translate3d(0, 20px, 0);
-    transition:
-      opacity 0.7s var(--ease-out-soft),
-      transform 0.7s var(--ease-out-soft);
-    transition-delay: var(--step-delay, 0ms);
-  }
-  html.reveal-ready .timeline.is-revealed .timeline-step {
-    opacity: 1;
-    transform: none;
+    transform: translate3d(0, 12px, 0);
   }
 }
 
 /* ==========================================================================
-   Scroll reveal — um único mecanismo para o site todo.
-   O estado inicial só é aplicado quando o JS confirma suporte (classe no <html>),
-   para que o conteúdo nunca fique invisível se o script falhar.
+   Entrada ao rolar: 18px em .6s. Só com JS confirmado, nunca esconde conteúdo
+   se o script falhar.
    ========================================================================== */
 
 html.reveal-ready [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 22px, 0);
+  transform: translate3d(0, 18px, 0);
   transition:
-    opacity 0.75s var(--ease-out-soft),
-    transform 0.75s var(--ease-out-soft);
+    opacity 0.6s var(--ease-out-soft),
+    transform 0.6s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
-
 html.reveal-ready [data-reveal='scale'] {
-  transform: translate3d(0, 22px, 0) scale(0.97);
+  transform: translate3d(0, 18px, 0) scale(0.98);
 }
-
-html.reveal-ready [data-reveal='left'] {
-  transform: translate3d(-26px, 0, 0);
-}
-
-/* Gatilho puro: entra no observador para receber `.is-revealed`, mas não tem
-   animação própria — quem anima são os descendentes. */
 html.reveal-ready [data-reveal='trigger'] {
   opacity: 1;
   transform: none;
   transition: none;
 }
-
 html.reveal-ready [data-reveal].is-revealed {
   opacity: 1;
   transform: none;
-  will-change: auto;
 }
-
-/* ==========================================================================
-   Movimento reduzido — fallback estático elegante, não ausência de design.
-   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
   html.reveal-ready [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
-
   *,
   *::before,
   *::after {
@@ -485,8 +573,4 @@ html.reveal-ready [data-reveal].is-revealed {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-
-  /* O grafo não perde o desenho, só o movimento: o WorkflowGraph aplica
-     `.graph.is-static`, que já deixa todas as arestas traçadas, todos os nós
-     acesos e o log de cada etapa impresso. Ver graph.css. */
 }

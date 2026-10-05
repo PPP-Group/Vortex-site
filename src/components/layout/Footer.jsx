@@ -1,105 +1,72 @@
 import { Logo } from './Logo';
-import { WhatsAppIcon } from '../ui/Button';
 import { brand, contact, navigation } from '../../data/site';
 
+/**
+ * Rodapé: o nome completo (VORTEX SYSTEMS, negativo) sobre preto, como pede o
+ * manual para rodapé legal e contato.
+ */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-ink-050">
-      <div className="shell py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Logo className="text-paper" />
-            <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-muted">{brand.short}</p>
-          </div>
+    <footer className="mt-3 bg-preto text-noite-ink">
+      <div className="shell grid gap-12 py-16 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <Logo variant="systems" esquema="negativo" className="h-9 w-auto" />
+          <p className="mt-5 max-w-sm text-[14.5px] leading-[1.55] text-noite-2">{brand.short}</p>
+        </div>
 
-          <nav aria-label="Navegação do rodapé" className="md:col-span-3">
-            <h2 className="eyebrow">Seções</h2>
-            <ul className="mt-4 space-y-1">
-              {[...navigation, { label: 'Contato', href: '#contato' }].map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="inline-block py-1.5 text-[14.5px] text-muted transition-colors hover:text-paper"
-                    data-cursor
-                  >
-                    {item.label}
+        <nav aria-label="Navegação do rodapé" className="md:col-span-3">
+          <h2 className="kicker !text-lilas">Seções</h2>
+          <ul className="mt-4 grid gap-1">
+            {[...navigation, { label: 'Contato', href: '#contato' }].map((item) => (
+              <li key={item.href + item.label}>
+                <a href={item.href} className="inline-block py-1 text-[15px] text-noite-2 hover:text-white">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="md:col-span-4">
+          <h2 className="kicker !text-lilas">Contato</h2>
+          <ul className="mt-4 grid gap-1">
+            <li>
+              <a href={contact.emailHref} className="inline-block py-1 text-[15px] text-noite-2 hover:text-white">
+                {contact.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="num inline-block py-1 text-[15px] text-noite-2 hover:text-white"
+              >
+                {contact.whatsapp}
+              </a>
+            </li>
+            {contact.socials
+              .filter((s) => s.href)
+              .map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-[15px] text-noite-2 hover:text-white">
+                    {s.label} {s.handle}
                   </a>
                 </li>
               ))}
-            </ul>
-          </nav>
-
-          <div className="md:col-span-4">
-            <h2 className="eyebrow">Contato</h2>
-            <ul className="mt-5 space-y-2.5">
-              <li>
-                <a
-                  href={contact.emailHref}
-                  className="text-[14.5px] text-muted transition-colors hover:text-paper"
-                  data-cursor
-                >
-                  {contact.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contact.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex text-muted transition-colors hover:text-paper"
-                  aria-label={`WhatsApp — ${contact.whatsapp}`}
-                  data-cursor
-                >
-                  <WhatsAppIcon />
-                </a>
-              </li>
-            </ul>
-
-            <ul className="mt-7 flex flex-wrap gap-2">
-              {contact.socials.map((social) =>
-                social.href ? (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex rounded-full border border-line-strong px-3.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] text-muted transition-colors hover:border-volt/60 hover:text-paper"
-                      data-cursor
-                    >
-                      {social.label}
-                    </a>
-                  </li>
-                ) : (
-                  <li
-                    key={social.label}
-                    className="inline-flex rounded-full border border-line px-3.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] text-faint"
-                    title={`${social.label} — link a definir`}
-                  >
-                    {social.label}
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
+          </ul>
         </div>
+      </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint">
-            © {year} {brand.name} · {brand.tagline}
-          </p>
-          <a
-            href="#topo"
-            className="group inline-flex w-fit items-center gap-2 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint transition-colors hover:text-paper"
-            data-cursor
-          >
-            Voltar ao topo
-            <span aria-hidden="true" className="transition-transform duration-300 group-hover:-translate-y-0.5">
-              ↑
-            </span>
-          </a>
-        </div>
+      <div className="shell flex flex-col gap-3 border-t border-white/10 py-6 text-[13.5px] text-noite-2 sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          © {year} {brand.fullName} · {brand.domain}
+        </p>
+        <a href="#topo" className="w-fit hover:text-white">
+          Voltar ao topo ↑
+        </a>
       </div>
     </footer>
   );

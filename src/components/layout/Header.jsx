@@ -4,12 +4,16 @@ import { Button, ArrowRight } from '../ui/Button';
 import { navigation } from '../../data/site';
 import { setScrollLocked } from '../../lib/scroll';
 
+/**
+ * Cabeçalho: assinatura horizontal (cabeça + VORTEX, versão cor) numa pílula
+ * branca que ganha fundo e hairline ao rolar. O VTX Tap leva o selo "Novo".
+ */
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -31,42 +35,37 @@ export function Header() {
     <>
       <a
         href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-paper focus:px-5 focus:py-2.5 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest focus:text-ink-000"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-tinta focus:px-5 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white"
       >
         Pular para o conteúdo
       </a>
 
       <header className="fixed inset-x-0 top-0 z-50 flex h-[var(--header-h)] items-center justify-center">
-        <div
-          className="nav-pill flex items-center justify-between gap-6"
-          data-scrolled={scrolled ? 'true' : 'false'}
-        >
-          <a
-            href="#topo"
-            className="-my-2 flex items-center py-2 text-paper transition-opacity hover:opacity-70"
-            aria-label="Vortex — início"
-            data-cursor
-          >
-            <Logo />
+        <div className="nav-pill flex items-center justify-between gap-4" data-scrolled={scrolled || menuOpen ? 'true' : 'false'}>
+          <a href="#topo" className="flex items-center rounded-full py-2 pl-2" aria-label="Vortex — início">
+            <Logo className="h-[26px] w-auto md:h-7" />
           </a>
 
-          <nav aria-label="Navegação principal" className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">
             {navigation.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="group relative font-mono text-[11.5px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-paper"
-                data-cursor
+                className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[15px] font-semibold text-tinta-2 transition-colors hover:bg-surface-2 hover:text-tinta"
               >
                 {item.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-volt transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full" />
+                {item.href === '#vtx-tap' && (
+                  <span className="rounded-full bg-ouro px-2 py-px text-[11px] font-bold uppercase tracking-[0.06em] text-on-ouro">
+                    Novo
+                  </span>
+                )}
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <span className="hidden sm:block">
-              <Button as="a" href="#contato" variant="ghost" data-cursor>
+              <Button as="a" href="#contato" size="sm">
                 Falar com a equipe
                 <ArrowRight />
               </Button>
@@ -77,47 +76,39 @@ export function Header() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="menu-mobile"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line-strong text-paper lg:hidden"
+              className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-surface-2 text-tinta lg:hidden"
             >
               <span className="sr-only">{menuOpen ? 'Fechar menu' : 'Abrir menu'}</span>
-              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                {menuOpen ? <path d="M5 5l10 10M15 5L5 15" /> : <path d="M3 7h14M3 13h14" />}
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                {menuOpen ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 8h16M4 16h16" />}
               </svg>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Menu mobile em CSS. Fica sempre montado e sai do fluxo de foco com
-          `inert` quando fechado — trocar isso por montagem condicional custaria
-          uma biblioteca de animação inteira no carregamento inicial. */}
       <div
         id="menu-mobile"
-        className="mobile-menu fixed inset-0 z-40 bg-ink-000 pt-[var(--header-h)] lg:hidden"
+        className="mobile-menu fixed inset-0 z-40 bg-nevoa pt-[var(--header-h)] lg:hidden"
         data-open={menuOpen ? 'true' : 'false'}
         inert={menuOpen ? undefined : ''}
       >
-        <div className="shell flex h-full flex-col justify-between py-10">
-          <nav aria-label="Navegação principal" className="flex flex-col gap-1">
+        <div className="shell flex h-full flex-col justify-between pb-10 pt-6">
+          <nav aria-label="Navegação principal" className="flex flex-col">
             {navigation.map((item, i) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="mobile-menu-item display border-b border-line py-5 text-4xl text-paper"
+                className="mobile-menu-item display flex items-center justify-between border-b border-fio py-5 text-4xl text-tinta"
                 style={{ '--item-delay': `${60 + i * 55}ms` }}
               >
                 {item.label}
+                {item.href === '#vtx-tap' && <span className="selo selo--ouro font-body">Novo</span>}
               </a>
             ))}
           </nav>
-          <Button
-            as="a"
-            href="#contato"
-            variant="primary"
-            size="lg"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Button as="a" href="#contato" onClick={() => setMenuOpen(false)}>
             Falar com a equipe
             <ArrowRight />
           </Button>

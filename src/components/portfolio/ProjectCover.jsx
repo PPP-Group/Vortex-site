@@ -31,15 +31,10 @@ export function ProjectCover({ project, className = '' }) {
           loading="lazy"
           decoding="async"
           onError={() => setImageFailed(true)}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
         />
       )}
 
-      {/* Escurece a base para o texto sobreposto manter contraste em qualquer capa. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-ink-000/75 via-transparent to-transparent"
-      />
     </div>
   );
 }

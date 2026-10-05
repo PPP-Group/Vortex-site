@@ -1,141 +1,107 @@
-import { useRef } from 'react';
-import { WorkflowGraph } from '../graph/WorkflowGraph';
-import { Laptop3D } from '../hero/Laptop3D';
 import { Button, ArrowRight } from '../ui/Button';
-import { Counter } from '../ui/Counter';
-import { manifesto, metrics } from '../../data/site';
-import { heroFlow } from '../../data/automations';
-import { useParallax } from '../../hooks/useMotionPrimitives';
-import { useReducedMotion } from '../../hooks/useMediaQuery';
+import { Icon, IconTile } from '../ui/Icon';
+import { manifesto } from '../../data/site';
+
+/** As quatro frentes, logo abaixo do hero: o VTX Tap primeiro, por ser o lançamento. */
+const fronts = [
+  { href: '#vtx-tap', icon: 'nfc', title: 'VTX Tap', body: 'Plaquinha NFC na mesa: garçom, cardápio, fidelidade e delivery.', novo: true },
+  { href: '#servicos', icon: 'zap', title: 'Automação e CRM', body: 'Atendimento e vendas que respondem sozinhos, inclusive por voz.' },
+  { href: '#servicos', icon: 'workflow', title: 'Integrações', body: 'Os sistemas que já existem, finalmente conversando.' },
+  { href: '#portfolio', icon: 'code', title: 'Sites e plataformas', body: 'O site, o sistema ou o app que a operação precisa.' },
+];
 
 /**
- * Hero.
- *
- * A tese da página: o site não descreve automação, ele executa uma. O título
- * ocupa a esquerda em três linhas; o parágrafo e os CTAs são empurrados para a
- * direita, criando a assimetria. Abaixo, o grafo atravessa a tela inteira,
- * sangrando pelas bordas — você está vendo um pedaço de um canvas maior.
+ * Hero: bloco noite com anéis (o grafismo-assinatura) e a palavra em ênfase em
+ * lilás. À direita, o VTX Tap em uso: a plaquinha e a tela do sino.
  */
 export function Hero() {
-  const gridRef = useRef(null);
-  const reduced = useReducedMotion();
-
-  useParallax(gridRef, { amplitude: 46, disabled: reduced });
-
   return (
-    <section id="topo" data-spine-node="topo" data-spine-label="início" className="relative overflow-hidden pt-[var(--header-h)]">
-      {/* Malha de canvas ao fundo, em parallax lento. */}
-      <div
-        ref={gridRef}
-        aria-hidden="true"
-        className="parallax canvas-grid pointer-events-none absolute inset-x-0 -top-24 h-[130%] opacity-70"
-      />
-      {/* Vinheta: escurece as bordas para o texto nunca competir com a malha. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_35%,var(--color-ink-000)_100%)]"
-      />
+    <section id="topo" aria-label="Início" className="pt-[calc(var(--header-h)+4px)]">
+      <div className="mx-auto w-[min(1240px,100%-24px)]">
+        <div className="bloco bloco--noite sobre-noite grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:py-16">
+          <span aria-hidden="true" className="aneis -right-[150px] -top-[150px] [--aneis:460px]" />
 
-      <div className="shell relative pt-16 md:pt-24 lg:pt-28">
-        <p className="eyebrow flex items-center gap-2.5" data-reveal>
-          <span className="relative flex h-1.5 w-1.5">
-            {!reduced && (
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
-            )}
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ok" />
-          </span>
-          Execução ao vivo · fluxo de captação
-        </p>
-
-        {/*
-          O parágrafo e os CTAs viviam na coluna da direita, empurrados para
-          baixo — era a assimetria possível quando não havia nada ali. Com o
-          notebook ocupando a direita, o contrapeso passou a ser ele, e o texto
-          volta para debaixo do título, que é onde se lê naturalmente.
-        */}
-        <div className="mt-8 grid gap-x-12 gap-y-14 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-7">
-            <h1 className="display display-xl text-paper" data-reveal>
-              {manifesto.lines.map((line, i) => (
-                <span
-                  key={line}
-                  className={`block ${i === manifesto.lines.length - 1 ? 'text-volt' : ''}`}
-                  style={{ '--reveal-delay': `${i * 90}ms` }}
-                >
-                  {line}
-                </span>
-              ))}
-            </h1>
-
-            <p
-              className="mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl"
+          <div className="max-w-[640px]">
+            <a
+              href="#vtx-tap"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-white/10 py-1.5 pl-1.5 pr-4 text-[14px] font-semibold text-noite-ink transition-colors hover:bg-white/15"
               data-reveal
             >
+              <span className="rounded-full bg-ouro px-2.5 py-0.5 text-[11.5px] font-bold uppercase tracking-[0.06em] text-on-ouro">
+                Novo
+              </span>
+              VTX Tap: a mesa inteira no celular do cliente
+              <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+
+            <h1 className="display display-hero mt-6" data-reveal>
+              {manifesto.lines[0]} {manifesto.lines[1]} <em>{manifesto.lines[2]}</em>
+            </h1>
+
+            <p className="lead mt-6 max-w-[54ch] text-noite-2" data-reveal>
               {manifesto.body}
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3" data-reveal>
-              <Button as="a" href="#contato" variant="primary" size="lg" data-cursor>
+            <div className="mt-8 flex flex-wrap gap-3" data-reveal>
+              <Button as="a" href="#contato">
                 Falar com a equipe
                 <ArrowRight />
               </Button>
-              <Button as="a" href="#portfolio" variant="ghost" size="lg" data-cursor>
-                Ver portfólio
+              <Button as="a" href="#vtx-tap" variant="linha" className="text-white">
+                Conhecer o VTX Tap
               </Button>
             </div>
           </div>
 
-          {/* O reveal fica num wrapper: aplicar transform no elemento que
-              carrega o `perspective` mudaria o contexto 3D do notebook. */}
-          <div
-            className="hidden lg:col-span-5 lg:block xl:-mr-6 2xl:-mr-16"
-            data-reveal="scale"
-          >
-            <Laptop3D />
-          </div>
+          <HeroVisual />
         </div>
-      </div>
 
-      {/* O grafo sangra além do container: canvas contínuo, não ilustração emoldurada. */}
-      <div className="relative mt-16 md:mt-24" data-reveal="scale">
-        <div className="bleed overflow-hidden">
-          <div className="mx-auto w-[min(1150px,110%)] px-4 md:px-0 [mask-image:linear-gradient(90deg,transparent,#000_7%,#000_93%,transparent)]">
-            <WorkflowGraph
-              flow={heroFlow}
-              autoPlay
-              loop
-              description="Fluxo de captação em execução: um lead chega pelo webhook, é qualificado por IA, recebe uma ligação da Voice AI, tem o agendamento confirmado e vira um negócio no CRM."
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Métricas. Os números são ilustrativos — a nota de rodapé diz isso na cara. */}
-      <div className="shell relative mt-20 md:mt-28">
-        <dl className="grid grid-cols-2 border-t border-line md:grid-cols-4">
-          {metrics.map((metric, i) => (
-            <div
-              key={metric.label}
-              className="border-b border-line px-1 py-7 md:border-b-0 md:border-r md:px-6 md:py-8 md:first:pl-0 md:last:border-r-0"
-              data-reveal
-              style={{ '--reveal-delay': `${i * 80}ms` }}
-            >
-              <dt className="sr-only">{metric.label}</dt>
-              <dd>
-                <span className="display block text-4xl text-paper md:text-5xl">
-                  <Counter value={metric.value} suffix={metric.suffix} />
+        <ul className="mt-3.5 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          {fronts.map((f, i) => (
+            <li key={f.title} data-reveal style={{ '--reveal-delay': `${i * 70}ms` }}>
+              <a href={f.href} className="cartao cartao-link flex h-full gap-4 p-[22px]">
+                <IconTile name={f.icon} />
+                <span className="min-w-0">
+                  <span className="flex items-center gap-2 text-[17px] font-semibold leading-tight text-tinta">
+                    {f.title}
+                    {f.novo && <span className="selo !px-2 !py-px !text-[10.5px]">Novo</span>}
+                  </span>
+                  <span className="mt-1.5 block text-[14.5px] leading-[1.5] text-apoio">{f.body}</span>
                 </span>
-                <span className="mt-2.5 block font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-faint">
-                  {metric.label}
-                </span>
-              </dd>
-            </div>
+              </a>
+            </li>
           ))}
-        </dl>
-        <p className="mt-4 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint">
-          {/* TODO: substituir por métricas reais aprovadas pela Vortex e remover esta nota */}
-        </p>
+        </ul>
       </div>
     </section>
+  );
+}
+
+/** A plaquinha deitada atrás e o celular com a tela do sino na frente. */
+function HeroVisual() {
+  return (
+    <div className="relative mx-auto aspect-[1/0.92] w-full max-w-[500px]" data-reveal="scale" aria-hidden="true">
+      <img
+        src="/vtx-tap/cartao-vtx-frente.webp"
+        alt=""
+        width="1712"
+        height="1080"
+        className="absolute -left-[2%] top-[6%] w-[74%] -rotate-[8deg] rounded-[5.5%/8.7%] shadow-[0_30px_60px_-18px_rgba(0,0,0,0.6)]"
+      />
+      <div className="aparelho absolute bottom-0 right-0 w-[40%] rotate-[4deg]">
+        <img src="/vtx-tap/sino.webp" alt="" width="600" height="1299" className="aspect-[600/1180]" />
+      </div>
+      <div className="absolute bottom-[14%] left-[2%] flex items-center gap-3 rounded-[16px] bg-white py-2.5 pl-2.5 pr-4 text-tinta shadow-[0_22px_48px_-18px_rgba(0,0,0,0.6)]">
+        <span className="grid h-10 w-10 place-items-center rounded-[11px] bg-ouro text-on-ouro">
+          <Icon name="bell" className="h-5 w-5" />
+        </span>
+        <span>
+          <span className="block text-[14px] font-bold leading-tight">Mesa 07 chamou</span>
+          <span className="block text-[12.5px] text-apoio">
+            Fechar a conta · <span className="num">00:12</span>
+          </span>
+        </span>
+      </div>
+    </div>
   );
 }
