@@ -454,15 +454,31 @@
   .ferramentas { display: flex; flex-wrap: wrap; gap: 8px; }
   .ferramentas span { padding: 6px 13px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); font-size: 14px; font-weight: 500; }
 
-  /* Chamada final: contatos e o polvo. */
-  .final .final-contatos { max-width: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; color: var(--noite-2); font-size: 15px; }
-  /* Nenhum contato quebra no meio: cada um vai inteiro para a linha seguinte. */
-  .final-contatos a, .final-contatos span { white-space: nowrap; }
-  .final-contatos a { color: #fff; font-weight: 600; text-decoration: none; }
-  .final-contatos a:hover { text-decoration: underline; }
-  .final .polvo { width: 92px; height: auto; }
-
   .rodape .assin { height: 26px; width: auto; }
   .rodape-produtos { display: inline-flex; align-items: center; gap: 12px; }
   .rodape-produtos .vtx { height: 30px; width: auto; }
 
+
+  /* Chamada final da Vortex: texto à esquerda, polvo à direita e os contatos
+     numa linha. As colunas dos contatos têm a largura do conteúdo, então o
+     e-mail nunca quebra no meio. */
+  .contato-bloco { display: grid; gap: 30px; align-items: center; padding: clamp(28px, 5vw, 64px) clamp(20px, 4vw, 52px); border-radius: 32px; background: var(--noite); color: var(--noite-ink); position: relative; overflow: hidden; }
+  .contato-bloco::before { content: ''; position: absolute; right: -140px; top: -140px; width: 480px; height: 480px; border-radius: 50%; border: 25px solid rgba(125, 39, 252, .28); box-shadow: 0 0 0 58px rgba(125, 39, 252, .12), 0 0 0 125px rgba(125, 39, 252, .06); pointer-events: none; }
+  .contato-bloco > * { position: relative; z-index: 1; }
+  @media (min-width: 980px) { .contato-bloco { grid-template-columns: minmax(0, 1fr) 300px; gap: 48px; } }
+  .contato-txt { display: grid; gap: 22px; align-content: start; }
+  .contato-txt .kicker { color: var(--lilas); }
+  .contato-txt h2 { font-size: clamp(38px, 6vw, 66px); }
+  .contato-txt h2 em { font-style: normal; color: var(--lilas); }
+  .contato-sub { color: var(--noite-2); font-size: 18px; max-width: 56ch; }
+  .contato-txt .btn-linha { color: #fff; }
+  .contatos { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 18px 56px; margin: 0; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .1); }
+  .contatos > div { display: flex; gap: 12px; align-items: start; }
+  .contatos .ico { width: 40px; height: 40px; flex: none; border-radius: 12px; display: grid; place-items: center; background: rgba(255, 255, 255, .1); color: var(--ouro); }
+  .contatos .ico svg { width: 20px; height: 20px; }
+  .contatos dt { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--lilas); }
+  .contatos dd { margin: 2px 0 0; font-size: 15px; color: #fff; white-space: nowrap; }
+  .contatos a { color: inherit; text-decoration: none; }
+  .contatos a:hover { text-decoration: underline; }
+  .contato-polvo { display: none; width: 100%; height: auto; }
+  @media (min-width: 980px) { .contato-polvo { display: block; } }

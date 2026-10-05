@@ -1,39 +1,62 @@
 import { Icon } from '../ui/Icon';
 import { contact } from '../../data/site';
-import { vtxTap } from '../../data/vtxtap';
 
-/** Chamada final, igual à da landing (.final): bloco noite centrado com anel. */
+/**
+ * Chamada final: bloco noite com os anéis, o texto à esquerda e o polvo à
+ * direita. Embaixo, na largura toda do bloco, os três contatos numa linha.
+ */
 export function FinalCta() {
   return (
-    <section className="final" id="contato" aria-labelledby="finalTitulo" data-reveal>
-      <img className="polvo" src="/marca/polvo-roxo.svg" alt="" width="92" height="86" />
-      <p className="kicker" style={{ color: 'var(--lilas)' }}>
-        Vamos conversar
-      </p>
-      <h2 id="finalTitulo">
-        Conta o processo. <em>A gente devolve o mapa.</em>
-      </h2>
-      <p>
-        Restaurante? Mostramos o VTX Tap funcionando e montamos o orçamento para o seu número de mesas. Outra operação?
-        O primeiro encontro é um diagnóstico de onde o cliente entra, quem responde e o que ainda é feito à mão.
-      </p>
-      <div className="ctas" style={{ justifyContent: 'center' }}>
-        <a className="btn btn-ouro" href={contact.whatsappHref} target="_blank" rel="noopener noreferrer">
-          <Icon name="msg" />
-          Falar no WhatsApp
-        </a>
-        <a className="btn btn-linha" href={vtxTap.orcamento} target="_blank" rel="noopener noreferrer">
-          Orçar o VTX Tap
-          <Icon name="arrow" />
-        </a>
+    <section className="contato-bloco" id="contato" aria-labelledby="finalTitulo" data-reveal>
+      <div className="contato-txt">
+        <p className="kicker">Próximo passo</p>
+        <h2 id="finalTitulo">
+          Conta o processo. <em>A gente devolve o mapa.</em>
+        </h2>
+        <p className="contato-sub">
+          O primeiro encontro é um diagnóstico: onde o lead entra, quem responde, o que ainda é feito à mão. Para
+          restaurante, mostramos o VTX Tap funcionando e montamos o orçamento pelo número de mesas.
+        </p>
+        <div className="ctas">
+          <a className="btn btn-ouro" href={contact.whatsappHref} target="_blank" rel="noopener noreferrer">
+            <Icon name="msg" />
+            Chamar no WhatsApp
+          </a>
+          <a className="btn btn-linha" href={contact.emailHref}>
+            Mandar um e-mail
+            <Icon name="arrow" />
+          </a>
+        </div>
       </div>
-      <p className="final-contatos">
-        <a href={contact.emailHref}>{contact.email}</a>
-        <a className="num" href={contact.whatsappHref} target="_blank" rel="noopener noreferrer">
-          {contact.whatsapp}
-        </a>
-        <span>{contact.location}</span>
-      </p>
+      <img className="contato-polvo" src="/marca/polvo-roxo.svg" alt="" aria-hidden="true" width="300" height="279" />
+      <dl className="contatos">
+        <Contato icon="msg" label="E-mail" valor={contact.email} href={contact.emailHref} />
+        <Contato icon="phone" label="WhatsApp" valor={contact.whatsapp} href={contact.whatsappHref} externo numero />
+        <Contato icon="map" label="Atendimento" valor={contact.location} />
+      </dl>
     </section>
+  );
+}
+
+function Contato({ icon, label, valor, href, externo, numero }) {
+  const texto = <span className={numero ? 'num' : ''}>{valor}</span>;
+  return (
+    <div>
+      <span className="ico">
+        <Icon name={icon} />
+      </span>
+      <div>
+        <dt>{label}</dt>
+        <dd>
+          {href ? (
+            <a href={href} {...(externo ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+              {texto}
+            </a>
+          ) : (
+            texto
+          )}
+        </dd>
+      </div>
+    </div>
   );
 }
