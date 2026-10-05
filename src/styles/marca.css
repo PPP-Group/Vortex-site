@@ -455,7 +455,9 @@
   .ferramentas span { padding: 6px 13px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); font-size: 14px; font-weight: 500; }
 
   /* Chamada final: contatos e o polvo. */
-  .final-contatos { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; color: var(--noite-2); font-size: 15px; }
+  .final .final-contatos { max-width: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; color: var(--noite-2); font-size: 15px; }
+  /* Nenhum contato quebra no meio: cada um vai inteiro para a linha seguinte. */
+  .final-contatos a, .final-contatos span { white-space: nowrap; }
   .final-contatos a { color: #fff; font-weight: 600; text-decoration: none; }
   .final-contatos a:hover { text-decoration: underline; }
   .final .polvo { width: 92px; height: auto; }
