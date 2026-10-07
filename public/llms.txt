@@ -1,0 +1,49 @@
+# Vortex Systems
+
+> A Vortex Systems é uma empresa brasileira de tecnologia que estrutura a operação digital de negócios de ponta a ponta. O produto da casa é o VTX Tap, uma plaquinha com NFC e QR Code para a mesa de bares e restaurantes. Ao lado dele, a Vortex faz CRM e automação de atendimento e vendas (GoHighLevel), integrações entre sistemas (n8n) e sites, plataformas e aplicativos sob medida. Atendimento remoto em todo o Brasil.
+
+Site: https://vortexsystems.tech
+Contato: vortexsoftwareco@gmail.com · WhatsApp (37) 98827-1126 · Instagram @vortexsoftwareco
+
+## VTX Tap — para bares e restaurantes
+
+Site do produto e orçamento: https://tap.vortexsystems.tech
+
+O cliente encosta o celular na plaquinha da mesa (NFC) ou lê o QR Code e abre a página do restaurante no navegador, sem baixar aplicativo. A equipe recebe tudo num painel, no celular, tablet ou computador.
+
+- Chamar o garçom pelo celular: o cliente escolhe o motivo (atendimento, pedido, conta, água) e segura o sino; a equipe vê a mesa, o nome e o tempo de espera. O sino só toca para quem está no restaurante.
+- Cardápio digital com busca, fotos, categorias e selos (vegetariano, sem glúten, picante).
+- Avaliação no Google em um toque e um canal de comentário anônimo para a gerência.
+- Programa de fidelidade pela nota fiscal (NFC-e): clube de pontos (prêmios, níveis Bronze, Prata e Ouro, ranking, indicação) ou cartão de selos no celular. Funciona com qualquer caixa (PDV), sem integração; nota repetida ou de outro CNPJ é barrada.
+- Delivery próprio sem comissão: página de pedidos com o nome do restaurante, taxa por distância, acompanhamento do pedido, Pix, cartão ou dinheiro.
+- Prorrogação: o relógio do happy hour na TV e no celular de cada mesa ganha minutos a cada chopp vendido.
+- Plaquinhas do tamanho de um cartão de crédito (8,6 × 5,4 cm), padrão ou personalizadas com a marca do restaurante.
+
+Preços (mensalidade por serviço, sem comissão e sem cobrança por cliente ou pedido):
+
+- Página da mesa, cardápio e sino: R$ 79/mês
+- Programa de fidelidade: R$ 229/mês
+- Delivery: R$ 169/mês
+- Prorrogação (happy hour): R$ 89/mês
+- Dois serviços juntos: 10% de desconto; página, fidelidade e delivery: R$ 399/mês; os quatro: R$ 449/mês
+- Implantação inclui cadastro, cardápio montado, mesas, plaquinhas prontas e 1 hora de treinamento. Contrato mínimo de 6 meses; no de 12 meses, a implantação sai pela metade.
+
+## Outros serviços da Vortex
+
+- Automação e CRM (GoHighLevel): pipelines de vendas, follow-up automático, agentes de IA de atendimento em chat, SMS e WhatsApp, e Voice AI que atende ligações, qualifica o lead e agenda na própria chamada.
+- Processos e integrações (n8n): integração por API entre CRM, ERP, banco de dados e planilhas, sincronização e agentes de IA dentro do fluxo.
+- Sites, plataformas e software: sites institucionais e landing pages com SEO, sistemas web em React, plataformas SaaS e aplicativos mobile.
+- Consultoria em automação, treinamento da equipe, suporte e manutenção.
+
+## Como a Vortex trabalha
+
+Diagnóstico do processo atual, desenho do fluxo, implementação em ciclos e repasse com treinamento e manutenção contínua. A operação fica com o cliente.
+
+## Portfólio
+
+- VTX Tap: https://tap.vortexsystems.tech
+- Olympo Steel, fábrica de equipamentos de musculação: https://olymposteel.com.br
+- Renascer, distribuidora de EPIs: https://renascer-sigma.vercel.app
+- Portfólio de sites de campanha eleitoral: https://vortex-portfolio-candidaturas.vercel.app
+- Landing page para academia: https://lp-gym-topaz.vercel.app
+- Site de campanha eleitoral: https://candidato-template.vercel.app

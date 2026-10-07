@@ -1,0 +1,5 @@
+# Easypanel usa o Nixpacks. O Tailwind 4 (@tailwindcss/oxide) exige Node 20+;
+# sem isto o Nixpacks escolhe Node 18 e o build falha com
+# "Cannot find native binding".
+[variables]
+NIXPACKS_NODE_VERSION = "22"
