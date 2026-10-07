@@ -1,5 +1,15 @@
-# Easypanel usa o Nixpacks. O Tailwind 4 (@tailwindcss/oxide) exige Node 20+;
-# sem isto o Nixpacks escolhe Node 18 e o build falha com
-# "Cannot find native binding".
+# Deploy no Easypanel (Nixpacks).
+#
+# - Node 22: o Tailwind 4 (@tailwindcss/oxide) exige Node 20+; com Node 18 o
+#   build falha com "Cannot find native binding".
+# - O build e o start são explícitos: sem isso o Nixpacks tenta adivinhar a
+#   pasta do site e pode servir o código-fonte em vez de dist/ (tela branca,
+#   JS como text/plain). O site sai de scripts/serve.mjs, que só entrega dist/.
 [variables]
 NIXPACKS_NODE_VERSION = "22"
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "node scripts/serve.mjs"
