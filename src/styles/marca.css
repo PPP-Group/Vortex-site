@@ -367,14 +367,34 @@
   /* Topo: assinatura da Vortex e o selo "Novo" no link do VTX Tap. */
   .topo-in > a:first-child { display: inline-flex; line-height: 0; }
   .topo-in > a:first-child img { height: 28px; width: auto; }
-  .topo nav .novo { margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--ouro); color: #1D1400; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
+  .topo nav .novo, .menu-movel .novo { margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--ouro); color: #1D1400; font: 700 11px var(--body); letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
   .topo-menu { display: none; }
   @media (max-width: 860px) {
-    .topo-menu { display: inline-grid; place-items: center; width: 42px; height: 42px; margin-left: auto; border: 0; border-radius: 999px; background: var(--surface-2); color: var(--ink); cursor: pointer; }
+    .topo-menu { display: inline-grid; place-items: center; width: 44px; height: 44px; margin-left: auto; border: 0; border-radius: 999px; background: var(--surface-2); color: var(--ink); cursor: pointer; transition: background-color .2s, color .2s; }
+    .topo-menu[aria-expanded="true"] { background: var(--noite); color: #fff; }
     .topo-menu svg { width: 20px; height: 20px; }
     .topo .btn { display: none; }
-    .topo nav.aberto { display: grid; position: absolute; left: 0; right: 0; top: 100%; padding: 8px 18px 18px; background: var(--bg); border-bottom: 1px solid var(--line); gap: 2px; }
-    .topo nav.aberto a { padding: 12px; font-size: 17px; }
+    /* Com o menu aberto a barra fica opaca: nada do conteúdo aparece borrado por trás. */
+    .topo.menu-aberto { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  }
+
+  /* Menu do celular: painel fixo abaixo da barra, a página travada por trás.
+     Só opacidade e transform na animação, para não tremer. */
+  .menu-movel { display: none; }
+  @media (max-width: 860px) {
+    .menu-movel { position: fixed; z-index: 19; inset: 65px 0 0; display: flex; flex-direction: column; gap: 22px; padding: 10px 18px calc(22px + env(safe-area-inset-bottom, 0px)); background: var(--bg); overflow-y: auto; overscroll-behavior: contain;
+      opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s; }
+    .menu-movel[data-aberto="true"] { opacity: 1; visibility: visible; transform: none; transition: opacity .22s ease, transform .22s ease, visibility 0s; }
+    .menu-movel-links { display: grid; }
+    .menu-movel-links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 4px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 900 32px/1 var(--display); text-transform: uppercase;
+      opacity: 0; transform: translateY(10px); transition: opacity .3s ease, transform .3s ease; }
+    .menu-movel[data-aberto="true"] .menu-movel-links a { opacity: 1; transform: none; transition-delay: calc(var(--i) * 40ms + 60ms); }
+    .menu-movel-links a > svg { width: 22px; height: 22px; color: var(--roxo); flex: none; }
+    .menu-movel-links a:active { color: var(--roxo-ink); }
+    .menu-movel-acoes { display: grid; gap: 10px; margin-top: auto; }
+    .menu-movel-acoes .btn { width: 100%; }
+    .menu-movel-contato { display: grid; gap: 6px; margin: 8px 0 0; text-align: center; font-size: 14.5px; }
+    .menu-movel-contato a { color: var(--muted); text-decoration: none; }
   }
 
   /* Marca do produto acima de um título: logo do VTX Tap + endosso. */
