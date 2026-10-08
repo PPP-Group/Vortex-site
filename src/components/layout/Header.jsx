@@ -27,6 +27,7 @@ export function Header() {
   useEffect(() => {
     if (!aberto) return undefined;
     setScrollLocked(true);
+    document.body.classList.add('menu-aberto');
     const onKey = (e) => e.key === 'Escape' && setAberto(false);
     const desktop = window.matchMedia('(min-width: 861px)');
     const onDesktop = () => desktop.matches && setAberto(false);
@@ -34,6 +35,7 @@ export function Header() {
     desktop.addEventListener('change', onDesktop);
     return () => {
       setScrollLocked(false);
+      document.body.classList.remove('menu-aberto');
       document.removeEventListener('keydown', onKey);
       desktop.removeEventListener('change', onDesktop);
     };

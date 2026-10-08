@@ -1,5 +1,6 @@
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { WhatsAppFlutuante } from './components/ui/WhatsAppFlutuante';
 
 import { Hero } from './components/sections/Hero';
 import { VtxTap } from './components/sections/VtxTap';
@@ -42,6 +43,7 @@ export default function App() {
         <FinalCta />
         <Footer />
       </main>
+      <WhatsAppFlutuante />
     </>
   );
 }

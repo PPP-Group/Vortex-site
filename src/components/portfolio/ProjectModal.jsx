@@ -2,8 +2,14 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Modal } from '../ui/Modal';
 import { ProjectCover } from './ProjectCover';
 
-/** Quanto esperamos o iframe antes de assumir que ele não vai carregar. */
-const LOAD_TIMEOUT_MS = 6000;
+/**
+ * Quanto o aviso "carregando" fica por cima do iframe. Passado esse tempo, o
+ * site aparece mesmo sem o `load`: sites com muitas imagens (mapa, fotos) só
+ * disparam `load` depois de baixar tudo, e trocar o site pela capa por causa
+ * disso escondia um embed que funciona. A capa só entra por `onError` ou
+ * pelo botão "Mostrar capa".
+ */
+const LOAD_TIMEOUT_MS = 2500;
 
 /**
  * Modal de projeto com preview navegável.
@@ -32,7 +38,8 @@ const LOAD_TIMEOUT_MS = 6000;
  *                                  sabe sobre o domínio do projeto.
  *   3. Mesma origem             -> detecção REAL: dá para ler o href. Se vier
  *                                  'about:blank', o embed foi recusado.
- *   4. Timeout / `onError`      -> fallback. Cobre rede caída e DNS morto.
+ *   4. `onError`                -> fallback. Cobre rede caída e DNS morto.
+ *      Timeout                  -> mostra o site mesmo assim, como no item 5.
  *   5. Outra origem que carregou -> assumimos sucesso, mas marcamos como não
  *                                  verificado e mostramos uma saída manual
  *                                  ("mostrar capa"), porque se o domínio
@@ -65,8 +72,10 @@ export function ProjectModal({ project, open, onClose }) {
     }
 
     setStatus('loading');
+    // O `load` limpa este timer; se ele vencer, o iframe ainda não avisou.
     timerRef.current = window.setTimeout(() => {
-      setStatus((current) => (current === 'loading' ? 'blocked' : current));
+      setStatus('ready');
+      setUnverified(true);
     }, LOAD_TIMEOUT_MS);
 
     return () => window.clearTimeout(timerRef.current);
