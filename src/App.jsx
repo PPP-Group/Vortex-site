@@ -1,13 +1,14 @@
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { ZoomDialog } from './components/vtx/Mockups';
 
 import { Hero } from './components/sections/Hero';
 import { VtxTap } from './components/sections/VtxTap';
 import { Services } from './components/sections/Services';
+import { Sobre } from './components/sections/Sobre';
 import { Portfolio } from './components/sections/Portfolio';
 import { AutomationDemo } from './components/sections/AutomationDemo';
 import { Process } from './components/sections/Process';
+import { Duvidas } from './components/sections/Duvidas';
 import { FinalCta } from './components/sections/FinalCta';
 
 import { useRevealObserver } from './hooks/useReveal';
@@ -15,9 +16,10 @@ import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useReducedMotion } from './hooks/useMediaQuery';
 
 /**
- * A página segue a landing do VTX Tap (tap.vortexsystems.tech): uma coluna
- * de 1120px (.wrap) com 72px entre as seções. Primeiro o lançamento, o VTX
- * Tap; depois a Vortex: serviços, portfólio, automação e processo.
+ * Site da Vortex. Coluna de 1120px (.wrap) com 72px entre as seções, no
+ * sistema visual de marca.css. A empresa primeiro (hero com o polvo); logo
+ * depois, um módulo curto do VTX Tap, o lançamento; e então os serviços,
+ * quem somos, portfólio, automação, processo, dúvidas e contato.
  */
 export default function App() {
   const reduced = useReducedMotion();
@@ -32,13 +34,14 @@ export default function App() {
         <Hero />
         <VtxTap />
         <Services />
+        <Sobre />
         <Portfolio />
         <AutomationDemo />
         <Process />
+        <Duvidas />
         <FinalCta />
         <Footer />
       </main>
-      <ZoomDialog />
     </>
   );
 }

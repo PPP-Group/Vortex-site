@@ -84,11 +84,11 @@ export const principles = [
 ];
 
 export const navigation = [
-  { label: 'VTX Tap', href: '#vtx-tap', novo: true },
-  { label: 'Preços', href: '#precos' },
   { label: 'Serviços', href: '#servicos' },
+  { label: 'Sobre', href: '#sobre' },
   { label: 'Portfólio', href: '#portfolio' },
   { label: 'Automação', href: '#automacao' },
+  { label: 'VTX Tap', href: '#vtx-tap', novo: true },
 ];
 
 /**
@@ -108,3 +108,34 @@ export const contact = {
     { label: 'GitHub', href: null, handle: '/[A DEFINIR]' },
   ],
 };
+
+/**
+ * Perguntas frequentes sobre a Vortex: a seção Dúvidas e o FAQPage do JSON-LD
+ * (scripts/prerender.mjs). Só o que a empresa de fato faz e como trabalha.
+ */
+export const faq = [
+  [
+    'O que a Vortex faz?',
+    'A Vortex estrutura a operação digital de empresas: CRM e automação de atendimento e vendas no GoHighLevel, integração entre sistemas com n8n e o desenvolvimento do site, plataforma ou aplicativo que a operação precisa. Também tem produtos próprios, como o VTX Tap, para bares e restaurantes.',
+  ],
+  [
+    'Como começa um projeto?',
+    'Com um diagnóstico: mapeamos como o processo funciona hoje, por onde o cliente entra, quem responde e o que ainda é feito à mão. Depois desenhamos o fluxo, construímos em ciclos com entrega visível e repassamos tudo para a sua equipe.',
+  ],
+  [
+    'Vocês atendem fora da minha cidade?',
+    'Sim. O atendimento é remoto, em todo o Brasil. Reuniões, implantação e treinamento acontecem online.',
+  ],
+  [
+    'Minha equipe consegue operar depois da entrega?',
+    'Sim. A entrega inclui treinamento, documentação e os acessos. A operação fica com você, e seguimos no suporte e na manutenção dos fluxos se quiser.',
+  ],
+  [
+    'Vocês trabalham com as ferramentas que eu já uso?',
+    'Na maioria dos casos, sim. Integramos por API com CRM, ERP, banco de dados, planilhas e outros serviços. No diagnóstico dizemos o que dá para aproveitar e o que vale trocar.',
+  ],
+  [
+    'O que é o VTX Tap?',
+    'É o produto da Vortex para bares e restaurantes: uma plaquinha com NFC e QR Code na mesa que abre a página do restaurante no celular do cliente, com cardápio, chamar o garçom, fidelidade pela nota fiscal e delivery sem comissão. Mais detalhes em tap.vortexsystems.tech.',
+  ],
+];

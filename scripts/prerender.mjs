@@ -20,7 +20,7 @@ const ssr = path.join(raiz, '.ssr');
 const SITE = (process.env.SITE_URL || 'https://vortexsystems.tech').replace(/\/$/, '');
 
 const m = await import(pathToFileURL(path.join(ssr, 'entry-server.js')).href);
-const { render, brand, contact, manifesto, services, projects, vtxTap, precos, faqVtx } = m;
+const { render, brand, contact, manifesto, faq, services, projects, vtxTap, precos } = m;
 
 const html = render();
 
@@ -89,12 +89,12 @@ const grafo = {
       '@type': 'WebPage',
       '@id': `${SITE}/#pagina`,
       url: `${SITE}/`,
-      name: 'Vortex Systems — VTX Tap, automação comercial e produto digital',
+      name: 'Vortex Systems | Automação comercial, integrações, sites e apps',
       description: `${manifesto.lines.join(' ')}. ${manifesto.body}`,
       inLanguage: 'pt-BR',
       isPartOf: { '@id': `${SITE}/#site` },
       about: { '@id': org },
-      mainEntity: { '@id': `${SITE}/#vtx-tap` },
+      mainEntity: { '@id': org },
       dateModified: new Date().toISOString().slice(0, 10),
     },
     {
@@ -118,6 +118,7 @@ const grafo = {
       image: `${SITE}/vtx-tap/cartao-vtx-frente.webp`,
       screenshot: [`${SITE}/vtx-tap/painel-chamados.webp`, `${SITE}/vtx-tap/fid-conta.webp`, `${SITE}/vtx-tap/sino.webp`],
       publisher: { '@id': org },
+      // Produto da Vortex: a página dele é tap.vortexsystems.tech.
       offers: [
         oferta('Página da mesa, cardápio e sino', precos.pagina, 'Cardápio, Wi-Fi, Google, comentários e o sino para chamar o garçom.'),
         oferta('Programa de fidelidade', precos.fidelidade, 'Clube de pontos e cartão de selos pela nota fiscal.'),
@@ -129,7 +130,7 @@ const grafo = {
     {
       '@type': 'FAQPage',
       '@id': `${SITE}/#duvidas`,
-      mainEntity: faqVtx.map(([q, r]) => ({
+      mainEntity: faq.map(([q, r]) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: r },

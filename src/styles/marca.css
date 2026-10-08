@@ -64,8 +64,10 @@
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
   /* Barra do topo */
-  .topo { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
-  .topo.rolou { border-bottom-color: var(--line); }
+  /* Barra do topo: vidro fosco (desfoque gaussiano forte + névoa a 72%), para o conteúdo
+     passar por baixo sem ser lido através dela. */
+  .topo { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 72%, transparent); backdrop-filter: blur(22px) saturate(1.8); -webkit-backdrop-filter: blur(22px) saturate(1.8); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
+  .topo.rolou { border-bottom-color: var(--line); box-shadow: 0 8px 24px -18px rgba(20, 11, 51, .35); }
   .topo-in { max-width: 1120px; margin: 0 auto; padding: 10px 18px; display: flex; align-items: center; gap: 18px; }
   .topo nav { display: flex; gap: 4px; margin-left: auto; }
   .topo nav a { padding: 8px 12px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-2); }
@@ -502,3 +504,67 @@
   .contatos a:hover { text-decoration: underline; }
   .contato-polvo { display: none; width: 100%; height: auto; }
   @media (min-width: 980px) { .contato-polvo { display: block; } }
+
+/* ==========================================================================
+   Site da Vortex (empresa primeiro)
+   ========================================================================== */
+
+  /* Hero com o polvo: o mascote como ilustração de site (manual: "Onde usar"). */
+  .hero--vortex { padding-bottom: clamp(28px, 5vw, 56px); }
+  @media (min-width: 920px) { .hero--vortex { align-items: center; } .hero--vortex .hero-txt { padding-bottom: 0; } }
+  .hero-polvo { position: relative; width: 100%; max-width: 500px; justify-self: center; aspect-ratio: 1 / .95; display: grid; place-items: center; }
+  .hero-polvo .polvo { width: 74%; height: auto; filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .35)); animation: polvo-flutua 7s ease-in-out infinite; }
+  @keyframes polvo-flutua { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+  @media (prefers-reduced-motion: reduce) { .hero-polvo .polvo { animation: none; } }
+  .hero-polvo .hero-etq { gap: 10px; }
+  .hero-polvo .etq-ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--roxo-soft); color: var(--roxo-ink); flex: none; }
+  .hero-polvo .etq-ico svg { width: 18px; height: 18px; }
+  .hero-polvo .hero-etq--a { left: -2%; top: 10%; }
+  .hero-polvo .hero-etq--b { right: -2%; top: 40%; }
+  .hero-polvo .hero-etq--c { left: 4%; bottom: 6%; top: auto; }
+  @media (max-width: 919px) { .hero-polvo { max-width: 380px; } .hero-polvo .hero-etq { font-size: 13px; padding: 7px 11px; } .hero-polvo .etq-ico { width: 28px; height: 28px; } }
+
+  /* Módulo do VTX Tap: o bloco roxo da página, curto, com a plaquinha e uma tela. */
+  .vtx-modulo { gap: 30px; align-items: center; }
+  @media (min-width: 920px) { .vtx-modulo { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; } }
+  .vtx-modulo-txt { display: grid; gap: 22px; align-content: start; }
+  .vtx-modulo .produto-marca .logo { height: 46px; }
+  .tag-lanc { padding: 3px 11px; border-radius: 999px; background: var(--ouro); color: #1D1400; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .vtx-recursos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .vtx-recursos li { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+  .vtx-recursos .ico { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: rgba(255, 255, 255, .14); color: var(--ouro); flex: none; }
+  .vtx-recursos .ico svg { width: 19px; height: 19px; }
+  .vtx-modulo .btn-linha { color: #fff; }
+  .vtx-preco { color: #E6D9FF; font-size: 15px; }
+  .vtx-preco b { color: #fff; }
+  .vtx-modulo-foto { position: relative; width: 100%; max-width: 440px; justify-self: center; aspect-ratio: 1 / .9; }
+  .vtx-placa { position: absolute; left: 0; top: 14%; width: 78%; height: auto; border-radius: 3.7% / 5.9%; transform: rotate(-7deg); box-shadow: 0 26px 50px -16px rgba(0, 0, 0, .55); }
+  .vtx-fone { position: absolute !important; right: 2%; bottom: -4%; width: 42%; transform: rotate(5deg); }
+
+  /* Dores: o visitante se reconhece antes de ler a ferramenta. */
+  .dores { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .dores li { display: grid; grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); align-items: center; gap: 14px; padding: 16px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+  .dores .dor-txt { font-weight: 600; color: var(--ink); }
+  .dores li > svg { width: 22px; height: 22px; color: var(--roxo); }
+  .dores .dor-fix { color: var(--muted); font-size: 15px; }
+  @media (max-width: 640px) { .dores li { grid-template-columns: 1fr; gap: 6px; } .dores li > svg { transform: rotate(90deg); } }
+
+  /* Sobre: o polvo grande ao lado das duas frentes. */
+  .sobre { display: grid; gap: 30px; align-items: center; }
+  @media (min-width: 920px) { .sobre { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 52px; } }
+  .sobre-polvo { position: relative; display: grid; place-items: center; aspect-ratio: 1; max-width: 420px; width: 100%; justify-self: center; border-radius: 32px; background: var(--roxo-soft); overflow: hidden; }
+  .sobre-polvo::before { content: ''; position: absolute; right: -90px; bottom: -90px; width: 300px; height: 300px; border-radius: 50%; border: 18px solid rgba(125, 39, 252, .14); box-shadow: 0 0 0 40px rgba(125, 39, 252, .06); }
+  .sobre-polvo img { position: relative; width: 70%; height: auto; }
+  .sobre-txt { display: grid; gap: 22px; }
+  .eixos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .eixos h3 { font-size: 18px; }
+  .eixo-ferramentas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .eixo-ferramentas span { padding: 3px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); font: 500 12.5px var(--mono); }
+  .sobre-frase { font-size: 18px; color: var(--ink-2); max-width: 60ch; }
+  .sobre-frase b { color: var(--roxo-ink); }
+
+  /* Rodapé da Vortex. */
+  .rodape--vortex { display: grid; gap: 18px; justify-content: stretch; padding-top: 8px; }
+  .rodape-topo, .rodape-base { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  .rodape-base { padding-top: 16px; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .rodape-contato { display: flex; flex-wrap: wrap; gap: 8px 18px; }

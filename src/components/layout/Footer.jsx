@@ -1,28 +1,39 @@
-import { contact, brand } from '../../data/site';
-import { vtxTap } from '../../data/vtxtap';
+import { contact, brand, navigation } from '../../data/site';
 
-/** Rodapé igual ao da landing (.rodape): marca, produtos e links. */
+/**
+ * Rodapé: a assinatura horizontal da Vortex (manual: cabeçalho e rodapé do
+ * site) e o nome completo, Vortex Systems, na linha legal.
+ */
 export function Footer() {
   const social = contact.socials.find((s) => s.href);
   return (
-    <footer className="rodape">
-      <span className="rodape-marca">
-        <img className="assin" src="/marca/assinatura-cor.svg" alt="Vortex" width="156" height="26" />
-        <a className="rodape-produtos" href={vtxTap.site} target="_blank" rel="noopener noreferrer" aria-label="VTX Tap: abrir o site do produto">
-          <img className="vtx" src="/marca/vtx-tap-cor.svg" alt="" width="59" height="30" />
-        </a>
-      </span>
-      <nav aria-label="Rodapé">
-        <a href={contact.emailHref}>{contact.email}</a>
-        {social && (
-          <a href={social.href} target="_blank" rel="noopener noreferrer">
-            {social.handle}
-          </a>
-        )}
-        <span>
-          © {new Date().getFullYear()} {brand.fullName}
+    <footer className="rodape rodape--vortex">
+      <div className="rodape-topo">
+        <span className="rodape-marca">
+          <img className="assin" src="/marca/assinatura-cor.svg" alt="Vortex" width="168" height="28" />
         </span>
-      </nav>
+        <nav aria-label="Rodapé">
+          {navigation.map((n) => (
+            <a key={n.href} href={n.href}>
+              {n.label}
+            </a>
+          ))}
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+      <div className="rodape-base">
+        <span>
+          © {new Date().getFullYear()} {brand.fullName} · {brand.domain}
+        </span>
+        <span className="rodape-contato">
+          <a href={contact.emailHref}>{contact.email}</a>
+          {social && (
+            <a href={social.href} target="_blank" rel="noopener noreferrer">
+              {social.handle}
+            </a>
+          )}
+        </span>
+      </div>
     </footer>
   );
 }

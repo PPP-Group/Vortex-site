@@ -10,7 +10,7 @@ export function render() {
   return renderToString(<App />);
 }
 
-export { brand, contact, manifesto } from './data/site';
+export { brand, contact, manifesto, faq } from './data/site';
 export { services } from './data/services';
 export { projects } from './data/portfolio';
-export { vtxTap, precos, faqVtx } from './data/vtxtap';
+export { vtxTap, precos } from './data/vtxtap';

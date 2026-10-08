@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { navigation, contact } from '../../data/site';
-import { vtxTap } from '../../data/vtxtap';
 import { setScrollLocked } from '../../lib/scroll';
 import { Icon } from '../ui/Icon';
 
@@ -101,14 +100,12 @@ export function Header() {
           <a className="btn btn-roxo" href="#contato" onClick={fechar}>
             Falar com a equipe
           </a>
-          <a className="btn btn-ouro" href={vtxTap.orcamento} target="_blank" rel="noopener noreferrer" onClick={fechar}>
-            Orçar o VTX Tap
-            <Icon name="arrow" />
+          <a className="btn btn-ouro" href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={fechar}>
+            <Icon name="msg" />
+            Chamar no WhatsApp
           </a>
           <p className="menu-movel-contato">
-            <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer">
-              WhatsApp <span className="num">{contact.whatsapp}</span>
-            </a>
+            <span className="num">{contact.whatsapp}</span>
             <a href={contact.emailHref}>{contact.email}</a>
           </p>
         </div>

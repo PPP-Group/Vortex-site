@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-
 /**
- * Aparelhos da landing do VTX Tap (classes .fone, .laptop e .tv de marca.css):
- * iPhone com Dynamic Island e barra de status, notebook e TV. Cada um é um
- * botão que amplia a tela no diálogo <ZoomDialog />.
+ * Celular da landing do VTX Tap (classe .fone de marca.css): iPhone com
+ * Dynamic Island e barra de status, com uma tela real do produto.
  */
 
 function StatusIcons() {
@@ -48,58 +45,5 @@ export function Fone({ src, alt = '', label, zoom = true, eager = false, classNa
     <button type="button" className={`zoom fone ${className}`} data-zoom={src} aria-label={`Ampliar: ${label}`}>
       <TelaFone src={src} alt={alt} />
     </button>
-  );
-}
-
-export function Laptop({ src, alt, label }) {
-  return (
-    <button type="button" className="zoom laptop" data-zoom={src} aria-label={`Ampliar: ${label}`}>
-      <span className="laptop-tela">
-        <img src={src} width="1600" height="1012" alt={alt} loading="lazy" />
-      </span>
-      <span className="laptop-base" aria-hidden="true" />
-    </button>
-  );
-}
-
-export function Tv({ src, alt, label }) {
-  return (
-    <button type="button" className="zoom tv" data-zoom={src} aria-label={`Ampliar: ${label}`}>
-      <span className="tv-tela">
-        <img src={src} width="1600" height="900" alt={alt} loading="lazy" />
-      </span>
-      <span className="tv-pe" aria-hidden="true" />
-    </button>
-  );
-}
-
-/** Um diálogo só para a página: qualquer [data-zoom] clicado abre a imagem grande. */
-export function ZoomDialog() {
-  const ref = useRef(null);
-  const [src, setSrc] = useState('');
-
-  useEffect(() => {
-    const onClick = (e) => {
-      const alvo = e.target.closest?.('[data-zoom]');
-      if (!alvo || !ref.current) return;
-      setSrc(alvo.getAttribute('data-zoom'));
-      ref.current.showModal();
-    };
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  }, []);
-
-  return (
-    <dialog
-      ref={ref}
-      className="zoom-dlg"
-      aria-label="Imagem ampliada"
-      onClick={(e) => e.target === ref.current && ref.current.close()}
-    >
-      {src && <img src={src} alt="" />}
-      <button type="button" aria-label="Fechar" onClick={() => ref.current.close()}>
-        ×
-      </button>
-    </dialog>
   );
 }

@@ -28,28 +28,6 @@
 
 export const projects = [
   {
-    id: 'vtx-tap',
-    title: 'VTX Tap — a mesa do restaurante no celular',
-    category: 'Plataforma SaaS · produto Vortex',
-    year: '2026',
-    summary:
-      'Plaquinha NFC e QR na mesa, página do restaurante sem aplicativo e o painel da equipe: garçom, cardápio, fidelidade, delivery e happy hour.',
-    description:
-      'Produto próprio da Vortex. O cliente encosta o celular na plaquinha e abre a página da mesa: chama o garçom, vê o cardápio, junta pontos pela nota fiscal e avalia no Google. A equipe recebe tudo num painel com som, e o restaurante ainda ganha um delivery próprio sem comissão e o relógio do happy hour na TV. Multi-restaurante, com domínio próprio por cliente e banco com regras de acesso por restaurante.',
-    stack: ['JavaScript', 'Supabase', 'PWA', 'NFC'],
-    liveUrl: 'https://tap.vortexsystems.tech/',
-    /* O domínio envia X-Frame-Options: SAMEORIGIN — o modal abre na capa. */
-    embeddable: false,
-    externalUrl: 'https://tap.vortexsystems.tech/',
-    cover: '/vtx-tap/painel-chamados.webp',
-    accent: 'pulse',
-    demo: false,
-    results: [
-      { value: '4 serviços', label: 'página da mesa, fidelidade, delivery e Prorrogação' },
-      { value: '0 apps', label: 'para o cliente baixar' },
-    ],
-  },
-  {
     id: 'portfolio-candidaturas',
     title: 'Portfólio de sites de campanha',
     category: 'Portfólio digital',

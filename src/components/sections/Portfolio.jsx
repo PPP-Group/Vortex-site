@@ -18,11 +18,11 @@ export function Portfolio() {
       </div>
 
       <div className="port">
-        {projects.map((p, i) => (
+        {projects.map((p) => (
           <button
             key={p.id}
             type="button"
-            className={`proj ${i === 0 ? 'proj--destaque' : ''}`}
+            className="proj"
             onClick={() => setActiveId(p.id)}
           >
             <span className="proj-capa">
