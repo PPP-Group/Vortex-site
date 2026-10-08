@@ -22,8 +22,9 @@
  *   cover       imagem de capa em /public/portfolio/. Se o arquivo não
  *               existir, o card cai num placeholder gráfico procedural.
  *   demo        `true` marca o card como exemplo estrutural, não case real.
- *   results     métricas do case. `[MÉTRICA A DEFINIR]` = aguardando número
- *               real aprovado pelo cliente — nunca preencher com estimativa.
+ *   results     o que o projeto entrega. Número só com origem (dado do cliente
+ *               ou contado no próprio site); sem número, uma frase concreta do
+ *               que mudou para quem usa — nunca estimativa.
  */
 
 export const projects = [
@@ -65,8 +66,8 @@ export const projects = [
     accent: 'volt',
     demo: false,
     results: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'aumento em contatos de consultor' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'nota de performance' },
+      { value: 'Catálogo por categoria', label: 'o comprador industrial acha o EPI que precisa sem ligar para perguntar' },
+      { value: '2 caminhos de contato', label: 'formulário e WhatsApp a um toque, levando direto a um consultor' },
     ],
   },
   {
@@ -128,8 +129,8 @@ export const projects = [
     accent: 'flare',
     demo: false,
     results: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'aumento em pedidos de orçamento' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'nota de performance' },
+      { value: '4 linhas de produto', label: 'catálogo organizado por grupo muscular, como o comprador de academia pensa' },
+      { value: 'Orçamento direto da fábrica', label: 'o pedido já chega com o equipamento de interesse escolhido' },
     ],
   },
   {
@@ -150,8 +151,8 @@ export const projects = [
     accent: 'pulse',
     demo: true,
     results: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'redução no tempo de matrícula' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'recuperação de inadimplência' },
+      { value: 'Cadastro único', label: 'o aluno entra uma vez e o CRM, a agenda e o painel se atualizam sozinhos' },
+      { value: 'Painel em tempo real', label: 'matrículas, inadimplência e frequência sem planilha paralela' },
     ],
   },
 ];

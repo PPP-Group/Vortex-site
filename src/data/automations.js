@@ -54,7 +54,7 @@ export const demoFlow = {
 
 /**
  * Mini-cases de automação. Estrutura problema -> solução -> resultado.
- * Resultados são placeholders até a Vortex confirmar números reais.
+ * O resultado diz o que muda na operação; número só quando houver origem.
  */
 export const automationCases = [
   {
@@ -66,8 +66,8 @@ export const automationCases = [
     solution:
       'Missed call text back dispara uma mensagem em segundos. Quando o lead responde, um agente de IA assume, qualifica e, se houver intenção de compra, a Voice AI liga de volta, consulta a agenda em tempo real e confirma o horário na própria chamada. Sentimento negativo ou limite de mensagens escala para um humano.',
     result: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'ligações perdidas recuperadas' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'tempo até o primeiro contato' },
+      { value: 'Nenhuma ligação sem retorno', label: 'toda chamada perdida recebe mensagem em segundos, inclusive fora do horário' },
+      { value: 'Agenda na própria ligação', label: 'a Voice AI qualifica o lead e confirma o horário sem esperar um vendedor' },
     ],
   },
   {
@@ -79,8 +79,8 @@ export const automationCases = [
     solution:
       'Fluxos no n8n sincronizam os três sentidos: cada mudança relevante vira um evento, passa por transformação e enriquecimento, e grava num banco único que alimenta o painel. Erro de API entra em retry com log, não em silêncio.',
     result: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'horas manuais por mês' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'divergências de cadastro' },
+      { value: 'Uma versão do cliente', label: 'CRM, ERP e financeiro gravam no mesmo banco, que alimenta o painel' },
+      { value: 'Fechamento sem conferência manual', label: 'erro de API vira retry com log, não divergência descoberta no fim do mês' },
     ],
   },
   {
@@ -92,8 +92,8 @@ export const automationCases = [
     solution:
       'Regra de tempo no estágio dispara a recuperação: sequência multicanal por e-mail, SMS e WhatsApp com conteúdo diferente a cada tentativa, tarefa para o vendedor quando há reengajamento, e movimentação automática do negócio conforme a resposta.',
     result: [
-      { value: '[MÉTRICA A DEFINIR]', label: 'propostas reaquecidas' },
-      { value: '[MÉTRICA A DEFINIR]', label: 'ciclo médio de venda' },
+      { value: 'Nenhuma proposta esquecida', label: 'o tempo parado no estágio dispara a recuperação sozinho' },
+      { value: 'Vendedor avisado na hora', label: 'quando o lead responde, vira tarefa e o negócio anda no pipeline' },
     ],
   },
 ];
