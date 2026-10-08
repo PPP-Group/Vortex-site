@@ -181,37 +181,6 @@
   .aviso-box p { color: var(--noite-2); font-size: 15px; }
   .destaque--roxo .aviso-box p { color: #E6D9FF; }
 
-  /* Calculadora de comissão */
-  .calc { display: grid; gap: 18px; padding: 22px; border-radius: 24px; background: #fff; color: var(--noite); }
-  @media (min-width: 820px) { .calc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: 28px; } }
-  .calc h3 { font: 900 30px/1 var(--display); text-transform: uppercase; }
-  .calc-in { display: grid; gap: 14px; align-content: start; }
-  .calc label { display: grid; gap: 6px; font-weight: 600; font-size: 14.5px; }
-  .calc .campo { display: flex; align-items: center; gap: 12px; }
-  .calc input[type="range"] { flex: 1; min-width: 0; accent-color: var(--roxo); }
-  .calc output, .calc .val { min-width: 92px; text-align: right; font: 600 16px var(--mono); color: var(--roxo); }
-  .calc small { color: #625A80; font-size: 13px; font-weight: 400; }
-  .calc-out { display: grid; gap: 12px; align-content: start; }
-  .calc-lado { display: grid; gap: 6px; padding: 16px 18px; border-radius: 18px; background: #F4F2F9; }
-  .calc-rot { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #625A80; }
-  .calc-conta { font-size: 14.5px; color: #2F2752; }
-  .calc-conta b { font-family: var(--mono); font-weight: 600; }
-  .calc-valor { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
-  .calc-valor b { font: 900 34px/1 var(--display); font-variant-numeric: tabular-nums; }
-  .calc-valor small { color: #625A80; font-size: 14px; }
-  .calc-hoje .calc-valor b { color: #C2410C; }
-  .calc-vtx { background: #EEE5FF; }
-  .calc-vtx .calc-valor b { color: #6A1BE0; }
-  .calc-barra { display: block; height: 10px; border-radius: 999px; background: rgba(20, 11, 51, .08); overflow: hidden; }
-  .calc-barra i { display: block; height: 100%; border-radius: inherit; transition: width .3s; }
-  .calc-hoje .calc-barra i { background: #EA580C; }
-  .calc-vtx .calc-barra i { background: #7D27FC; }
-  .calc-eco { display: grid; gap: 2px; padding: 16px 18px; border-radius: 18px; background: #DDF3E8; }
-  .calc-eco span { font-weight: 700; color: #145C3B; }
-  .calc-eco b { font: 900 48px/1 var(--display); color: #1B7F52; font-variant-numeric: tabular-nums; }
-  .calc-eco small { color: #145C3B; font-size: 14.5px; }
-  .calc-nota { color: #625A80; font-size: 13px; }
-
   /* Mesa (cardápio + sino) */
   .cols3 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .card { display: grid; gap: 10px; align-content: start; padding: 22px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); }
