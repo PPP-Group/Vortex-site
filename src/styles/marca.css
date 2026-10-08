@@ -549,5 +549,4 @@
   .wpp:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(125, 39, 252, .55), 0 0 0 6px rgba(168, 116, 255, .26); }
   @media (hover: hover) and (min-width: 861px) { .wpp:hover .wpp-rotulo, .wpp:focus-visible .wpp-rotulo { opacity: 1; transform: translate(0, -50%); } }
   .wpp:focus-visible { outline: 3px solid var(--lilas); outline-offset: 3px; }
-  .wpp::after { content: ''; position: absolute; top: 9px; right: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 0 2px var(--roxo); }
   body.menu-aberto .wpp { opacity: 0; visibility: hidden; }

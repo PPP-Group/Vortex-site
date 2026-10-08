@@ -2,7 +2,7 @@ import { contact } from '../../data/site';
 
 /**
  * Botão flutuante de WhatsApp, nas cores da marca: roxo com o glifo branco,
- * anel lilás e o ponto ouro de "online". Some enquanto o menu do celular está
+ * e anel lilás. Some enquanto o menu do celular está
  * aberto (classe menu-aberto no body, posta pelo Header).
  */
 export function WhatsAppFlutuante() {
